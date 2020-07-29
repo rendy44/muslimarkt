@@ -71,17 +71,21 @@ Layout.propTypes = {
 
 function Section(props) {
     let cssClass = sectionStyles.section;
-    const columnSize = props.isFull ? 'col-1-1' : 'col-sm-6-7 col-md-3-4';
+    const columnSize = props.isFull ? 'col-sm-1-1' : 'col-sm-6-7 col-md-3-4';
 
-    // maybe add extra class.
+    // Maybe add extra class.
     if (props.extraClass) {
         cssClass += ' ' + props.extraClass
     }
+
+    // Maybe add title.
+    const maybeTitle = props.title ? <h2 className={sectionStyles.title}>{props.title}</h2> : ''
     return (
         <section className={cssClass}>
             <div className='frow-container'>
                 <div className='frow'>
                     <div className={columnSize}>
+                        {maybeTitle}
                         {props.children}
                     </div>
                 </div>
@@ -92,7 +96,8 @@ function Section(props) {
 Section.propTypes = {
     id: PropTypes.string.isRequired,
     extraClass: PropTypes.string,
-    isFull: PropTypes.bool
+    isFull: PropTypes.bool,
+    title: PropTypes.string
 }
 
 export { Header, Footer, Layout, Section };
