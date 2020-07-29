@@ -2,7 +2,9 @@ import headerStyles from './header.module.scss';
 import sectionStyles from './section.module.scss';
 import { IoMdLogIn, IoMdPersonAdd } from 'react-icons/io';
 import Link from 'next/link';
+import Head from 'next/head';
 import PropTypes from 'prop-types';
+import conf from '../../global.config.json';
 
 function Header(props) {
     return (
@@ -49,13 +51,22 @@ function Footer(props) {
 }
 
 function Layout(props) {
+    const { siteName, siteDesc } = conf;
+    const { docTitle } = props;
+    const usedTitle = docTitle ? docTitle + ' | ' + siteName : siteName + ' | ' + siteDesc;
     return (
         <>
+            <Head>
+                <title>{usedTitle}</title>
+            </Head>
             <Header />
             {props.children}
             <Footer />
         </>
     )
+}
+Layout.propTypes = {
+    docTitle: PropTypes.string
 }
 
 function Section(props) {

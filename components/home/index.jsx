@@ -4,7 +4,7 @@ import { Button } from '../form/button';
 
 function Hero(props) {
     return (
-        <Section extraClass={heroStyles.hero}>
+        <Section id='hero' extraClass={heroStyles.hero}>
             <h1>Portal Lowongan Pekerjaan Kaum Muslimin</h1>
             <p>Insya Allah Berkah dan Amanah!</p>
             <div className={heroStyles.actions}>
