@@ -71,17 +71,8 @@
     -webkit-transform: $args;
 }
 
-@mixin latinFont {
+@mixin mainFont {
     font-family: 'Quicksand', sans-serif;
-}
-
-@mixin arabicCalligraphy {
-    font-family: 'Reem Kufi', sans-serif;
-}
-
-@mixin arabicBasic {
-    // font-family: 'Amiri', serif;
-    font-family: 'UthmanTahaNaskh', serif;
 }
 
 @mixin rotate($val) {

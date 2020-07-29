@@ -1,0 +1,43 @@
+@import '../../styles/mainUtil';
+
+.header {
+    height: 56px;
+    display: flex;
+    align-items: center;
+    background-color: $white;
+    border-bottom: 1px solid rgba($black, .1);
+    @include boxShadow(0, .2rem, .4rem, rgba($black, .15));
+}
+
+.inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    a {
+        font-weight: 600;
+    }
+}
+
+.nav {
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            display: inline-block;
+            margin-right: .5rem;
+
+            a {
+                font-size: 1.5rem;
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+}

@@ -1,0 +1,16 @@
+@import '../../styles/mainUtil';
+
+.button {
+    padding: .75rem 1.25rem;
+    color: $white;
+    border: 1px solid rgba($black, .1);
+    @include borderRadius(4px);
+    @include defaultTransition;
+
+    &:hover,
+    &:active,
+    &:focus {
+        border-color: rgba($black, .1);
+        @include boxShadow;
+    }
+}

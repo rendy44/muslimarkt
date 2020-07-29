@@ -1,0 +1,34 @@
+@import '../../styles/mainUtil';
+
+.hero {
+    padding: 0 !important;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    background-color: $main;
+    color: $white;
+
+    h1 {
+        margin-bottom: 1rem;
+        display: inline-block;
+        line-height: 1.4;
+    }
+
+    p {
+        margin: 0 0 3rem;
+        display: inline-block;
+        line-height: 1.4;
+    }
+}
+
+.actions {
+    button {
+        display: inline-block;
+        margin-right: .5rem;
+        font-size: 90%;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
