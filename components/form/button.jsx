@@ -9,7 +9,7 @@ class Button extends React.Component {
 
     render() {
         const buttonType = this.props.isSubmit ? 'submit' : 'button';
-        const cssClass = styles.button + ' ' + this.props.variant;
+        const cssClass = styles.btn + ' ' + this.props.variant;
         return (
             <button
                 type={buttonType}
