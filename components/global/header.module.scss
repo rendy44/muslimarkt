@@ -1,7 +1,7 @@
 @import '../../styles/mainUtil';
 
 .header {
-    height: 56px;
+    height: 60px;
     display: flex;
     align-items: center;
     background-color: $white;
@@ -16,8 +16,15 @@
 }
 
 .brand {
+    max-width: 120px;
+
     a {
         font-weight: 600;
+
+        img {
+            max-height: 40px;
+            max-width: 100%;
+        }
     }
 }
 

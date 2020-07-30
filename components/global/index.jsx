@@ -1,5 +1,6 @@
 import headerStyles from './header.module.scss';
 import sectionStyles from './section.module.scss';
+import footerStyles from './footer.module.scss';
 import { IoMdLogIn, IoMdPersonAdd } from 'react-icons/io';
 import Link from 'next/link';
 import Head from 'next/head';
@@ -13,7 +14,9 @@ function Header(props) {
                 <div className={headerStyles.inner}>
                     <div className={headerStyles.brand}>
                         <Link href='/'>
-                            <a>Muslimarkt</a>
+                            <a>
+                                <img src='logo2.png' alt='Logo'/>
+                            </a>
                         </Link>
                     </div>
                     <div className={headerStyles.nav}>
@@ -42,9 +45,13 @@ function Header(props) {
 
 function Footer(props) {
     return (
-        <footer>
+        <footer className={footerStyles.footer}>
             <div className='frow-container'>
-                Sample footer
+                <div className='frow'>
+                    <div className='col-sm-1-1 col-md-1-3'>Oke</div>
+                    <div className='col-sm-1-2 col-md-1-3'>Oke</div>
+                    <div className='col-sm-1-2 col-md-1-3'>Oke</div>
+                </div>
             </div>
         </footer>
     )
