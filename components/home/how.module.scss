@@ -5,6 +5,14 @@
     background-color: $light;
 }
 
+.cta {
+    margin-top: 1.5rem;
+
+    button {
+        margin: auto;
+    }
+}
+
 .howItWorksItems {
     display: flex;
     flex-direction: column;

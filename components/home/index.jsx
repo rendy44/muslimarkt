@@ -1,5 +1,5 @@
 import { Section } from '../global';
-import { Button } from '../form/button';
+import { Btn } from '../form';
 import heroStyles from './hero.module.scss';
 import howStyles from './how.module.scss';
 import PropTypes from 'prop-types';
@@ -7,11 +7,11 @@ import PropTypes from 'prop-types';
 function Hero() {
     return (
         <Section id='hero' extraClass={heroStyles.hero}>
-            <h1>Portal Lowongan Pekerjaan<br/>Kaum Muslimin</h1>
+            <h1>Portal Lowongan Pekerjaan<br />Kaum Muslimin</h1>
             <p>Insya Allah Berkah dan Amanah!</p>
             <div className={heroStyles.actions}>
-                <Button variant='success' label='Daftar Sekarang' isSubmit={false} />
-                <Button variant='transparent' label='Masuk' isSubmit={false} />
+                <Btn variant='success' label='Daftar Sekarang' isSubmit={false} />
+                <Btn variant='transparent' label='Masuk' isSubmit={false} />
             </div>
         </Section>
     )
@@ -22,6 +22,9 @@ function HowItWorks(props) {
         <Section id='how' isFull={true} title='Cara Kerja' extraClass={howStyles.section}>
             <div className={howStyles.howItWorksItems}>
                 {props.children}
+            </div>
+            <div className={howStyles.cta}>
+                <Btn isSubmit={false} label='Temukan Pekerjaan' variant='main' />
             </div>
         </Section>
     )
