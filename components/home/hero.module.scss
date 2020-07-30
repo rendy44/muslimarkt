@@ -11,13 +11,28 @@
     h1 {
         margin-bottom: 1rem;
         display: inline-block;
-        line-height: 1.4;
+        line-height: 1.3;
+        font-weight: 700;
+        @include textShadow;
+
+        @include breakpoint(768px) {
+            font-size: 38px;
+        }
+
+        @include breakpoint(992px) {
+            font-size: 46px;
+        }
+
+        @include breakpoint(1200px) {
+            font-size: 56px;
+        }
     }
 
     p {
         margin: 0 0 3rem;
         display: inline-block;
         line-height: 1.4;
+        @include textShadow;
     }
 }
 

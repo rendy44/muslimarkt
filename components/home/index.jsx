@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 function Hero() {
     return (
         <Section id='hero' extraClass={heroStyles.hero}>
-            <h1>Portal Lowongan Pekerjaan Kaum Muslimin</h1>
+            <h1>Portal Lowongan Pekerjaan<br/>Kaum Muslimin</h1>
             <p>Insya Allah Berkah dan Amanah!</p>
             <div className={heroStyles.actions}>
                 <Button variant='success' label='Daftar Sekarang' isSubmit={false} />
@@ -19,7 +19,7 @@ function Hero() {
 
 function HowItWorks(props) {
     return (
-        <Section id='how' isFull={true} title='Cara Kerja'>
+        <Section id='how' isFull={true} title='Cara Kerja' extraClass={howStyles.section}>
             <div className={howStyles.howItWorksItems}>
                 {props.children}
             </div>
@@ -30,9 +30,11 @@ function HowItWorks(props) {
 function WorkItem(props) {
     return (
         <div className={howStyles.item}>
-            <div className={howStyles.itemIcon}>{props.icon}</div>
-            <h3 className={howStyles.itemTitle}>{props.title}</h3>
-            <p>{props.desc}</p>
+            <div className={howStyles.inner}>
+                <div className={howStyles.itemIcon}>{props.icon}</div>
+                <h3 className={howStyles.itemTitle}>{props.title}</h3>
+                <p>{props.desc}</p>
+            </div>
         </div>
     )
 }

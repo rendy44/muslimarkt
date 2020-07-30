@@ -1,8 +1,9 @@
 $white: #fff !default;
 $black: #000 !default;
-$main: #2266aa !default;
-$success: #226622 !default;
-$warning: #aa6622 !default;
-$danger: #aa2222 !default;
+$main: #700CBC !default;
+$success: #28a745 !default;
+$warning: #ffc107 !default;
+$danger: #dc3545 !default;
+$light: darken($white, 5%);
 
 $colors: ('main':$main, 'success':$success, 'warning':$warning, 'danger':$danger, 'transparent': transparent);
