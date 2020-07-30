@@ -182,6 +182,11 @@ function Footer(props) {
                     </div>
                 </div>
             </div>
+            <div className={footerStyles.bottom}>
+                <div className='frow-container'>
+                    <p>&copy; 2020 {conf.siteName} - {conf.siteDesc}</p>
+                </div>
+            </div>
         </footer>
     )
 }
