@@ -79,13 +79,17 @@ function Section(props) {
     }
 
     // Maybe add title.
-    const maybeTitle = props.title ? <h2 className={sectionStyles.title}>{props.title}</h2> : ''
+    const maybeTitle = props.title ? <h2 className={sectionStyles.title}>{props.title}</h2> : '';
+
+    // Maybe add description.
+    const maybeDesc = props.desc ? <p className={sectionStyles.lead}>{props.desc}</p> : '';
     return (
         <section className={cssClass}>
             <div className='frow-container'>
                 <div className='frow'>
                     <div className={columnSize}>
                         {maybeTitle}
+                        {maybeDesc}
                         {props.children}
                     </div>
                 </div>
@@ -97,7 +101,8 @@ Section.propTypes = {
     id: PropTypes.string.isRequired,
     extraClass: PropTypes.string,
     isFull: PropTypes.bool,
-    title: PropTypes.string
+    title: PropTypes.string,
+    desc: PropTypes.string
 }
 
 export { Header, Footer, Layout, Section };

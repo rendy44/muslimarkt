@@ -34,6 +34,10 @@
         line-height: 1.4;
         @include textShadow;
     }
+
+    @include breakpoint(768px) {
+        height: 420px;
+    }
 }
 
 .actions {

@@ -19,7 +19,12 @@ function Hero() {
 
 function HowItWorks(props) {
     return (
-        <Section id='how' isFull={true} title='Cara Kerja' extraClass={howStyles.section}>
+        <Section
+            id='how'
+            isFull={true}
+            title='Cari Lowongan'
+            desc='Lakukan langkah singkat berikut ini untuk mendapatkan pekerjaan impianmu'
+            extraClass={howStyles.section}>
             <div className={howStyles.howItWorksItems}>
                 {props.children}
             </div>
