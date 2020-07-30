@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import btnStyles from './button.module.scss';
 import PropTypes from 'prop-types';
 
@@ -8,11 +9,24 @@ function Btn(props) {
         <button type={buttonType} className={cssClass}>{props.label}</button>
     )
 }
-
 Btn.propTypes = {
     isSubmit: PropTypes.bool.isRequired,
     label: PropTypes.string.isRequired,
     variant: PropTypes.string.isRequired
 }
 
-export { Btn }
+function LinkBtn(props) {
+    const cssClass = btnStyles.btn + ' ' + props.variant;
+    return (
+        <Link href={props.href}>
+            <a className={cssClass}>{props.label}</a>
+        </Link>
+    )
+}
+LinkBtn.propTypes = {
+    href: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    variant: PropTypes.string.isRequired
+}
+
+export { Btn, LinkBtn }

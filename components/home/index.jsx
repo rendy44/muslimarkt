@@ -1,5 +1,5 @@
 import { Section } from '../global';
-import { Btn } from '../form';
+import { Btn, LinkBtn } from '../form';
 import heroStyles from './hero.module.scss';
 import howStyles from './how.module.scss';
 import PropTypes from 'prop-types';
@@ -10,8 +10,8 @@ function Hero() {
             <h1>Portal Lowongan Pekerjaan<br />Kaum Muslimin</h1>
             <p>Insya Allah Berkah dan Amanah!</p>
             <div className={heroStyles.actions}>
-                <Btn variant='success' label='Daftar Sekarang' isSubmit={false} />
-                <Btn variant='transparent' label='Masuk' isSubmit={false} />
+                <LinkBtn variant='success' label='Daftar Sekarang' href='/daftar' />
+                <LinkBtn variant='transparent' label='Masuk' href='/masuk' />
             </div>
         </Section>
     )
@@ -29,7 +29,7 @@ function HowItWorks(props) {
                 {props.children}
             </div>
             <div className={howStyles.cta}>
-                <Btn isSubmit={false} label='Temukan Pekerjaan' variant='main' />
+                <LinkBtn href='/lowongan' label='Temukan Pekerjaan' variant='main' />
             </div>
         </Section>
     )

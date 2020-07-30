@@ -41,10 +41,11 @@
 }
 
 .actions {
-    button {
+
+    button,
+    a {
         display: inline-block;
         margin-right: .5rem;
-        font-size: 90%;
 
         &:last-child {
             margin-right: 0;
