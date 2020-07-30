@@ -5,3 +5,61 @@
     padding: 2rem 0;
     color: $white;
 }
+
+.brand {
+    text-align: center;
+    margin-bottom: 2rem;
+
+    img {
+        max-width: 100%;
+        max-height: 60px;
+        margin-bottom: 1rem;
+    }
+
+    @include breakpoint(992px) {
+        text-align: left;
+        padding-right: 2rem;
+        margin-bottom: 0;
+    }
+}
+
+.desc {
+    margin: 0;
+}
+
+.nav {
+    margin-bottom: 2rem;
+
+    h3 {
+        font-weight: 600;
+        margin-bottom: .6rem;
+    }
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            display: block;
+            margin-bottom: .3rem;
+
+            a {
+                line-height: 1.4;
+                color: rgba($white, .75);
+                @include defaultTransition;
+
+                &:hover,
+                &:active,
+                &:focus {
+                    color: $white;
+                }
+            }
+        }
+    }
+
+    @include breakpoint(768px) {
+        padding-right: 1.5rem;
+        margin-bottom: 0;
+    }
+}

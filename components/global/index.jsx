@@ -15,21 +15,21 @@ function Header(props) {
                     <div className={headerStyles.brand}>
                         <Link href='/'>
                             <a>
-                                <img src='logo2.png' alt='Logo'/>
+                                <img src='logo2.png' alt='Logo' />
                             </a>
                         </Link>
                     </div>
                     <div className={headerStyles.nav}>
                         <ul>
                             <li>
-                                <Link href='login'>
+                                <Link href='/masuk'>
                                     <a>
                                         <IoMdLogIn />
                                     </a>
                                 </Link>
                             </li>
                             <li>
-                                <Link href='reg'>
+                                <Link href='/daftar'>
                                     <a>
                                         <IoMdPersonAdd />
                                     </a>
@@ -44,13 +44,142 @@ function Header(props) {
 }
 
 function Footer(props) {
+    const linksLeft = [
+        {
+            id: '/tentang',
+            label: 'Tentang Muslimarkt'
+        },
+        {
+            id: '/kebijakan',
+            label: 'Kebijakan Layanan'
+        },
+        {
+            id: '/bantuan',
+            label: 'Pusat Bantuan'
+        },
+        {
+            id: '/kontak',
+            label: 'Hubungi Kami'
+        },
+        {
+            id: '/karir',
+            label: 'Karir'
+        }
+    ];
+    let linksLeftHtml = [];
+    // Loop links.
+    linksLeft.map((link, index) => {
+        return (
+            linksLeftHtml.push(
+                <li key={index}>
+                    <Link href={link.id}>
+                        <a>{link.label}</a>
+                    </Link>
+                </li>
+            )
+        )
+    })
+
+    const linksCenter = [
+        {
+            id: '/daftar',
+            label: 'Buat Akun'
+        },
+        {
+            id: '/masuk',
+            label: 'Masuk'
+        },
+        {
+            id: '/cari-talenta',
+            label: 'Cari Talenta'
+        },
+        {
+            id: '/telusuri-lowongan',
+            label: 'Telusuri Lowongan',
+        },
+        {
+            id: '/menjadi-sponsor',
+            label: 'Menjadi Sponsor',
+        }
+    ]
+    let linksCenterHtml = [];
+    // Loop links.
+    linksCenter.map((link, index) => {
+        return (
+            linksCenterHtml.push(
+                <li key={index}>
+                    <Link href={link.id}>
+                        <a>{link.label}</a>
+                    </Link>
+                </li>
+            )
+        )
+    })
+
+    const linksRight = [
+        {
+            id: '/web-developer',
+            label: 'Web Developer'
+        },
+        {
+            id: '/marketing',
+            label: 'Marketing'
+        },
+        {
+            id: '/designer',
+            label: 'Designer'
+        },
+        {
+            id: '/finance',
+            label: 'Finance'
+        },
+        {
+            id: '/data-science',
+            label: 'Data Science'
+        }
+    ]
+    let linksRightHtml = [];
+    // Loop links.
+    linksRight.map((link, index) => {
+        return (
+            linksRightHtml.push(
+                <li key={index}>
+                    <Link href={link.id}>
+                        <a>{link.label}</a>
+                    </Link>
+                </li>
+            )
+        )
+    })
+
     return (
         <footer className={footerStyles.footer}>
             <div className='frow-container'>
                 <div className='frow'>
-                    <div className='col-sm-1-1 col-md-1-3'>Oke</div>
-                    <div className='col-sm-1-2 col-md-1-3'>Oke</div>
-                    <div className='col-sm-1-2 col-md-1-3'>Oke</div>
+                    <div className='col-sm-1-1 col-md-4-10'>
+                        <div className={footerStyles.brand}>
+                            <img src='logo2.png' alt='logo' />
+                            <p className={footerStyles.desc}>{conf.siteLongDesc}</p>
+                        </div>
+                    </div>
+                    <div className='col-sm-1-3 col-md-2-10'>
+                        <div className={footerStyles.nav}>
+                            <h3>Perusahaan</h3>
+                            <ul>{linksLeftHtml}</ul>
+                        </div>
+                    </div>
+                    <div className='col-sm-1-3 col-md-2-10'>
+                        <div className={footerStyles.nav}>
+                            <h3>Link Pintas</h3>
+                            <ul>{linksCenterHtml}</ul>
+                        </div>
+                    </div>
+                    <div className='col-sm-1-3 col-md-2-10'>
+                        <div className={footerStyles.nav}>
+                            <h3>Pekerjaan Favorit</h3>
+                            <ul>{linksRightHtml}</ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </footer>
