@@ -5,7 +5,7 @@
     background-image: url('../../public/reg-bg.jpg');
     background-size: cover;
     background-position: center center;
-    height: 100vh;
+    // height: 100vh;
     min-height: 500px;
     display: flex;
     justify-content: center;
@@ -40,7 +40,38 @@
 .action {
     margin-top: 1rem;
 
-    button {
+    button,
+    a {
+        text-align: center;
         width: 100%;
+        display: block;
+        margin-bottom: .5rem;
+    }
+
+    a {
+        color: $main;
+
+        &:hover,
+        &:active,
+        &:focus {
+            color: $main;
+        }
+    }
+}
+
+@include breakpoint(768px) {
+    .section {
+        height: 100vh;
+    }
+
+    .action {
+
+        button,
+        a {
+            display: inline-block;
+            width: max-content;
+            margin-bottom: 0;
+            margin-right: .5rem;
+        }
     }
 }

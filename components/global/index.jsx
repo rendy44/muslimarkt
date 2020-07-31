@@ -231,7 +231,12 @@ Layout.propTypes = {
 
 function Section(props) {
     let cssClass = sectionStyles.section;
-    const columnSize = props.isFull ? 'col-sm-1-1' : 'col-sm-6-7 col-md-3-4';
+    let columnSize = props.isFull ? 'col-sm-1-1' : 'col-sm-6-7 col-md-3-4';
+
+    // Maybe using custom size.
+    if (props.customSize) {
+        columnSize = props.customSize;
+    }
 
     // Maybe add extra class.
     if (props.extraClass) {
@@ -262,7 +267,8 @@ Section.propTypes = {
     extraClass: PropTypes.string,
     isFull: PropTypes.bool,
     title: PropTypes.string,
-    desc: PropTypes.string
+    desc: PropTypes.string,
+    customSize: PropTypes.string
 }
 
 export { Header, Footer, Layout, Section };
