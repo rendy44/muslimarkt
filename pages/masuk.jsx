@@ -4,10 +4,12 @@ import { useForm } from "react-hook-form";
 import styles from '../components/daftar/style.module.scss';
 import { Btn, LinkBtn } from '../components/form';
 
+const onSubmit = (data) => {
+    console.log(data);
+}
 
 export default function PageMasuk() {
     const { register, handleSubmit, watch, errors } = useForm();
-    const onSubmit = data => console.log(data);
 
     return (
         <Layout docTitle='Masuk' isHideTitle={true} isHideHeader={true} isHideFooter={true}>
@@ -16,12 +18,14 @@ export default function PageMasuk() {
                     <div className={styles.brand}>
                         <LogoLink />
                     </div>
-                    <form>
-                        <label>Alamat Email
-                              <input type="email" placeholder="Alamat email" />
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <label className={errors.email && 'err'}>Alamat Email
+                              <input name='email' type="email" placeholder="Alamat email" ref={register({ required: true })} />
+                            {errors.email && <span>Alamat email harus diisi!</span>}
                         </label>
-                        <label>Kata Sandi
-                              <input type="password" placeholder="Kata sandi" />
+                        <label className={errors.password && 'err'}>Kata Sandi
+                              <input name='password' type="password" placeholder="Kata sandi" ref={register({ required: true, minLength: 8 })} />
+                            {errors.password && <span>Kata sandi harus diisi!</span>}
                         </label>
                         <div className={styles.action}>
                             <Btn isSubmit={true} variant='main' label='Masuk' />

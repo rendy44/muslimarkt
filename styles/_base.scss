@@ -22,3 +22,26 @@ $color in $colors {
         }
     }
 }
+
+form {
+    label {
+        font-weight: 600;
+
+        input {
+            margin-top: .5rem;
+        }
+
+        &.err {
+            input {
+                background-color: lighten($danger, 40%);
+                border-color: $danger;
+            }
+
+            span {
+                font-weight: 400;
+                margin-top: .5rem;
+                color: $danger;
+            }
+        }
+    }
+}
