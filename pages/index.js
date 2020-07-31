@@ -4,7 +4,7 @@ import { IoMdPersonAdd, IoMdStar, IoMdSend, IoMdRocket } from 'react-icons/io';
 
 export default function Home() {
   return (
-    <Layout>
+    <Layout isHideTitle={true}>
       <Hero />
       <HowItWorks>
         <WorkItem

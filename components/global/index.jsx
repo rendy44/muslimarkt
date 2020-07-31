@@ -1,5 +1,6 @@
 import headerStyles from './header.module.scss';
 import sectionStyles from './section.module.scss';
+import heroStyles from './hero.module.scss';
 import footerStyles from './footer.module.scss';
 import { IoMdLogIn, IoMdPersonAdd } from 'react-icons/io';
 import Link from 'next/link';
@@ -41,6 +42,17 @@ function Header(props) {
             </div>
         </header>
     )
+}
+
+function PageTitle(props) {
+    return (
+        <Section id='pageHero' extraClass={heroStyles.hero}>
+            <h1>{props.title}</h1>
+        </Section>
+    )
+}
+PageTitle.propTypes = {
+    title: PropTypes.string.isRequired
 }
 
 function Footer(props) {
@@ -193,21 +205,28 @@ function Footer(props) {
 
 function Layout(props) {
     const { siteName, siteDesc } = conf;
-    const { docTitle } = props;
+    const { docTitle, isHideTitle, isHideHeader, isHideFooter } = props;
     const usedTitle = docTitle ? docTitle + ' | ' + siteName : siteName + ' | ' + siteDesc;
+    const maybeUsePageTitle = !isHideTitle ? <PageTitle title={docTitle} /> : '';
+    const maybeUseHeader = !isHideHeader ? <Header /> : '';
+    const maybeUseFooter = !isHideFooter ? <Footer /> : '';
     return (
         <>
             <Head>
                 <title>{usedTitle}</title>
             </Head>
-            <Header />
+            {maybeUseHeader}
+            {maybeUsePageTitle}
             {props.children}
-            <Footer />
+            {maybeUseFooter}
         </>
     )
 }
 Layout.propTypes = {
-    docTitle: PropTypes.string
+    docTitle: PropTypes.string,
+    isHideTitle: PropTypes.bool,
+    isHideHeader: PropTypes.bool,
+    isHideFooter: PropTypes.bool
 }
 
 function Section(props) {

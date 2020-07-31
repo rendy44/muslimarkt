@@ -1,0 +1,11 @@
+@import '../../styles/mainUtil';
+
+.hero {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    background-color: $main;
+    color: $white;
+    padding: 0 !important;
+    text-align: center;
+}
