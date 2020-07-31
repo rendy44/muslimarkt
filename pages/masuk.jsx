@@ -5,13 +5,13 @@ import styles from '../components/daftar/style.module.scss';
 import { Btn, LinkBtn } from '../components/form';
 
 
-export default function PageDaftar() {
+export default function PageMasuk() {
     const { register, handleSubmit, watch, errors } = useForm();
     const onSubmit = data => console.log(data);
 
     return (
-        <Layout docTitle='Daftar' isHideTitle={true} isHideHeader={true} isHideFooter={true}>
-            <Section id='daftar' extraClass={styles.section} customSize='col-sm-6-7 col-md-1-2'>
+        <Layout docTitle='Masuk' isHideTitle={true} isHideHeader={true} isHideFooter={true}>
+            <Section id='masuk' extraClass={styles.section} customSize='col-sm-6-7 col-md-1-2'>
                 <div className={styles.inner}>
                     <div className={styles.brand}>
                         <LogoLink />
@@ -23,15 +23,8 @@ export default function PageDaftar() {
                         <label>Kata Sandi
                               <input type="password" placeholder="Kata sandi" />
                         </label>
-                        <label>Konfirmasi
-                              <input type="password" placeholder="Ulangi kata sandi" />
-                        </label>
-                        {/* <label>Nama Lengkap
-                              <input type="text" placeholder="Nama lengkap" />
-                        </label> */}
-                        <p>Dengan mendaftar Anda otomatis setuju terhadap <Link href='/ketentuan-layanan'><a>ketentuan layanan</a></Link> dan <Link href='/kebijakan-privasi'><a>kebijakan privasi</a></Link>.</p>
                         <div className={styles.action}>
-                            <Btn isSubmit={true} variant='success' label='Daftar Sekarang' />
+                            <Btn isSubmit={true} variant='main' label='Masuk' />
                             <LinkBtn href='/' label='Batal' variant='transparent' />
                         </div>
                     </form>

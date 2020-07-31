@@ -14,11 +14,7 @@ function Header(props) {
             <div className='frow-container'>
                 <div className={headerStyles.inner}>
                     <div className={headerStyles.brand}>
-                        <Link href='/'>
-                            <a>
-                                <img src='logo2.png' alt='Logo' />
-                            </a>
-                        </Link>
+                        <LogoLink />
                     </div>
                     <div className={headerStyles.nav}>
                         <ul>
@@ -41,6 +37,16 @@ function Header(props) {
                 </div>
             </div>
         </header>
+    )
+}
+
+function LogoLink() {
+    return (
+        <Link href='/'>
+            <a>
+                <img src='logo2.png' alt='Logo' />
+            </a>
+        </Link>
     )
 }
 
@@ -170,7 +176,7 @@ function Footer(props) {
                 <div className='frow'>
                     <div className='col-sm-1-1 col-md-4-10'>
                         <div className={footerStyles.brand}>
-                            <img src='logo2.png' alt='logo' />
+                            <h3>{conf.siteName}</h3>
                             <p className={footerStyles.desc}>{conf.siteLongDesc}</p>
                         </div>
                     </div>
@@ -271,4 +277,4 @@ Section.propTypes = {
     customSize: PropTypes.string
 }
 
-export { Header, Footer, Layout, Section };
+export { Header, LogoLink, Footer, Layout, Section };
