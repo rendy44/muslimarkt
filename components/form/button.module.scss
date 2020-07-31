@@ -9,6 +9,7 @@
     @include defaultTransition;
     @include borderRadius(4px);
     font-size: 90%;
+    display: inline-block;
 
     &:hover,
     &:active,
