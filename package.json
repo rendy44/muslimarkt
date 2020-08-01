@@ -15,7 +15,10 @@
     "react-dom": "16.13.1",
     "react-hook-form": "^6.2.0",
     "react-icons": "^3.10.0",
+    "react-loading": "^2.0.3",
     "sass": "^1.26.10",
+    "sweetalert2": "^9.17.1",
+    "sweetalert2-react-content": "^3.0.3",
     "swiper": "^6.0.4"
   }
 }

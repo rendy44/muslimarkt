@@ -1,32 +1,32 @@
 @import '../../styles/mainUtil';
 
 .section {
-    padding: 3rem 0;
+  padding: 3rem 0;
 
-    @include breakpoint(768px) {
-        padding: 4rem 0;
-    }
+  @include breakpoint(768px) {
+    padding: 4rem 0;
+  }
 
-    @include breakpoint(992px) {
-        padding: 5rem 0;
-    }
+  @include breakpoint(992px) {
+    padding: 5rem 0;
+  }
 }
 
 .title {
-    margin: 0 0 2rem;
+  margin: 0 0 2rem;
 
-    @include breakpoint(768px) {
-        font-size: 2rem;
-    }
+  @include breakpoint(768px) {
+    font-size: 2rem;
+  }
 }
 
 .lead {
-    font-size: 1.1rem;
-    font-weight: 300;
-    margin: -1rem 0 2rem;
+  font-size: 1.1rem;
+  font-weight: 300;
+  margin: -1rem 0 2rem;
 
-    @include breakpoint(768px) {
-        font-size: 1.3rem;
-        margin-bottom: 3rem;
-    }
+  @include breakpoint(768px) {
+    font-size: 1.3rem;
+    margin-bottom: 3rem;
+  }
 }

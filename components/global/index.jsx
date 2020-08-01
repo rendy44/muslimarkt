@@ -2,7 +2,7 @@ import headerStyles from './header.module.scss';
 import sectionStyles from './section.module.scss';
 import heroStyles from './hero.module.scss';
 import footerStyles from './footer.module.scss';
-import { IoMdLogIn, IoMdPersonAdd } from 'react-icons/io';
+import {IoMdLogIn, IoMdPersonAdd} from 'react-icons/io';
 import Link from 'next/link';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
@@ -14,21 +14,21 @@ function Header(props) {
             <div className='frow-container'>
                 <div className={headerStyles.inner}>
                     <div className={headerStyles.brand}>
-                        <LogoLink />
+                        <LogoLink/>
                     </div>
                     <div className={headerStyles.nav}>
                         <ul>
                             <li>
                                 <Link href='/masuk'>
                                     <a>
-                                        <IoMdLogIn />
+                                        <IoMdLogIn/>
                                     </a>
                                 </Link>
                             </li>
                             <li>
                                 <Link href='/daftar'>
                                     <a>
-                                        <IoMdPersonAdd />
+                                        <IoMdPersonAdd/>
                                     </a>
                                 </Link>
                             </li>
@@ -44,7 +44,7 @@ function LogoLink() {
     return (
         <Link href='/'>
             <a>
-                <img src='logo2.png' alt='Logo' />
+                <img src='logo2.png' alt='Logo'/>
             </a>
         </Link>
     )
@@ -57,9 +57,10 @@ function PageTitle(props) {
         </Section>
     )
 }
+
 PageTitle.propTypes = {
     title: PropTypes.string.isRequired
-}
+};
 
 function Footer(props) {
     const linksLeft = [
@@ -96,7 +97,7 @@ function Footer(props) {
                 </li>
             )
         )
-    })
+    });
 
     const linksCenter = [
         {
@@ -119,7 +120,7 @@ function Footer(props) {
             id: '/menjadi-sponsor',
             label: 'Menjadi Sponsor',
         }
-    ]
+    ];
     let linksCenterHtml = [];
     // Loop links.
     linksCenter.map((link, index) => {
@@ -132,7 +133,7 @@ function Footer(props) {
                 </li>
             )
         )
-    })
+    });
 
     const linksRight = [
         {
@@ -155,7 +156,7 @@ function Footer(props) {
             id: '/data-science',
             label: 'Data Science'
         }
-    ]
+    ];
     let linksRightHtml = [];
     // Loop links.
     linksRight.map((link, index) => {
@@ -168,7 +169,7 @@ function Footer(props) {
                 </li>
             )
         )
-    })
+    });
 
     return (
         <footer className={footerStyles.footer}>
@@ -210,12 +211,12 @@ function Footer(props) {
 }
 
 function Layout(props) {
-    const { siteName, siteDesc } = conf;
-    const { docTitle, isHideTitle, isHideHeader, isHideFooter } = props;
+    const {siteName, siteDesc} = conf;
+    const {docTitle, isHideTitle, isHideHeader, isHideFooter} = props;
     const usedTitle = docTitle ? docTitle + ' | ' + siteName : siteName + ' | ' + siteDesc;
-    const maybeUsePageTitle = !isHideTitle ? <PageTitle title={docTitle} /> : '';
-    const maybeUseHeader = !isHideHeader ? <Header /> : '';
-    const maybeUseFooter = !isHideFooter ? <Footer /> : '';
+    const maybeUsePageTitle = !isHideTitle ? <PageTitle title={docTitle}/> : '';
+    const maybeUseHeader = !isHideHeader ? <Header/> : '';
+    const maybeUseFooter = !isHideFooter ? <Footer/> : '';
     return (
         <>
             <Head>
@@ -228,12 +229,13 @@ function Layout(props) {
         </>
     )
 }
+
 Layout.propTypes = {
     docTitle: PropTypes.string,
     isHideTitle: PropTypes.bool,
     isHideHeader: PropTypes.bool,
     isHideFooter: PropTypes.bool
-}
+};
 
 function Section(props) {
     let cssClass = sectionStyles.section;
@@ -268,6 +270,7 @@ function Section(props) {
         </section>
     )
 }
+
 Section.propTypes = {
     id: PropTypes.string.isRequired,
     extraClass: PropTypes.string,
@@ -275,6 +278,6 @@ Section.propTypes = {
     title: PropTypes.string,
     desc: PropTypes.string,
     customSize: PropTypes.string
-}
+};
 
-export { Header, LogoLink, Footer, Layout, Section };
+export {Header, LogoLink, Footer, Layout, Section};

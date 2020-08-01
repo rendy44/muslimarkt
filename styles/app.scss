@@ -1,13 +1,11 @@
 @import './mainUtil';
-
 // Import libraries.
-@import "node_modules/frow/variables";
-@import "node_modules/frow/src/normalize";
-@import "node_modules/frow/src/flexbox";
-@import "node_modules/frow/src/scaffolding";
-@import "node_modules/frow/src/grid";
-@import "node_modules/frow/src/responsive-utilities";
-@import "node_modules/frow/src/utilities";
-
+@import "~frow/variables";
+@import "~frow/src/normalize";
+@import "~frow/src/flexbox";
+@import "~frow/src/scaffolding";
+@import "~frow/src/grid";
+@import "~frow/src/responsive-utilities";
+@import "~frow/src/utilities";
 // Import global styles.
 @import './base';

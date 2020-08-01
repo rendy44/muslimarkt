@@ -3,45 +3,57 @@
 
 html,
 body {
-    @include mainFont;
+  @include mainFont;
 }
 
 p {
-    line-height: 1.4;
+  line-height: 1.4;
 }
 
 @each $variant,
 $color in $colors {
-    .#{$variant} {
-        background-color: $color;
+  .#{$variant} {
+    background-color: $color;
 
-        &:hover,
-        &:active,
-        &:focus {
-            background-color: $color;
-        }
+    &:disabled {
+      color: $white;
+      background: lighten($color, 30%) !important;
+
+      &:hover {
+        color: $white;
+      }
     }
+
+    &:not(:disabled) {
+      &:hover,
+      &:active,
+      &:focus {
+        background-color: $color;
+        @include boxShadow;
+      }
+    }
+  }
 }
 
 form {
-    label {
-        font-weight: 600;
+  label {
+    font-weight: 600;
 
-        input {
-            margin-top: .5rem;
-        }
-
-        &.err {
-            input {
-                background-color: lighten($danger, 40%);
-                border-color: $danger;
-            }
-
-            span {
-                font-weight: 400;
-                margin-top: .5rem;
-                color: $danger;
-            }
-        }
+    input {
+      margin-top: .5rem;
     }
+
+    &.err {
+      input {
+        background-color: lighten($danger, 40%);
+        border-color: $danger;
+      }
+
+      span {
+        font-weight: 400;
+        margin-top: .5rem;
+        color: $danger;
+      }
+    }
+  }
 }

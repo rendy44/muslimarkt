@@ -1,77 +1,77 @@
 @import '../../styles/mainUtil';
 
 .section {
-    padding: 0;
-    background-image: url('../../public/reg-bg.jpg');
-    background-size: cover;
-    background-position: center center;
-    // height: 100vh;
-    min-height: 500px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  padding: 0;
+  background-image: url('../../public/reg-bg.jpg');
+  background-size: cover;
+  background-position: center center;
+  // height: 100vh;
+  min-height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    p {
-        margin: 0 0 1rem;
-        font-size: 80%;
-    }
+  p {
+    margin: 0 0 1rem;
+    font-size: 80%;
+  }
 }
 
 .inner {
-    padding: 1rem;
-    overflow: hidden;
-    background-color: $white;
-    // height: 300px;
-    border: 1px solid rgba($black, .1);
-    // @include borderRadius(1rem);
-    @include boxShadow;
+  padding: 1rem;
+  overflow: hidden;
+  background-color: $white;
+  // height: 300px;
+  border: 1px solid rgba($black, .1);
+  // @include borderRadius(1rem);
+  @include boxShadow;
 }
 
 .brand {
-    text-align: center;
-    margin-bottom: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
 
-    img {
-        max-width: 100%;
-        max-height: 50px;
-    }
+  img {
+    max-width: 100%;
+    max-height: 50px;
+  }
 }
 
 .action {
-    margin-top: 1rem;
+  margin-top: 1rem;
 
-    button,
-    a {
-        text-align: center;
-        width: 100%;
-        display: block;
-        margin-bottom: .5rem;
+  button,
+  a {
+    text-align: center;
+    width: 100%;
+    display: block;
+    margin-bottom: .5rem;
+  }
+
+  a {
+    color: $main;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: $main;
     }
-
-    a {
-        color: $main;
-
-        &:hover,
-        &:active,
-        &:focus {
-            color: $main;
-        }
-    }
+  }
 }
 
 @include breakpoint(768px) {
-    .section {
-        height: 100vh;
-    }
+  .section {
+    height: 100vh;
+  }
 
-    .action {
+  .action {
 
-        button,
-        a {
-            display: inline-block;
-            width: max-content;
-            margin-bottom: 0;
-            margin-right: .5rem;
-        }
+    button,
+    a {
+      display: inline-block;
+      width: max-content;
+      margin-bottom: 0;
+      margin-right: .5rem;
     }
+  }
 }

@@ -1,27 +1,26 @@
 @import '../../styles/mainUtil';
 
 .btn {
-    padding: 1rem 1.4rem;
+  padding: 1rem 1.4rem;
+  color: $white;
+  border: 1px solid rgba($black, .1) !important;
+  text-transform: uppercase;
+  font-weight: 600;
+  @include defaultTransition;
+  @include borderRadius(4px);
+  font-size: 90%;
+  display: inline-block;
+  line-height: 1;
+
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
     color: $white;
-    border: 1px solid rgba($black, .1);
-    text-transform: uppercase;
-    font-weight: 600;
-    @include defaultTransition;
-    @include borderRadius(4px);
-    font-size: 90%;
-    display: inline-block;
-    line-height: 1;
+    border-color: rgba($black, .1);
+  }
 
-    &:hover,
-    &:active,
-    &:focus {
-        text-decoration: none;
-        color: $white;
-        border-color: rgba($black, .1);
-        @include boxShadow;
-    }
-
-    @include breakpoint(768px) {
-        padding: .75rem 1.25rem;
-    }
+  @include breakpoint(768px) {
+    padding: .75rem 1.25rem;
+  }
 }
