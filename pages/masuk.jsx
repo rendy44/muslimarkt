@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useContext} from "react";
 import {useRouter} from 'next/router';
 import {Layout, Section, LogoLink} from '../components/global';
 import {useForm} from "react-hook-form";
@@ -7,11 +7,13 @@ import {Btn, LinkBtn} from '../components/form';
 import User from "../class/user";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
+import UserContext from '../components/global/userContext';
 
 export default function PageMasuk() {
     const {register, handleSubmit, watch, errors} = useForm();
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
+    const {signIn} = useContext(UserContext);
 
     const onSubmit = async (data, e) => {
         setIsLoading(true);
@@ -19,22 +21,22 @@ export default function PageMasuk() {
             .then(response => response.json())
             .then((data) => {
                 setIsLoading(false);
-                let swalType = 'error';
+
                 // Handle for success error.
                 if (data.success) {
-                    swalType = 'success';
-                    e.target.reset();
+
+                    // Save userKey.
+                    signIn(data.data);
+
+                    // Redirect user to dashboard.
+                    router.push('/dashboard');
+                } else {
+                    const MySwal = withReactContent(Swal);
+                    MySwal.fire({
+                        icon: 'error',
+                        text: data.data,
+                    });
                 }
-                const MySwal = withReactContent(Swal);
-                MySwal.fire({
-                    icon: swalType,
-                    text: data.data,
-                    onClose: () => {
-                        if (data.success) {
-                            router.push('/');
-                        }
-                    }
-                });
             })
     };
     const buttonLbl = isLoading ? 'Loading...' : 'Masuk';
@@ -58,7 +60,7 @@ export default function PageMasuk() {
                             {errors.password && <span>Kata sandi harus diisi!</span>}
                         </label>
                         <div className={styles.action}>
-                            <Btn isSubmit={true} variant='main' label={buttonLbl}/>
+                            <Btn isSubmit={true} variant='main' label={buttonLbl} disabled={isLoading}/>
                             <LinkBtn href='/' label='Batal' variant='transparent'/>
                         </div>
                     </form>
