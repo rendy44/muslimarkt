@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
 export default function PageDaftar() {
-    const {register, handleSubmit, watch, errors} = useForm();
+    const {register, handleSubmit, errors} = useForm();
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
 
@@ -38,8 +38,8 @@ export default function PageDaftar() {
                 });
             })
     };
-
     const buttonLbl = isLoading ? 'Loading...' : 'Daftar Sekarang';
+
     return (
         <Layout docTitle='Daftar' isHideTitle={true} isHideHeader={true} isHideFooter={true}>
             <Section id='daftar' extraClass={styles.section} customSize='col-sm-6-7 col-md-1-2'>
