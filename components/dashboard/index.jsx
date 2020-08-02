@@ -135,6 +135,20 @@ DashboardSettingLayout.propTypes = {
     title: PropTypes.string.isRequired
 };
 
+function DashboardPageLayout(props) {
+    return (
+        <DashboardGeneralLayout title={props.title}>
+            <Section id={'dashboardPage'} isLightColor={true} isFull={true} title={props.title} isNoPadding={true}>
+                {props.children}
+            </Section>
+        </DashboardGeneralLayout>
+    )
+}
+
+DashboardPageLayout.propTypes = {
+    title: PropTypes.string.isRequired
+};
+
 function MenuItems(props) {
     return (
         <div className={styles.menuItems}>
@@ -170,6 +184,7 @@ export {
     DashboardCenter,
     DashboardGeneralLayout,
     DashboardSettingLayout,
+    DashboardPageLayout,
     MenuItems,
     MenuItem
 }
