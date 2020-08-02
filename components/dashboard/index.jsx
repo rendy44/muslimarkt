@@ -106,9 +106,9 @@ function DashboardNotification() {
 function DashboardGeneralLayout(props) {
     return (
         <Layout docTitle={props.title} isHideTitle={true}>
-            <Section id={'notifications'} isNoPadding={true} isFull={true} isLightColor={true}>
-                <DashboardNotification/>
-            </Section>
+            {/*<Section id={'notifications'} isNoPadding={true} isFull={true} isLightColor={true}>*/}
+            {/*    <DashboardNotification/>*/}
+            {/*</Section>*/}
             {props.children}
         </Layout>
     )
