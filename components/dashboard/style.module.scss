@@ -2,6 +2,13 @@
 
 $sidebarSize: 30%;
 $contentSize: calc(70% - 1rem);
+.notifications {
+  > div {
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
 
 .wrapper {
   display: flex;

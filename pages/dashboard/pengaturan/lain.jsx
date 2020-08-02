@@ -1,9 +1,9 @@
-import {DashboardLayout} from "../../../components/dashboard";
+import {DashboardSettingLayout} from "../../../components/dashboard";
 
 export default function PageLain() {
     return (
-        <DashboardLayout title={'Pengaturan Lain'}>
+        <DashboardSettingLayout title={'Pengaturan Lain'}>
             <p>Hallo brooo</p>
-        </DashboardLayout>
+        </DashboardSettingLayout>
     )
 }

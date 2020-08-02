@@ -1,9 +1,9 @@
-import {DashboardLayout} from "../../../components/dashboard";
+import {DashboardSettingLayout} from "../../../components/dashboard";
 
 export default function PageAkun() {
     return (
-        <DashboardLayout title={'Pengaturan Akun'}>
+        <DashboardSettingLayout title={'Pengaturan Akun'}>
             <p>Hallo brooo</p>
-        </DashboardLayout>
+        </DashboardSettingLayout>
     )
 }

@@ -1,10 +1,11 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useContext} from 'react';
 import PropTypes from 'prop-types';
 import Router from 'next/router';
 import styles from './style.module.scss';
 import Link from "next/link";
 import {IoMdPerson, IoMdSchool, IoMdBriefcase, IoMdSettings, IoMdStar} from 'react-icons/io';
 import {AlertView, Layout, Section} from "../global";
+import UserContext from "../global/userContext";
 
 function DashboardSidebar(props) {
     const [activeLink, setActiveLink] = useState('');
@@ -84,23 +85,53 @@ function DashboardWrapper(props) {
     )
 }
 
-function DashboardLayout(props) {
+function DashboardNotification() {
+    const {isProfileCompleted} = useContext(UserContext);
+    let maybeNotification = '';
+
+    if (!isProfileCompleted) {
+        maybeNotification = <AlertView variant={'warning'}>
+            <p>Silahkan selesaikan profil Anda sebelum mengirim lamaran.</p>
+        </AlertView>
+    }
+    return (
+        <>
+            <div className={styles.notifications}>
+                {maybeNotification}
+            </div>
+        </>
+    )
+}
+
+function DashboardGeneralLayout(props) {
     return (
         <Layout docTitle={props.title} isHideTitle={true}>
+            <Section id={'notifications'} isNoPadding={true} isFull={true} isLightColor={true}>
+                <DashboardNotification/>
+            </Section>
+            {props.children}
+        </Layout>
+    )
+}
+
+DashboardGeneralLayout.propTypes = {
+    title: PropTypes.string.isRequired
+};
+
+function DashboardSettingLayout(props) {
+    return (
+        <DashboardGeneralLayout title={props.title}>
             <Section id={'dashboard'} isFull={true} isLightColor={true} isNoPadding={true}>
-                <AlertView variant={'warning'}>
-                    <p>Silahkan selesaikan profil Anda sebelum mengirim lamaran.</p>
-                </AlertView>
                 <DashboardWrapper>
                     <DashboardSidebar/>
                     <DashboardCenter title={props.title}>{props.children}</DashboardCenter>
                 </DashboardWrapper>
             </Section>
-        </Layout>
+        </DashboardGeneralLayout>
     )
 }
 
-DashboardLayout.propTypes = {
+DashboardSettingLayout.propTypes = {
     title: PropTypes.string.isRequired
 };
 
@@ -133,4 +164,12 @@ MenuItem.propTypes = {
     icon: PropTypes.object.isRequired
 };
 
-export {DashboardWrapper, DashboardSidebar, DashboardCenter, DashboardLayout, MenuItems, MenuItem}
+export {
+    DashboardWrapper,
+    DashboardSidebar,
+    DashboardCenter,
+    DashboardGeneralLayout,
+    DashboardSettingLayout,
+    MenuItems,
+    MenuItem
+}

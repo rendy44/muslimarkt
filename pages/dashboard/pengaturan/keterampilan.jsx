@@ -1,9 +1,9 @@
-import {DashboardLayout} from "../../../components/dashboard";
+import {DashboardSettingLayout} from "../../../components/dashboard";
 
 export default function PageKeterampilan() {
     return (
-        <DashboardLayout title={'Keterampilan'}>
+        <DashboardSettingLayout title={'Keterampilan'}>
             <p>Hallo brooo</p>
-        </DashboardLayout>
+        </DashboardSettingLayout>
     )
 }
