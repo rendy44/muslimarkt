@@ -56,9 +56,7 @@ function LogoLink() {
     const routeTo = isLoggedIn ? '/dashboard' : '/';
     return (
         <Link href={routeTo}>
-            <a>
-                <img src='/logo2.png' alt='Logo'/>
-            </a>
+            <a className={headerStyles.brandLink}>Muslim<span>arkt</span></a>
         </Link>
     )
 }
