@@ -1,4 +1,4 @@
-import {DashboardLayout} from "../../components/dashboard";
+import {DashboardLayout} from "../../../components/dashboard";
 
 export default function PageLain() {
     return (

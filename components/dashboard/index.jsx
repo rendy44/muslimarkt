@@ -43,10 +43,11 @@ function DashboardSidebar(props) {
     ];
     let sidebarLinkHtml = [];
     sidebarLinks.map((link, index) => {
-        let maybeActive = '/dashboard' + link.id === activeLink ? styles.activeLink : '';
+        let linkFix = '/dashboard/pengaturan' + link.id;
+        let maybeActive = linkFix === activeLink ? styles.activeLink : '';
         sidebarLinkHtml.push(
             <li key={index}>
-                <Link href={'/dashboard' + link.id}>
+                <Link href={linkFix}>
                     <a className={maybeActive}><span>{link.icon}</span><span>{link.label}</span></a>
                 </Link>
             </li>
@@ -103,4 +104,33 @@ DashboardLayout.propTypes = {
     title: PropTypes.string.isRequired
 };
 
-export {DashboardWrapper, DashboardSidebar, DashboardCenter, DashboardLayout}
+function MenuItems(props) {
+    return (
+        <div className={styles.menuItems}>
+            {props.children}
+        </div>
+    )
+}
+
+function MenuItem(props) {
+    return (
+        <div className={styles.menuItem}>
+            <Link href={props.linkTo}>
+                <a className={styles.menuItemInner}>
+                    {props.icon}
+                    <h3>{props.title}</h3>
+                    <p>{props.desc}</p>
+                </a>
+            </Link>
+        </div>
+    )
+}
+
+MenuItem.propTypes = {
+    title: PropTypes.string.isRequired,
+    linkTo: PropTypes.string.isRequired,
+    desc: PropTypes.string.isRequired,
+    icon: PropTypes.object.isRequired
+};
+
+export {DashboardWrapper, DashboardSidebar, DashboardCenter, DashboardLayout, MenuItems, MenuItem}

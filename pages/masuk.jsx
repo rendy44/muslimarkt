@@ -27,7 +27,7 @@ export default function PageMasuk() {
                     // Save Auth.
                     signIn(data.data);
 
-                    const routeTo = data.data.is_profile_completed ? '/dashboard' : '/dashboard/akun';
+                    const routeTo = data.data.is_profile_completed ? '/dashboard' : '/dashboard/pengaturan/akun';
 
                     // Redirect user to dashboard.
                     Router.push(routeTo);
