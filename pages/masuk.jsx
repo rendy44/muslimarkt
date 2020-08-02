@@ -3,7 +3,7 @@ import Router from 'next/router';
 import {Layout, Section, LogoLink} from '../components/global';
 import {useForm} from "react-hook-form";
 import styles from '../components/daftar/style.module.scss';
-import {Btn, FormAction, LinkBtn} from '../components/form';
+import {FormAction, InputText} from '../components/form';
 import User from "../class/user";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
@@ -50,16 +50,22 @@ export default function PageMasuk() {
                         <LogoLink/>
                     </div>
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        <label className={errors.email && 'err'}>Alamat Email
-                            <input name='email' type="email" placeholder="Alamat email"
-                                   ref={register({required: true})}/>
-                            {errors.email && <span>Alamat email harus diisi!</span>}
-                        </label>
-                        <label className={errors.password && 'err'}>Kata Sandi
-                            <input name='password' type="password" placeholder="Kata sandi"
-                                   ref={register({required: true, minLength: 8})}/>
-                            {errors.password && <span>Kata sandi harus diisi!</span>}
-                        </label>
+                        <InputText
+                            name={'email'}
+                            handler={register({required: true})}
+                            errorsRef={errors}
+                            type={'email'}
+                            label={'Alamat Email'}
+                            noPadding={true}
+                        />
+                        <InputText
+                            name={'password'}
+                            handler={register({required: true})}
+                            errorsRef={errors}
+                            type={'password'}
+                            label={'Kata Sandi'}
+                            noPadding={true}
+                        />
                         <FormAction label={buttonLbl} otherLink={'/'} disabled={isLoading}/>
                     </form>
                 </div>

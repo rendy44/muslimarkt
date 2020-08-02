@@ -1,7 +1,20 @@
 @import "../../styles/mainUtil";
 
 .formGroup {
+  label {
+    span {
+      margin-top: .3rem;
+      font-size: 90%;
+      font-weight: 400;
+      color: $danger;
+    }
+  }
+
   @include breakpoint(768px) {
     padding: 0 .5rem;
   }
+}
+
+.noPadding {
+  padding: 0 !important;
 }

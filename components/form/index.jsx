@@ -3,15 +3,30 @@ import styles from './style.module.scss';
 import btnStyles from './button.module.scss';
 import PropTypes from 'prop-types';
 
+function FormGroup(props) {
+    const groupCss = props.noPadding ? styles.formGroup + ' ' + styles.noPadding : styles.formGroup;
+    return (
+        <div className={groupCss}>
+            {props.children}
+        </div>
+    )
+}
+
+FormGroup.propTypes = {
+    noPadding: PropTypes.bool
+};
+
 function InputText(props) {
     const inputType = props.type ?? 'text';
+    const errMsg = props.validationMessage ? props.validationMessage : props.label + ' harus diisi.';
     return (
-        <div className={styles.formGroup}>
+        <FormGroup noPadding={props.noPadding}>
             <label>{props.label}
                 <input name={props.name} type={inputType} value={props.value} placeholder={props.label}
-                       required={props.isRequired}/>
+                       ref={props.handler}/>
+                {props.errorsRef[props.name] && <span>{errMsg}</span>}
             </label>
-        </div>
+        </FormGroup>
     )
 }
 
@@ -19,26 +34,34 @@ InputText.propTypes = {
     name: PropTypes.string.isRequired,
     type: PropTypes.string,
     label: PropTypes.string,
-    isRequired: PropTypes.bool,
-    value: PropTypes.string
+    value: PropTypes.string,
+    handler: PropTypes.func.isRequired,
+    errorsRef: PropTypes.object.isRequired,
+    validationMessage: PropTypes.string,
+    noPadding: PropTypes.bool
 };
 
 function DropDown(props) {
+    const errMsg = props.validationMessage ? props.validationMessage : props.label + ' harus diisi.';
     return (
-        <div className={styles.formGroup}>
+        <FormGroup noPadding={props.noPadding}>
             <label>{props.label}
-                <select name={props.name} required={props.isRequired}>
+                <select name={props.name} ref={props.handler}>
                     {props.children}
                 </select>
+                {props.errorsRef[props.name] && <span>{errMsg}</span>}
             </label>
-        </div>
+        </FormGroup>
     )
 }
 
 DropDown.propTypes = {
     name: PropTypes.string.isRequired,
     label: PropTypes.string,
-    isRequired: PropTypes.bool,
+    handler: PropTypes.func.isRequired,
+    errorsRef: PropTypes.object.isRequired,
+    validationMessage: PropTypes.string,
+    noPadding: PropTypes.bool
 };
 
 function Btn(props) {

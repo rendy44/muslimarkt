@@ -4,7 +4,7 @@ import {useRouter} from 'next/router';
 import {Layout, Section, LogoLink} from '../components/global';
 import {useForm} from "react-hook-form";
 import styles from '../components/daftar/style.module.scss';
-import {Btn, FormAction, LinkBtn} from '../components/form';
+import {FormAction, InputText} from '../components/form';
 import User from "../class/user.js";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
@@ -48,21 +48,32 @@ export default function PageDaftar() {
                         <LogoLink/>
                     </div>
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        <label className={errors.email && 'err'}>Alamat Email
-                            <input name='email' type="email" placeholder="Alamat email"
-                                   ref={register({required: true})}/>
-                            {errors.email && <span>Alamat email harus diisi!</span>}
-                        </label>
-                        <label className={errors.password && 'err'}>Kata Sandi
-                            <input name='password' type="password" placeholder="Kata sandi"
-                                   ref={register({required: true, minLength: 8})}/>
-                            {errors.password && <span>Kata sandi minimal 8 digit!</span>}
-                        </label>
-                        <label className={errors.password2 && 'err'}>Konfirmasi
-                            <input name='password2' type="password" placeholder="Ulangi kata sandi"
-                                   ref={register({required: true, minLength: 8})}/>
-                            {errors.password2 && <span>Konfirmasi kata sandi harus sama!</span>}
-                        </label>
+                        <InputText
+                            name={'email'}
+                            handler={register({required: true})}
+                            errorsRef={errors}
+                            type={'email'}
+                            label={'Alamat Email'}
+                            noPadding={true}
+                        />
+                        <InputText
+                            name={'password'}
+                            handler={register({required: true, minLength: 8})}
+                            errorsRef={errors}
+                            type={'password'}
+                            label={'Kata Sandi'}
+                            validationMessage={'Kata sandi minimal 8 digit'}
+                            noPadding={true}
+                        />
+                        <InputText
+                            name={'password2'}
+                            handler={register({required: true, minLength: 8})}
+                            errorsRef={errors}
+                            type={'password'}
+                            label={'Konfirmasi'}
+                            validationMessage={'Konfirmasi kata sandi harus sama'}
+                            noPadding={true}
+                        />
                         <p>Dengan mendaftar Anda otomatis setuju terhadap <Link href='/ketentuan-layanan'><a>ketentuan
                             layanan</a></Link> dan <Link href='/kebijakan-privasi'><a>kebijakan privasi</a></Link>.</p>
                         <FormAction variant={'success'} label={buttonLbl} disabled={isLoading} otherLink={'/'}/>
