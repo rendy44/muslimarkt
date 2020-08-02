@@ -1,16 +1,17 @@
 import Link from 'next/link';
+import styles from './style.module.scss';
 import btnStyles from './button.module.scss';
 import PropTypes from 'prop-types';
 
 function InputText(props) {
     const inputType = props.type ?? 'text';
     return (
-        <>
+        <div className={styles.formGroup}>
             <label>{props.label}
                 <input name={props.name} type={inputType} value={props.value} placeholder={props.label}
                        required={props.isRequired}/>
             </label>
-        </>
+        </div>
     )
 }
 
@@ -24,13 +25,13 @@ InputText.propTypes = {
 
 function DropDown(props) {
     return (
-        <>
+        <div className={styles.formGroup}>
             <label>{props.label}
                 <select name={props.name} required={props.isRequired}>
                     {props.children}
                 </select>
             </label>
-        </>
+        </div>
     )
 }
 

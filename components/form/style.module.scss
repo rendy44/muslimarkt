@@ -1,0 +1,7 @@
+@import "../../styles/mainUtil";
+
+.formGroup {
+  @include breakpoint(768px) {
+    padding: 0 .5rem;
+  }
+}
