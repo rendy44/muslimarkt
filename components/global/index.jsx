@@ -1,3 +1,4 @@
+import {useState, useEffect, useContext} from 'react';
 import headerStyles from './header.module.scss';
 import sectionStyles from './section.module.scss';
 import heroStyles from './hero.module.scss';
@@ -8,6 +9,7 @@ import Link from 'next/link';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 import conf from '../../global.config.json';
+import UserContext from "./userContext";
 
 function Header(props) {
     return (
@@ -42,8 +44,18 @@ function Header(props) {
 }
 
 function LogoLink() {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    const {userKey} = useContext(UserContext);
+    useEffect(() => {
+        if (userKey) {
+            setIsLoggedIn(true);
+        }
+    });
+
+    const routeTo = isLoggedIn ? '/dashboard' : '/';
     return (
-        <Link href='/'>
+        <Link href={routeTo}>
             <a>
                 <img src='/logo2.png' alt='Logo'/>
             </a>
