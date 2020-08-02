@@ -1,5 +1,5 @@
 import {useState, useContext} from "react";
-import {useRouter} from 'next/router';
+import Router from 'next/router';
 import {Layout, Section, LogoLink} from '../components/global';
 import {useForm} from "react-hook-form";
 import styles from '../components/daftar/style.module.scss';
@@ -10,9 +10,8 @@ import Swal from "sweetalert2";
 import UserContext from '../components/global/userContext';
 
 export default function PageMasuk() {
-    const {register, handleSubmit, watch, errors} = useForm();
+    const {register, handleSubmit, errors} = useForm();
     const [isLoading, setIsLoading] = useState(false);
-    const router = useRouter();
     const {signIn} = useContext(UserContext);
 
     const onSubmit = async (data, e) => {
@@ -25,11 +24,11 @@ export default function PageMasuk() {
                 // Handle for success error.
                 if (data.success) {
 
-                    // Save userKey.
+                    // Save Auth.
                     signIn(data.data);
 
                     // Redirect user to dashboard.
-                    router.push('/dashboard');
+                    Router.push('/dashboard');
                 } else {
                     const MySwal = withReactContent(Swal);
                     MySwal.fire({

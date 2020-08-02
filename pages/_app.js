@@ -2,6 +2,7 @@ import React from 'react';
 import App from 'next/app';
 import UserContext from '../components/global/userContext';
 import '../styles/app.scss';
+import Router from "next/router";
 
 export default class MyApp extends App {
     state = {
@@ -10,9 +11,18 @@ export default class MyApp extends App {
     };
 
     componentDidMount = () => {
+        const freePage = ['/', '/masuk', '/daftar'];
         const userKey = localStorage.getItem('muslimarkt-userKey');
         if (userKey) {
             this.setState({user_key: userKey});
+        } else {
+
+            // Detect if current page is not a free access page.
+            if (freePage.includes(Router.route)) {
+
+                // Redirect to login page.
+                Router.push('/masuk')
+            }
         }
     };
 
