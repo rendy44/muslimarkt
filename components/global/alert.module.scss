@@ -1,0 +1,23 @@
+@import "../../styles/mainUtil";
+
+.alert {
+  margin-bottom: 1rem;
+  border: 1px solid rgba($black, .1);
+  padding: 1rem;
+  @include defaultTransition;
+
+  p {
+    margin: 0;
+  }
+
+  @each $name, $color in $colors {
+    &.#{$name} {
+      background-color: lighten($color, 35%);
+      color: darken($color, 20%);
+    }
+  }
+
+  &:hover {
+    box-shadow: none !important;
+  }
+}

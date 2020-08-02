@@ -12,6 +12,14 @@
   }
 }
 
+.light {
+  background-color: $light;
+}
+
+.noPadding {
+  padding: 1rem !important;
+}
+
 .title {
   margin: 0 0 2rem;
 

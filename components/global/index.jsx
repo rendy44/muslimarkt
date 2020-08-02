@@ -2,6 +2,7 @@ import headerStyles from './header.module.scss';
 import sectionStyles from './section.module.scss';
 import heroStyles from './hero.module.scss';
 import footerStyles from './footer.module.scss';
+import alertStyles from './alert.module.scss';
 import {IoMdLogIn, IoMdPersonAdd} from 'react-icons/io';
 import Link from 'next/link';
 import Head from 'next/head';
@@ -44,7 +45,7 @@ function LogoLink() {
     return (
         <Link href='/'>
             <a>
-                <img src='logo2.png' alt='Logo'/>
+                <img src='/logo2.png' alt='Logo'/>
             </a>
         </Link>
     )
@@ -246,9 +247,17 @@ function Section(props) {
         columnSize = props.customSize;
     }
 
+    // Maybe it is lighten.
+    if (props.isLightColor) {
+        cssClass += ' ' + sectionStyles.light;
+    }
     // Maybe add extra class.
     if (props.extraClass) {
-        cssClass += ' ' + props.extraClass
+        cssClass += ' ' + props.extraClass;
+    }
+    // Maybe no padding.
+    if (props.isNoPadding) {
+        cssClass += ' ' + sectionStyles.noPadding;
     }
 
     // Maybe add title.
@@ -277,7 +286,22 @@ Section.propTypes = {
     isFull: PropTypes.bool,
     title: PropTypes.string,
     desc: PropTypes.string,
-    customSize: PropTypes.string
+    customSize: PropTypes.string,
+    isLightColor: PropTypes.bool,
+    isNoPadding: PropTypes.bool
 };
 
-export {Header, LogoLink, Footer, Layout, Section};
+function AlertView(props) {
+    const alertCss = alertStyles.alert + ' ' + props.variant;
+    return (
+        <div className={alertCss}>
+            {props.children}
+        </div>
+    )
+}
+
+AlertView.propTypes = {
+    variant: PropTypes.string.isRequired
+};
+
+export {Header, LogoLink, Footer, Layout, Section, AlertView};

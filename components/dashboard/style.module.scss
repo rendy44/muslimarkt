@@ -1,0 +1,100 @@
+@import "../../styles/mainUtil";
+
+$sidebarSize: 30%;
+$contentSize: calc(70% - 1rem);
+
+.wrapper {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+}
+
+.sidebar {
+  background-color: $white;
+  padding: 1rem 0;
+  margin-bottom: 1rem;
+  @include boxShadow();
+
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    li {
+      a {
+        display: flex;
+        @include defaultTransition;
+        padding: 1rem;
+
+        span {
+          &:first-child {
+            margin-right: .5rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+.activeLink {
+  font-weight: 600;
+  background-color: $light;
+  border-left: 4px solid $main;
+  color: $main;
+}
+
+.content {
+  @include boxShadow;
+  background-color: $white;
+  height: 150vh;
+  padding: 1rem;
+}
+
+.contentTitle {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  @include defaultTransition;
+}
+
+@include breakpoint(768px) {
+  .wrapper {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .sidebar {
+    width: $sidebarSize;
+    top: 0;
+    position: sticky;
+    position: -webkit-sticky;
+    height: 100%;
+    margin-bottom: 0;
+
+    ul {
+      li {
+        a {
+          padding: .75rem;
+        }
+      }
+    }
+  }
+
+  .content {
+    width: $contentSize;
+  }
+  .contentTitle {
+    font-size: 1.75rem;
+  }
+}
+
+@include breakpoint(992px) {
+  .sidebar {
+    width: 25%;
+  }
+  .content {
+    width: calc(75% - 1rem);
+  }
+  .contentTitle {
+    font-size: 2rem;
+  }
+}

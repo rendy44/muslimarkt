@@ -27,8 +27,10 @@ export default function PageMasuk() {
                     // Save Auth.
                     signIn(data.data);
 
+                    const routeTo = data.data.is_profile_completed ? '/dashboard' : '/dashboard/akun';
+
                     // Redirect user to dashboard.
-                    Router.push('/dashboard');
+                    Router.push(routeTo);
                 } else {
                     const MySwal = withReactContent(Swal);
                     MySwal.fire({

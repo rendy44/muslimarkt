@@ -24,6 +24,7 @@ function HowItWorks(props) {
             isFull={true}
             title='Cari Lowongan'
             desc='Lakukan langkah singkat berikut ini untuk mendapatkan pekerjaan impianmu'
+            isLightColor={true}
             extraClass={howStyles.section}>
             <div className={howStyles.howItWorksItems}>
                 {props.children}
