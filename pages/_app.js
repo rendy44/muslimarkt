@@ -18,7 +18,7 @@ export default class MyApp extends App {
         } else {
 
             // Detect if current page is not a free access page.
-            if (freePage.includes(Router.route)) {
+            if (!freePage.includes(Router.route)) {
 
                 // Redirect to login page.
                 Router.push('/masuk')
