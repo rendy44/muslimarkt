@@ -4,7 +4,7 @@ import {useRouter} from 'next/router';
 import {Layout, Section, LogoLink} from '../components/global';
 import {useForm} from "react-hook-form";
 import styles from '../components/daftar/style.module.scss';
-import {Btn, LinkBtn} from '../components/form';
+import {Btn, FormAction, LinkBtn} from '../components/form';
 import User from "../class/user.js";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
@@ -65,10 +65,7 @@ export default function PageDaftar() {
                         </label>
                         <p>Dengan mendaftar Anda otomatis setuju terhadap <Link href='/ketentuan-layanan'><a>ketentuan
                             layanan</a></Link> dan <Link href='/kebijakan-privasi'><a>kebijakan privasi</a></Link>.</p>
-                        <div className={styles.action}>
-                            <Btn isSubmit={true} variant='success' label={buttonLbl} disabled={isLoading}/>
-                            <LinkBtn href='/' label='Batal' variant='transparent'/>
-                        </div>
+                        <FormAction variant={'success'} label={buttonLbl} disabled={isLoading} otherLink={'/'}/>
                     </form>
                 </div>
             </Section>

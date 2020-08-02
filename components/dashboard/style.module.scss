@@ -20,6 +20,7 @@ $contentSize: calc(70% - 1rem);
   background-color: $white;
   padding: 1rem 0;
   margin-bottom: 1rem;
+  border: 1px solid $lightest_line;
   @include boxShadow();
 
   ul {
@@ -53,13 +54,16 @@ $contentSize: calc(70% - 1rem);
 .content {
   @include boxShadow;
   background-color: $white;
-  height: 150vh;
+  //height: 150vh;
   padding: 1rem;
+  border: 1px solid $lightest_line;
 }
 
 .contentTitle {
-  margin-bottom: 1rem;
+  background-color: $med_light;
+  margin: -1rem -1rem 2rem;
   font-size: 1.5rem;
+  padding: 1rem;
   @include defaultTransition;
 }
 

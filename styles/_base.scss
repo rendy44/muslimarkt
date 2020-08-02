@@ -35,13 +35,13 @@ $color in $colors {
   }
 }
 
+.transparent {
+  color: inherit !important;
+}
+
 form {
   label {
     font-weight: 600;
-
-    input {
-      margin-top: .5rem;
-    }
 
     &.err {
       input {

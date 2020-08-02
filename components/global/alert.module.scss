@@ -2,7 +2,7 @@
 
 .alert {
   margin-bottom: 1rem;
-  border: 1px solid rgba($black, .1);
+  border: 1px solid $lightest_line;
   padding: 1rem;
   @include defaultTransition;
 

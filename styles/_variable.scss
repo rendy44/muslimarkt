@@ -4,7 +4,9 @@ $main: #700CBC !default;
 $success: #28a745 !default;
 $warning: #ffc107 !default;
 $danger: #dc3545 !default;
-$light: darken($white, 5%);
+$lightest_line: rgba($black, .1);
+$med_light: darken($white, 4%);
+$light: darken($white, 7%);
 $dark: lighten($black, 20%);
 
-$colors: ('main':$main, 'success':$success, 'warning':$warning, 'danger':$danger, 'transparent': transparent);
+$colors: ('main':$main, 'success':$success, 'warning':$warning, 'danger':$danger);

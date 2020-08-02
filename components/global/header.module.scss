@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   background-color: $white;
-  border-bottom: 1px solid rgba($black, .1);
+  border-bottom: 1px solid $lightest_line;
   @include boxShadow(0, .2rem, .4rem, rgba($black, .15));
 }
 
