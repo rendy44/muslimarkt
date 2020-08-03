@@ -56,31 +56,3 @@
     }
   }
 }
-
-.dropDown {
-  > a {
-    //background-color: red;
-    position: relative;
-    display: block;
-
-    ~ ul {
-      position: absolute;
-      top: 0;
-      right: 0;
-      background-color: $white;
-      z-index: -1;
-      padding: 1rem;
-      @include boxShadow;
-    }
-
-    &:active, &:focus {
-      ~ ul {
-        z-index: 3;
-
-        &:hover {
-          display: block;
-        }
-      }
-    }
-  }
-}

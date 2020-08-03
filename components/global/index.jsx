@@ -4,7 +4,7 @@ import sectionStyles from './section.module.scss';
 import heroStyles from './hero.module.scss';
 import footerStyles from './footer.module.scss';
 import alertStyles from './alert.module.scss';
-import {IoMdLogIn, IoMdPersonAdd, IoMdPerson} from 'react-icons/io';
+import {IoMdLogIn, IoMdPersonAdd, IoMdPerson, IoMdSettings, IoMdLogOut} from 'react-icons/io';
 import Link from 'next/link';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
@@ -21,19 +21,31 @@ function Header(props) {
     });
 
     const menuLinks = isLoggedIn ? [
-        <li key='liDropdown' className={headerStyles.dropDown}>
-            <a><IoMdPerson/></a>
+        <li key={'liProfile'}>
+            <Link href={'/profil'}>
+                <a><IoMdPerson/></a>
+            </Link>
+        </li>,
+        <li key={'liSetting'}>
+            <Link href={'/dashboard/pengaturan/akun'}>
+                <a><IoMdSettings/></a>
+            </Link>
+        </li>,
+        <li key={'liLogout'}>
+            <Link href={'/keluar'}>
+                <a><IoMdLogOut/></a>
+            </Link>
         </li>
     ] : [
         <li key='liMasuk'>
-            <Link href='/masuk'>
+            <Link href={'/masuk'}>
                 <a href='#'>
                     <IoMdLogIn/>
                 </a>
             </Link>
         </li>,
         <li key='liDaftar'>
-            <Link href='/daftar'>
+            <Link href={'/daftar'}>
                 <a>
                     <IoMdPersonAdd/>
                 </a>
