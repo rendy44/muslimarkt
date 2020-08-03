@@ -4,7 +4,7 @@ import sectionStyles from './section.module.scss';
 import heroStyles from './hero.module.scss';
 import footerStyles from './footer.module.scss';
 import alertStyles from './alert.module.scss';
-import {IoMdLogIn, IoMdPersonAdd} from 'react-icons/io';
+import {IoMdLogIn, IoMdPersonAdd, IoMdPerson} from 'react-icons/io';
 import Link from 'next/link';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
@@ -12,6 +12,34 @@ import conf from '../../global.config.json';
 import UserContext from "./userContext";
 
 function Header(props) {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const {userKey} = useContext(UserContext);
+    useEffect(() => {
+        if (userKey) {
+            setIsLoggedIn(true);
+        }
+    });
+
+    const menuLinks = isLoggedIn ? [
+        <li key='liDropdown' className={headerStyles.dropDown}>
+            <a><IoMdPerson/></a>
+        </li>
+    ] : [
+        <li key='liMasuk'>
+            <Link href='/masuk'>
+                <a href='#'>
+                    <IoMdLogIn/>
+                </a>
+            </Link>
+        </li>,
+        <li key='liDaftar'>
+            <Link href='/daftar'>
+                <a>
+                    <IoMdPersonAdd/>
+                </a>
+            </Link>
+        </li>
+    ];
     return (
         <header className={headerStyles.header}>
             <div className='frow-container'>
@@ -21,20 +49,7 @@ function Header(props) {
                     </div>
                     <div className={headerStyles.nav}>
                         <ul>
-                            <li>
-                                <Link href='/masuk'>
-                                    <a>
-                                        <IoMdLogIn/>
-                                    </a>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href='/daftar'>
-                                    <a>
-                                        <IoMdPersonAdd/>
-                                    </a>
-                                </Link>
-                            </li>
+                            {menuLinks}
                         </ul>
                     </div>
                 </div>
