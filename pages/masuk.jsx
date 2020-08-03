@@ -39,6 +39,15 @@ export default function PageMasuk() {
                     });
                 }
             })
+            .catch((err) => {
+                setIsLoading(false);
+
+                const MySwal = withReactContent(Swal);
+                MySwal.fire({
+                    icon: 'error',
+                    text: err.message,
+                });
+            })
     };
     const buttonLbl = isLoading ? 'Loading...' : 'Masuk';
 
