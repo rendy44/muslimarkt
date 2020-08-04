@@ -10,3 +10,5 @@ $light: darken($white, 7%);
 $dark: lighten($black, 20%);
 
 $colors: ('main':$main, 'success':$success, 'warning':$warning, 'danger':$danger);
+
+$frow-enable-buttons: false;
