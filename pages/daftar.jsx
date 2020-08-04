@@ -5,7 +5,7 @@ import {Layout, Section, LogoLink} from '../components/global';
 import {useForm} from "react-hook-form";
 import styles from '../components/daftar/style.module.scss';
 import {FormAction, InputText} from '../components/form';
-import User from "../class/user.js";
+import User from "../src/user.js";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 

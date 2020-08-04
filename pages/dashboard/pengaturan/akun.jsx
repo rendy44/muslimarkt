@@ -1,14 +1,44 @@
 import {DashboardSettingLayout} from "../../../components/dashboard";
 import {DropDown, FormAction, InputText} from "../../../components/form";
 import {useForm} from "react-hook-form";
+import {useContext, useState} from 'react';
+import UserContext from "../../../components/global/userContext";
+import withReactContent from "sweetalert2-react-content";
+import Swal from "sweetalert2";
+import User from "../../../src/user";
 
 export default function PageAkun() {
     const {register, handleSubmit, errors} = useForm();
+    const [isLoading, setIsLoading] = useState(false);
+    const {userKey} = useContext(UserContext);
+    const MySwal = withReactContent(Swal);
 
-    console.log(errors);
     const onSubmit = async (data, e) => {
-        // console.log(errors);
-        console.log(data);
+        // set to loading.
+        setIsLoading(true);
+        // Save user key into obj.
+        data['key'] = userKey;
+
+        // Process update.
+        User.update(data)
+            .then(response => response.json())
+            .then((result) => {
+                setIsLoading(false);
+
+                // Show alert based on request status.
+                const alertType = result.success ? 'success' : 'error';
+                MySwal.fire({
+                    icon: alertType,
+                    text: result.data,
+                });
+            })
+            .catch((err) => {
+                setIsLoading(false);
+                MySwal.fire({
+                    icon: 'error',
+                    text: err.data,
+                });
+            })
     };
     return (
         <DashboardSettingLayout title={'Pengaturan Akun'}>
@@ -16,7 +46,7 @@ export default function PageAkun() {
                 <div className='frow'>
                     <div className='col-sm-1-2'>
                         <InputText
-                            name={'namaDepan'}
+                            name={'nama_depan'}
                             label={'Nama Depan'}
                             handler={register({required: true})}
                             errorsRef={errors}
@@ -24,7 +54,7 @@ export default function PageAkun() {
                     </div>
                     <div className='col-sm-1-2'>
                         <InputText
-                            name={'namaBelakang'}
+                            name={'nama_belakang'}
                             label={'Nama Belakang'}
                             handler={register}
                             errorsRef={errors}
@@ -32,7 +62,7 @@ export default function PageAkun() {
                     </div>
                     <div className='col-sm-1-3'>
                         <DropDown
-                            name={'tanggalLahir'}
+                            name={'tanggal_lahir'}
                             label={'Tanggal Lahir'}
                             handler={register({required: true})}
                             errorsRef={errors}
@@ -44,7 +74,7 @@ export default function PageAkun() {
                     </div>
                     <div className='col-sm-1-3'>
                         <DropDown
-                            name={'bulanLahir'}
+                            name={'bulan_lahir'}
                             label={'Bulan Lahir'}
                             handler={register({required: true})}
                             errorsRef={errors}
@@ -56,7 +86,7 @@ export default function PageAkun() {
                     </div>
                     <div className='col-sm-1-3'>
                         <DropDown
-                            name={'tahunLahir'}
+                            name={'tahun_lahir'}
                             label={'Tahun Lahir'}
                             handler={register({required: true})}
                             errorsRef={errors}
@@ -76,7 +106,7 @@ export default function PageAkun() {
                     </div>
                     <div className='col-sm-1-3'>
                         <InputText
-                            name={'kodePos'}
+                            name={'kode_pos'}
                             label={'Kode Pos'}
                             handler={register({required: true})}
                             errorsRef={errors}
@@ -108,26 +138,28 @@ export default function PageAkun() {
                     </div>
                     <div className='col-sm-1-3'>
                         <DropDown
-                            name={'jeniIdentitas'}
-                            label={'Jenis Identitas'}
+                            name={'jenis_kelamin'}
+                            label={'Jenis Kelamin'}
                             handler={register({required: true})}
                             errorsRef={errors}
                         >
-                            <option>Option 1</option>
-                            <option>Option 2</option>
-                            <option>Option 3</option>
+                            <option>Laki-laki</option>
+                            <option>Perempuan</option>
                         </DropDown>
                     </div>
                     <div className='col-sm-2-3'>
                         <InputText
-                            name={'noIdentitas'}
+                            name={'no_identitas'}
                             label={'Nomor Identitas'}
                             handler={register({required: true})}
                             errorsRef={errors}
                         />
                     </div>
                 </div>
-                <FormAction label={'Simpan'} otherLink={'/dashboard/pengaturan/akun'}/>
+                <FormAction
+                    label={isLoading ? 'Loading...' : 'Simpan'}
+                    disabled={isLoading}
+                    otherLink={'/dashboard/pengaturan/akun'}/>
             </form>
         </DashboardSettingLayout>
     )

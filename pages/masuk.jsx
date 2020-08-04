@@ -4,7 +4,7 @@ import {Layout, Section, LogoLink} from '../components/global';
 import {useForm} from "react-hook-form";
 import styles from '../components/daftar/style.module.scss';
 import {FormAction, InputText} from '../components/form';
-import User from "../class/user";
+import User from "../src/user";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 import UserContext from '../components/global/userContext';
@@ -13,36 +13,34 @@ export default function PageMasuk() {
     const {register, handleSubmit, errors} = useForm();
     const [isLoading, setIsLoading] = useState(false);
     const {signIn} = useContext(UserContext);
+    const MySwal = withReactContent(Swal);
 
     const onSubmit = async (data, e) => {
         setIsLoading(true);
         User.login(data)
             .then(response => response.json())
-            .then((data) => {
+            .then((result) => {
                 setIsLoading(false);
 
                 // Handle for success error.
-                if (data.success) {
+                if (result.success) {
 
                     // Save Auth.
-                    signIn(data.data);
+                    signIn(result.data);
 
-                    const routeTo = data.data.is_profile_completed ? '/dashboard' : '/dashboard/pengaturan/akun';
+                    const routeTo = result.data.is_profile_completed ? '/dashboard' : '/dashboard/pengaturan/akun';
 
                     // Redirect user to dashboard.
                     Router.push(routeTo);
                 } else {
-                    const MySwal = withReactContent(Swal);
                     MySwal.fire({
                         icon: 'error',
-                        text: data.data,
+                        text: result.data,
                     });
                 }
             })
             .catch((err) => {
                 setIsLoading(false);
-
-                const MySwal = withReactContent(Swal);
                 MySwal.fire({
                     icon: 'error',
                     text: err.message,

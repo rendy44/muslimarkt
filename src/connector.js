@@ -4,9 +4,13 @@ export default class Connector {
     baseUrl = conf.baseUr;
     nameSpace = '/wp-json/muslimarkt/';
 
-    constructor(endpoint, isPost, data) {
-        const args = isPost ? {
-            method: 'post',
+    constructor(endpoint, method, data) {
+        // Set default method.
+        if (!method) {
+            method = 'get';
+        }
+        const args = 'get' !== method ? {
+            method: method,
             body: JSON.stringify(data)
         } : {};
         return fetch(this.baseUrl + this.nameSpace + endpoint, args);
