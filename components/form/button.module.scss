@@ -9,7 +9,9 @@
   @include defaultTransition;
   @include borderRadius(4px);
   font-size: 90% !important;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   line-height: 1;
 
   &:hover,
@@ -17,8 +19,16 @@
   &:focus {
     text-decoration: none;
     color: $white;
-    border-color: $lightest_line;
+    border: 1px solid $lightest_line !important;
     cursor: pointer;
+  }
+
+  span {
+    margin-left: .5rem;
+
+    &:first-child {
+      margin-left: 0;
+    }
   }
 }
 

@@ -29,6 +29,7 @@ $color in $colors {
       &:active,
       &:focus {
         background-color: $color;
+        border: 1px solid $lightest_line;
         @include boxShadow;
       }
     }

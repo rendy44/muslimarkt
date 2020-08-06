@@ -75,21 +75,27 @@ function Btn(props) {
     const buttonType = props.isSubmit ? 'submit' : 'button';
     const cssClass = btnStyles.btn + ' ' + props.variant;
     return (
-        <button type={buttonType} className={cssClass} disabled={props.disabled}>{props.label}</button>
+        <button type={buttonType} className={cssClass} disabled={props.disabled}>
+            {props.label ? <span>{props.label}</span> : ''}{props.icon ? <span>{props.icon}</span> : ''}
+        </button>
     )
 }
 
 Btn.propTypes = {
     isSubmit: PropTypes.bool.isRequired,
     label: PropTypes.string.isRequired,
-    variant: PropTypes.string.isRequired
+    variant: PropTypes.string.isRequired,
+    icon: PropTypes.object
 };
 
 function LinkBtn(props) {
     const cssClass = btnStyles.btn + ' ' + props.variant;
     return (
         <Link href={props.href}>
-            <a className={cssClass}>{props.label}</a>
+            <a
+                className={cssClass}>
+                {props.label ? <span>{props.label}</span> : ''}{props.icon ? <span>{props.icon}</span> : ''}
+            </a>
         </Link>
     )
 }
@@ -97,7 +103,8 @@ function LinkBtn(props) {
 LinkBtn.propTypes = {
     href: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
-    variant: PropTypes.string.isRequired
+    variant: PropTypes.string.isRequired,
+    icon: PropTypes.object
 };
 
 function FormAction(props) {
