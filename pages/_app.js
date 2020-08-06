@@ -7,7 +7,8 @@ import Router from "next/router";
 export default class MyApp extends App {
     state = {
         user_key: '',
-        is_profile_completed: false
+        is_profile_completed: false,
+        account: []
     };
 
     componentDidMount = () => {
@@ -40,6 +41,12 @@ export default class MyApp extends App {
         });
     };
 
+    updateAccount = (data) => {
+        localStorage.setItem('muslimarkt-account', data);
+
+        this.setState({account: data})
+    };
+
     render() {
         const {Component, pageProps} = this.props;
 
@@ -48,7 +55,9 @@ export default class MyApp extends App {
                 userKey: this.state.user_key,
                 isProfileCompleted: this.state.is_profile_completed,
                 signIn: this.signIn,
-                signOut: this.signOut
+                signOut: this.signOut,
+                account: this.state.account,
+                updateAccount: this.updateAccount
             }}>
                 <Component {...pageProps} />
             </UserContext.Provider>

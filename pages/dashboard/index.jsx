@@ -1,4 +1,3 @@
-import {Layout, Section} from "../../components/global";
 import {MenuItems, MenuItem, DashboardPageLayout} from "../../components/dashboard";
 import {FaUserEdit, FaSave, FaNetworkWired, FaStar} from 'react-icons/fa';
 

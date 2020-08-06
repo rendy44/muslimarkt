@@ -1,17 +1,28 @@
 import {DashboardSettingLayout} from "../../../components/dashboard";
 import {DropDown, FormAction, InputText} from "../../../components/form";
 import {useForm} from "react-hook-form";
-import {useContext, useState} from 'react';
+import {useContext, useState, useEffect} from 'react';
 import UserContext from "../../../components/global/userContext";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 import User from "../../../src/user";
+import provinces from '../../../src/provinsi.json';
 
 export default function PageAkun() {
     const {register, handleSubmit, errors} = useForm();
     const [isLoading, setIsLoading] = useState(false);
-    const {userKey} = useContext(UserContext);
+    const {userKey, account, updateAccount} = useContext(UserContext);
     const MySwal = withReactContent(Swal);
+    let tglValue = [];
+    for (let i = 1; i <= 31; i++) {
+        tglValue.push(i);
+    }
+    let thnValue = [];
+    for (let i = 1950; i <= 2010; i++) {
+        thnValue.push(i);
+    }
+
+    console.log(account);
 
     const onSubmit = async (data, e) => {
         // set to loading.
@@ -31,6 +42,11 @@ export default function PageAkun() {
                     icon: alertType,
                     text: result.data,
                 });
+
+                // Update the state when update is success.
+                if (result.success) {
+                    updateAccount(data);
+                }
             })
             .catch((err) => {
                 setIsLoading(false);
@@ -50,6 +66,7 @@ export default function PageAkun() {
                             label={'Nama Depan'}
                             handler={register({required: true})}
                             errorsRef={errors}
+                            value={account.nama_depan}
                         />
                     </div>
                     <div className='col-sm-1-2'>
@@ -58,6 +75,7 @@ export default function PageAkun() {
                             label={'Nama Belakang'}
                             handler={register}
                             errorsRef={errors}
+                            value={account.nama_belakang}
                         />
                     </div>
                     <div className='col-sm-1-3'>
@@ -66,11 +84,9 @@ export default function PageAkun() {
                             label={'Tanggal Lahir'}
                             handler={register({required: true})}
                             errorsRef={errors}
-                        >
-                            <option>Option 1</option>
-                            <option>Option 2</option>
-                            <option>Option 3</option>
-                        </DropDown>
+                            values={tglValue}
+                            value={account.tanggal_lahir}
+                        />
                     </div>
                     <div className='col-sm-1-3'>
                         <DropDown
@@ -78,11 +94,9 @@ export default function PageAkun() {
                             label={'Bulan Lahir'}
                             handler={register({required: true})}
                             errorsRef={errors}
-                        >
-                            <option>Option 1</option>
-                            <option>Option 2</option>
-                            <option>Option 3</option>
-                        </DropDown>
+                            values={['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des']}
+                            value={account.bulan_lahir}
+                        />
                     </div>
                     <div className='col-sm-1-3'>
                         <DropDown
@@ -90,11 +104,9 @@ export default function PageAkun() {
                             label={'Tahun Lahir'}
                             handler={register({required: true})}
                             errorsRef={errors}
-                        >
-                            <option>Option 1</option>
-                            <option>Option 2</option>
-                            <option>Option 3</option>
-                        </DropDown>
+                            values={thnValue}
+                            value={account.tahun_lahir}
+                        />
                     </div>
                     <div className='col-sm-2-3'>
                         <InputText
@@ -102,6 +114,7 @@ export default function PageAkun() {
                             label={'Alamat'}
                             handler={register({required: true})}
                             errorsRef={errors}
+                            value={account.alamat}
                         />
                     </div>
                     <div className='col-sm-1-3'>
@@ -110,31 +123,27 @@ export default function PageAkun() {
                             label={'Kode Pos'}
                             handler={register({required: true})}
                             errorsRef={errors}
+                            value={account.kode_pos}
                         />
                     </div>
                     <div className='col-sm-1-2'>
-                        <DropDown
+                        <InputText
                             name={'kota'}
                             label={'Kota'}
                             handler={register({required: true})}
                             errorsRef={errors}
-                        >
-                            <option>Option 1</option>
-                            <option>Option 2</option>
-                            <option>Option 3</option>
-                        </DropDown>
+                            value={account.kota}
+                        />
                     </div>
                     <div className='col-sm-1-2'>
                         <DropDown
-                            name={'propinsi'}
-                            label={'Propinsi'}
+                            name={'provinsi'}
+                            label={'Provinsi'}
                             handler={register({required: true})}
                             errorsRef={errors}
-                        >
-                            <option>Option 1</option>
-                            <option>Option 2</option>
-                            <option>Option 3</option>
-                        </DropDown>
+                            values={provinces}
+                            value={account.provinsi}
+                        />
                     </div>
                     <div className='col-sm-1-3'>
                         <DropDown
@@ -142,10 +151,9 @@ export default function PageAkun() {
                             label={'Jenis Kelamin'}
                             handler={register({required: true})}
                             errorsRef={errors}
-                        >
-                            <option>Laki-laki</option>
-                            <option>Perempuan</option>
-                        </DropDown>
+                            values={['Laki-laki', 'Perempuan']}
+                            value={account.jenis_kelamin}
+                        />
                     </div>
                     <div className='col-sm-2-3'>
                         <InputText
@@ -153,6 +161,7 @@ export default function PageAkun() {
                             label={'Nomor Identitas'}
                             handler={register({required: true})}
                             errorsRef={errors}
+                            value={account.no_identitas}
                         />
                     </div>
                 </div>

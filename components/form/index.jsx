@@ -43,11 +43,16 @@ InputText.propTypes = {
 
 function DropDown(props) {
     const errMsg = props.validationMessage ? props.validationMessage : props.label + ' harus diisi.';
+    let dropDownHtml = [];
+    props.values.map((val, index) => {
+        dropDownHtml.push(<option key={index}>{val}</option>);
+    });
+
     return (
         <FormGroup noPadding={props.noPadding}>
             <label>{props.label}
                 <select name={props.name} ref={props.handler}>
-                    {props.children}
+                    {dropDownHtml}
                 </select>
                 {props.errorsRef[props.name] && <span>{errMsg}</span>}
             </label>
@@ -58,6 +63,8 @@ function DropDown(props) {
 DropDown.propTypes = {
     name: PropTypes.string.isRequired,
     label: PropTypes.string,
+    values: PropTypes.array.isRequired,
+    value: PropTypes.string,
     handler: PropTypes.func.isRequired,
     errorsRef: PropTypes.object.isRequired,
     validationMessage: PropTypes.string,
