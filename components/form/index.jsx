@@ -21,9 +21,12 @@ function InputText(props) {
     const errMsg = props.validationMessage ? props.validationMessage : props.label + ' harus diisi.';
     return (
         <FormGroup noPadding={props.noPadding}>
-            <label>{props.label}
-                <input name={props.name} type={inputType} value={props.value} placeholder={props.label}
-                       ref={props.handler}/>
+            <label><span>{props.label ? props.label : '\u00A0'}</span>
+                <input
+                    name={props.name}
+                    type={inputType} value={props.value}
+                    placeholder={props.placeholder ? props.placeholder : props.label}
+                    ref={props.handler}/>
                 {props.errorsRef[props.name] && <span>{errMsg}</span>}
             </label>
         </FormGroup>
@@ -34,6 +37,7 @@ InputText.propTypes = {
     name: PropTypes.string.isRequired,
     type: PropTypes.string,
     label: PropTypes.string,
+    placeholder: PropTypes.string,
     value: PropTypes.string,
     handler: PropTypes.func.isRequired,
     errorsRef: PropTypes.object.isRequired,
@@ -50,7 +54,7 @@ function DropDown(props) {
 
     return (
         <FormGroup noPadding={props.noPadding}>
-            <label>{props.label}
+            <label><span>{props.label ? props.label : '\u00A0'}</span>
                 <select name={props.name} ref={props.handler}>
                     {dropDownHtml}
                 </select>
