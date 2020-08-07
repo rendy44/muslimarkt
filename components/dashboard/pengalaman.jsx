@@ -34,7 +34,8 @@ function ExperienceItem(props) {
             <div className={Styles.experienceInner}>
                 <div className={Styles.edit}>
                     <LinkBtn
-                        href={'/dashboard/pengaturan/pengalaman/' + props.dbId}
+                        href={'/dashboard/pengaturan/pengalaman/[pengalamanId]'}
+                        as={'/dashboard/pengaturan/pengalaman/' + props.dbId}
                         label={''}
                         icon={<IoMdSettings/>}
                         variant={'warning'}/>

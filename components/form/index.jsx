@@ -123,7 +123,7 @@ Btn.propTypes = {
 function LinkBtn(props) {
     const cssClass = btnStyles.btn + ' ' + props.variant;
     return (
-        <Link href={props.href}>
+        <Link href={props.href} as={props.as}>
             <a
                 className={cssClass}>
                 {props.label ? <span>{props.label}</span> : ''}{props.icon ? <span>{props.icon}</span> : ''}
@@ -136,7 +136,8 @@ LinkBtn.propTypes = {
     href: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
     variant: PropTypes.string.isRequired,
-    icon: PropTypes.object
+    icon: PropTypes.object,
+    as: PropTypes.string
 };
 
 function FormAction(props) {
