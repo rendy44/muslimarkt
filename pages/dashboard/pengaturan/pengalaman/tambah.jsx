@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import {DashboardSettingLayout} from "../../../../components/dashboard";
-import {DropDown, FormAction, InputText} from "../../../../components/form";
+import {DropDown, FormAction, InputText, TextArea} from "../../../../components/form";
 import {useForm} from "react-hook-form";
 
 export default function PageTambahPengalaman() {
@@ -94,7 +94,7 @@ export default function PageTambahPengalaman() {
                             label={'Negara'}
                             handler={register({required: true})}
                             errorsRef={errors}
-                            values={[1,2,3,4,5]}
+                            values={[1, 2, 3, 4, 5]}
                         />
                     </div>
                     <div className='col-sm-1-2'>
@@ -105,6 +105,15 @@ export default function PageTambahPengalaman() {
                             errorsRef={errors}
                             values={[2]}
                         />
+                    </div>
+                    <div className='col-sm-1-1'>
+                        <TextArea
+                            name={'keterangan'}
+                            label={'Keterangan'}
+                            placeholder={'Detail mengenai pekerjaan'}
+                            handler={register}
+                            errorsRef={errors}
+                            rows={6}/>
                     </div>
                 </div>
                 <FormAction

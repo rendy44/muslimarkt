@@ -75,6 +75,34 @@ DropDown.propTypes = {
     noPadding: PropTypes.bool
 };
 
+function TextArea(props) {
+    const errMsg = props.validationMessage ? props.validationMessage : props.label + ' harus diisi.';
+    return (
+        <FormGroup noPadding={props.noPadding}>
+            <label><span>{props.label ? props.label : '\u00A0'}</span>
+                <textarea
+                    name={props.name}
+                    placeholder={props.placeholder ? props.placeholder : props.label}
+                    ref={props.handler} value={props.value}
+                    rows={props.rows ? props.rows : 3}/>
+                {props.errorsRef[props.name] && <span>{errMsg}</span>}
+            </label>
+        </FormGroup>
+    )
+}
+
+TextArea.propTypes = {
+    name: PropTypes.string.isRequired,
+    label: PropTypes.string,
+    placeholder: PropTypes.string,
+    value: PropTypes.string,
+    handler: PropTypes.func.isRequired,
+    errorsRef: PropTypes.object.isRequired,
+    validationMessage: PropTypes.string,
+    noPadding: PropTypes.bool,
+    rows: PropTypes.number
+};
+
 function Btn(props) {
     const buttonType = props.isSubmit ? 'submit' : 'button';
     const cssClass = btnStyles.btn + ' ' + props.variant;
@@ -129,4 +157,4 @@ FormAction.propTypes = {
     label: PropTypes.string,
     otherLink: PropTypes.string
 };
-export {Btn, LinkBtn, InputText, DropDown, FormAction}
+export {Btn, LinkBtn, InputText, TextArea, DropDown, FormAction}
