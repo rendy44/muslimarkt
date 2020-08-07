@@ -110,7 +110,7 @@ export default function PageTambahPengalaman() {
                 <FormAction
                     label={isLoading ? 'Loading...' : 'Simpan'}
                     disabled={isLoading}
-                    otherLink={'/dashboard/pengaturan/akun'}/>
+                    otherLink={'/dashboard/pengaturan/pengalaman'}/>
             </form>
         </DashboardSettingLayout>
     )
