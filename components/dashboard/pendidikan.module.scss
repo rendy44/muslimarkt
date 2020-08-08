@@ -62,14 +62,18 @@
     }
   }
 
-  @include breakpoint(992px) {
+  @include breakpoint(768px) {
     flex-direction: row;
     flex-wrap: wrap;
 
     .study {
       width: 50%;
       padding: 0 .5rem;
+    }
+  }
 
+  @include breakpoint(992px) {
+    .study {
       .inner {
         .edit {
           right: -.2rem;
