@@ -1,5 +1,5 @@
 import {Section} from '../global';
-import {Btn, LinkBtn} from '../form';
+import {LinkBtn} from '../form';
 import heroStyles from './hero.module.scss';
 import howStyles from './how.module.scss';
 import PropTypes from 'prop-types';

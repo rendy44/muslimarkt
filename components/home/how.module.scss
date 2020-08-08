@@ -2,79 +2,75 @@
 
 .section {
   text-align: center;
-}
 
-.cta {
-  margin-top: 1.5rem;
+  .howItWorksItems {
+    display: flex;
+    flex-direction: column;
 
-  button,
-  a {
-    margin: auto;
-  }
-}
+    @include breakpoint(768px) {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
 
-.howItWorksItems {
-  display: flex;
-  flex-direction: column;
-
-  @include breakpoint(768px) {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-}
-
-.item {
-  position: relative;
-  text-align: center;
-  margin-bottom: 1rem;
-  @include defaultTransition;
-
-  p {
-    margin: 0;
-    line-height: 1.4;
-  }
-
-  @include breakpoint(768px) {
-    padding: 0 .5rem;
-    width: 50%;
-
-    &:last-child {
+    .item {
+      position: relative;
+      text-align: center;
       margin-bottom: 1rem;
+      @include defaultTransition;
+
+      p {
+        margin: 0;
+        line-height: 1.4;
+      }
+
+      @include breakpoint(768px) {
+        padding: 0 .5rem;
+        width: 50%;
+
+        &:last-child {
+          margin-bottom: 1rem;
+        }
+      }
+
+      @include breakpoint(992px) {
+        width: 25%;
+      }
+
+      &:hover,
+      &:active,
+      &:focus {
+        @include zoom(1.05);
+      }
+
+      .inner {
+        height: 100%;
+        background-color: $white;
+        padding: 1rem .5rem;
+        @include boxShadow;
+
+        .itemIcon {
+          font-size: 3rem;
+          color: $main;
+          margin-bottom: .75rem;
+
+          svg {
+            margin: 0 auto;
+          }
+        }
+
+        .itemTitle {
+          margin-bottom: .5rem;
+        }
+      }
     }
   }
 
-  @include breakpoint(992px) {
-    width: 25%;
+  .cta {
+    margin-top: 1.5rem;
+
+    button,
+    a {
+      margin: auto;
+    }
   }
-
-  &:hover,
-  &:active,
-  &:focus {
-    @include zoom(1.05);
-  }
-}
-
-.inner {
-  height: 100%;
-  background-color: $white;
-  padding: 1rem .5rem;
-  @include boxShadow;
-  //@include borderRadius(4px);
-
-  @include breakpoint(768px) {
-  }
-}
-
-.itemIcon {
-  font-size: 3rem;
-  color: $main;
-  margin-bottom: .75rem;
-
-  svg {
-    margin: 0 auto;
-  }
-}
-
-.itemTitle {
-  margin-bottom: .5rem;
 }

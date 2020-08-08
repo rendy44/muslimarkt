@@ -38,17 +38,17 @@
   @include breakpoint(768px) {
     height: 420px;
   }
-}
 
-.actions {
+  .actions {
 
-  button,
-  a {
-    display: inline-block;
-    margin-right: .5rem;
+    button,
+    a {
+      display: inline-block;
+      margin-right: .5rem;
 
-    &:last-child {
-      margin-right: 0;
+      &:last-child {
+        margin-right: 0;
+      }
     }
   }
 }
