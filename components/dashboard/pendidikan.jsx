@@ -49,7 +49,7 @@ function StudyItem(props) {
 }
 
 StudyItem.propTypes = {
-    id: PropTypes.string.isRequired,
+    dbId: PropTypes.string.isRequired,
     institute: PropTypes.string.isRequired,
     graduation: PropTypes.string.isRequired,
     qualification: PropTypes.string.isRequired,

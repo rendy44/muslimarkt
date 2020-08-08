@@ -56,8 +56,9 @@
 
   a, button {
     padding: 0 !important;
-    font-size: 1.5rem !important;
+    font-size: 1.2rem !important;
     margin-right: .5rem;
+    @include borderRadius(4px);
   }
 }
 
