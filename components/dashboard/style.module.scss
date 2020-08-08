@@ -20,11 +20,12 @@ $contentSize: calc(70% - 1rem);
     padding: 1rem 0;
     margin-bottom: 1rem;
     border: 1px solid $lightest_line;
+    overflow: hidden;
     @include boxShadow();
 
     .info {
+      position: relative;
       display: flex;
-      margin-bottom: 1rem;
       padding: 0 1rem;
 
       .pic {
@@ -47,12 +48,34 @@ $contentSize: calc(70% - 1rem);
           font-size: 90%;
         }
       }
+
+      button {
+        position: absolute;
+        right: 0;
+
+        span {
+          span {
+            background-color: $main;
+
+            &:before, &:after {
+              background-color: $main;
+            }
+          }
+        }
+      }
+
+      &.open {
+        margin-bottom: 1rem;
+      }
     }
 
     ul {
+      overflow: hidden;
+      height: 0;
       padding: 0;
       margin: 0;
       list-style: none;
+      @include defaultTransition;
 
       li {
         a {
@@ -73,6 +96,10 @@ $contentSize: calc(70% - 1rem);
             color: $main;
           }
         }
+      }
+
+      &.open {
+        height: auto;
       }
     }
 

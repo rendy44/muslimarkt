@@ -3,19 +3,26 @@ import PropTypes from 'prop-types';
 import Router from 'next/router';
 import styles from './style.module.scss';
 import Link from "next/link";
-import {IoMdPerson, IoMdSchool, IoMdBriefcase, IoMdSettings, IoMdStar} from 'react-icons/io';
+import {IoMdPerson, IoMdSchool, IoMdBriefcase, IoMdSettings, IoMdStar, IoMdMenu} from 'react-icons/io';
 import {AlertView, Layout, Section} from "../global";
 import UserContext from "../global/userContext";
 import {LinkBtn} from "../form";
 import {IoMdAddCircle} from "react-icons/io";
+import Hamburger from "../global/hamburger";
 
 function DashboardSidebar(props) {
     const [activeLink, setActiveLink] = useState('');
+    const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
         const currentRoute = Router.route;
         setActiveLink(currentRoute);
     });
+
+    const onOpen = (e) => {
+        const newOpenVal = !isOpen;
+        setIsOpen(newOpenVal);
+    };
 
     const sidebarLinks = [
         {
@@ -59,7 +66,7 @@ function DashboardSidebar(props) {
 
     return (
         <div className={styles.sidebar}>
-            <div className={styles.info}>
+            <div className={isOpen ? styles.info + ' ' + styles.open : styles.info}>
                 <div className={styles.pic}>
                     <img src={'/random.jpg'} alt={'Foto profil'}/>
                 </div>
@@ -69,8 +76,9 @@ function DashboardSidebar(props) {
                         <a>Lihat profil saya</a>
                     </Link>
                 </div>
+                <Hamburger isActive={isOpen} handler={onOpen}/>
             </div>
-            <ul>
+            <ul className={isOpen ? styles.open : ''}>
                 {sidebarLinkHtml}
             </ul>
         </div>
