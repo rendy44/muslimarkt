@@ -196,6 +196,13 @@ MenuItem.propTypes = {
 };
 
 function ListAction(props) {
+    const maybeBottomAction = !props.isHideBottom ? <div className={styles.listActionBottom}>
+        <LinkBtn
+            href={props.href}
+            label={props.label ? props.label : 'Tambah baru'}
+            icon={props.icon ? props.icon : <IoMdAddCircle/>}
+            variant={props.variant ? props.variant : 'success'}/>
+    </div> : '';
     return (
         <>
             <div className={styles.listAction}>
@@ -206,13 +213,7 @@ function ListAction(props) {
                     variant={props.variant ? props.variant : 'success'}/>
             </div>
             {props.children}
-            <div className={styles.listActionBottom}>
-                <LinkBtn
-                    href={props.href}
-                    label={props.label ? props.label : 'Tambah baru'}
-                    icon={props.icon ? props.icon : <IoMdAddCircle/>}
-                    variant={props.variant ? props.variant : 'success'}/>
-            </div>
+            {maybeBottomAction}
         </>
     )
 }
@@ -221,7 +222,8 @@ ListAction.propTypes = {
     href: PropTypes.string.isRequired,
     label: PropTypes.string,
     variant: PropTypes.string,
-    icon: PropTypes.object
+    icon: PropTypes.object,
+    isHideBottom: PropTypes.bool
 };
 
 export {
