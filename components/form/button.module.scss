@@ -7,7 +7,7 @@
   text-transform: uppercase;
   font-weight: 600;
   @include defaultTransition;
-  @include borderRadius(4px);
+  //@include borderRadius(4px);
   font-size: 90% !important;
   display: inline-flex;
   align-items: center;
