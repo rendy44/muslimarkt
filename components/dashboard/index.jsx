@@ -6,7 +6,6 @@ import Link from "next/link";
 import {IoMdPerson, IoMdSchool, IoMdBriefcase, IoMdSettings, IoMdStar} from 'react-icons/io';
 import {AlertView, Layout, Section} from "../global";
 import UserContext from "../global/userContext";
-import Styles from "./pendidikan.module.scss";
 import {LinkBtn} from "../form";
 import {IoMdAddCircle} from "react-icons/io";
 
