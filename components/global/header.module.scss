@@ -7,51 +7,51 @@
   background-color: $white;
   border-bottom: 1px solid $lightest_line;
   @include boxShadow(0, .2rem, .4rem, rgba($black, .15));
-}
 
-.inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+  .inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-.brand {
-  max-width: 120px;
-}
+    .brand {
+      max-width: 120px;
 
-.brandLink {
-  font-weight: 700;
-  font-size: 1.5rem;
-  color: $main;
-
-  span {
-    color: $black;
-  }
-
-  &:hover,
-  &:active,
-  &:focus {
-    text-decoration: none;
-    color: $main;
-  }
-}
-
-.nav {
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-
-    li {
-      display: inline-block;
-      margin-right: .5rem;
-
-      a {
+      .brandLink {
+        font-weight: 700;
         font-size: 1.5rem;
-      }
+        color: $main;
 
-      &:last-child {
-        margin-right: 0;
+        span {
+          color: $black;
+        }
+
+        &:hover,
+        &:active,
+        &:focus {
+          text-decoration: none;
+          color: $main;
+        }
+      }
+    }
+
+    .nav {
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+          display: inline-block;
+          margin-right: .5rem;
+
+          a {
+            font-size: 1.5rem;
+          }
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
       }
     }
   }

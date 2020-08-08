@@ -100,7 +100,7 @@ PageTitle.propTypes = {
     title: PropTypes.string.isRequired
 };
 
-function Footer(props) {
+function Footer() {
     const linksLeft = [
         {
             id: '/tentang',
