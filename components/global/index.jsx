@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 import conf from '../../global.config.json';
 import UserContext from "./userContext";
 
-function Header(props) {
+function Header() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const {userKey} = useContext(UserContext);
     useEffect(() => {
@@ -296,9 +296,20 @@ function Section(props) {
     if (props.isNoPadding) {
         cssClass += ' ' + sectionStyles.noPadding;
     }
+    // Maybe no top Padding.
+    if (props.isNoTopPadding) {
+        cssClass += ' ' + sectionStyles.noTopPadding;
+    }
 
     // Maybe add title.
-    const maybeTitle = props.title ? <h2 className={sectionStyles.title}>{props.title}</h2> : '';
+    let maybeTitle = '';
+    if (props.title) {
+        if (props.isFirstTitle) {
+            maybeTitle = <h1 className={sectionStyles.title}>{props.title}</h1>
+        } else {
+            maybeTitle = <h2 className={sectionStyles.title}>{props.title}</h2>
+        }
+    }
 
     // Maybe add description.
     const maybeDesc = props.desc ? <p className={sectionStyles.lead}>{props.desc}</p> : '';
@@ -322,10 +333,12 @@ Section.propTypes = {
     extraClass: PropTypes.string,
     isFull: PropTypes.bool,
     title: PropTypes.string,
+    isFirstTitle: PropTypes.bool,
     desc: PropTypes.string,
     customSize: PropTypes.string,
     isLightColor: PropTypes.bool,
-    isNoPadding: PropTypes.bool
+    isNoPadding: PropTypes.bool,
+    isNoTopPadding: PropTypes.bool
 };
 
 function AlertView(props) {

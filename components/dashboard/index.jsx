@@ -106,28 +106,26 @@ function DashboardNotification() {
 function DashboardGeneralLayout(props) {
     return (
         <Layout docTitle={props.title} isHideTitle={true}>
-            <Section id={'notifications'} isNoPadding={true} isFull={true} isLightColor={true}>
-                <DashboardNotification/>
-            </Section>
+            {/*<Section id={'notifications'} isNoPadding={true} isFull={true} isLightColor={true}>*/}
+            {/*    <DashboardNotification/>*/}
+            {/*</Section>*/}
             {props.children}
         </Layout>
     )
 }
 
 DashboardGeneralLayout.propTypes = {
-    title: PropTypes.string.isRequired
+    title: PropTypes.string
 };
 
 function DashboardSettingLayout(props) {
     return (
-        <DashboardGeneralLayout title={props.title}>
-            <Section id={'dashboard'} isFull={true} isLightColor={true} isNoPadding={true}>
-                <DashboardWrapper>
-                    <DashboardSidebar/>
-                    <DashboardCenter title={props.title}>{props.children}</DashboardCenter>
-                </DashboardWrapper>
-            </Section>
-        </DashboardGeneralLayout>
+        <DashboardPageLayout title={props.title} hideTitle={true}>
+            <DashboardWrapper>
+                <DashboardSidebar/>
+                <DashboardCenter title={props.title}>{props.children}</DashboardCenter>
+            </DashboardWrapper>
+        </DashboardPageLayout>
     )
 }
 
@@ -136,9 +134,11 @@ DashboardSettingLayout.propTypes = {
 };
 
 function DashboardPageLayout(props) {
+    const maybeTitle = !props.hideTitle ? props.title : '';
     return (
         <DashboardGeneralLayout title={props.title}>
-            <Section id={'dashboardPage'} isLightColor={true} isFull={true} title={props.title} isNoPadding={true}>
+            <Section id={'dashboardPage'} isLightColor={true} isFull={true} isNoTopPadding={true} title={maybeTitle}
+                     isFirstTitle={true}>
                 {props.children}
             </Section>
         </DashboardGeneralLayout>
@@ -146,7 +146,8 @@ function DashboardPageLayout(props) {
 }
 
 DashboardPageLayout.propTypes = {
-    title: PropTypes.string.isRequired
+    title: PropTypes.string,
+    hideTitle: PropTypes.bool
 };
 
 function MenuItems(props) {
