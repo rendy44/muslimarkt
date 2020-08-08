@@ -47,7 +47,7 @@ function DashboardSidebar(props) {
     let sidebarLinkHtml = [];
     sidebarLinks.map((link, index) => {
         let linkFix = '/dashboard/pengaturan' + link.id;
-        let maybeActive = linkFix === activeLink ? styles.activeLink : '';
+        let maybeActive = linkFix === activeLink ? styles.active : '';
         sidebarLinkHtml.push(
             <li key={index}>
                 <Link href={linkFix}>
@@ -78,7 +78,7 @@ function DashboardSidebar(props) {
 }
 
 function DashboardCenter(props) {
-    const maybeTitle = !props.isHideTitle ? <h1 className={styles.contentTitle}>{props.title}</h1> : '';
+    const maybeTitle = !props.isHideTitle ? <h1 className={styles.title}>{props.title}</h1> : '';
     return (
         <div className={styles.content}>
             {maybeTitle}
@@ -176,9 +176,9 @@ function MenuItems(props) {
 
 function MenuItem(props) {
     return (
-        <div className={styles.menuItem}>
+        <div className={styles.item}>
             <Link href={props.linkTo}>
-                <a className={styles.menuItemInner}>
+                <a className={styles.inner}>
                     {props.icon}
                     <h3>{props.title}</h3>
                     <p>{props.desc}</p>

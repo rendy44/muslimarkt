@@ -14,84 +14,120 @@ $contentSize: calc(70% - 1rem);
   display: flex;
   position: relative;
   flex-direction: column;
-}
 
-.sidebar {
-  background-color: $white;
-  padding: 1rem 0;
-  margin-bottom: 1rem;
-  border: 1px solid $lightest_line;
-  @include boxShadow();
-
-  .info {
-    display: flex;
+  .sidebar {
+    background-color: $white;
+    padding: 1rem 0;
     margin-bottom: 1rem;
-    padding: 0 1rem;
+    border: 1px solid $lightest_line;
+    @include boxShadow();
 
-    .pic {
-      margin-right: 1rem;
+    .info {
+      display: flex;
+      margin-bottom: 1rem;
+      padding: 0 1rem;
 
-      img {
-        width: 50px;
-        height: 50px;
-        @include borderRadius(50%);
+      .pic {
+        margin-right: 1rem;
+
+        img {
+          width: 50px;
+          height: 50px;
+          @include borderRadius(50%);
+        }
+      }
+
+      .name {
+        p {
+          font-weight: 600;
+          margin: 0 0 .5rem;
+        }
+
+        a {
+          font-size: 90%;
+        }
       }
     }
 
-    .name {
-      p {
-        font-weight: 600;
-        margin: 0 0 .5rem;
-      }
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
 
-      a {
-        font-size: 90%;
-      }
-    }
-  }
+      li {
+        a {
+          display: flex;
+          @include defaultTransition;
+          padding: 1rem;
 
-  ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
+          span {
+            &:first-child {
+              margin-right: .5rem;
+            }
+          }
 
-    li {
-      a {
-        display: flex;
-        @include defaultTransition;
-        padding: 1rem;
-
-        span {
-          &:first-child {
-            margin-right: .5rem;
+          &.active {
+            font-weight: 600;
+            background-color: $light;
+            border-left: 4px solid $main;
+            color: $main;
           }
         }
       }
     }
+
   }
-}
 
-.activeLink {
-  font-weight: 600;
-  background-color: $light;
-  border-left: 4px solid $main;
-  color: $main;
-}
+  .content {
+    @include boxShadow;
+    background-color: $white;
+    padding: 1rem;
+    border: 1px solid $lightest_line;
 
-.content {
-  @include boxShadow;
-  background-color: $white;
-  //height: 150vh;
-  padding: 1rem;
-  border: 1px solid $lightest_line;
-}
+    .title {
+      background-color: $med_light;
+      margin: -1rem -1rem 2rem;
+      font-size: 1.5rem;
+      padding: 1rem;
+      @include defaultTransition;
+    }
+  }
 
-.contentTitle {
-  background-color: $med_light;
-  margin: -1rem -1rem 2rem;
-  font-size: 1.5rem;
-  padding: 1rem;
-  @include defaultTransition;
+  @include breakpoint(768px) {
+    flex-direction: row;
+    justify-content: space-between;
+
+    .sidebar {
+      width: $sidebarSize;
+      top: 0;
+      position: sticky;
+      position: -webkit-sticky;
+      height: 100%;
+      margin-bottom: 0;
+
+      ul {
+        li {
+          a {
+            padding: .75rem;
+          }
+        }
+      }
+    }
+
+    .content {
+      width: $contentSize;
+    }
+  }
+
+  @include breakpoint(992px) {
+    .sidebar {
+      width: 25%;
+    }
+
+    .content {
+      width: calc(75% - 1rem);
+    }
+  }
 }
 
 .listAction {
@@ -99,6 +135,13 @@ $contentSize: calc(70% - 1rem);
 
   a {
     width: 100%;
+  }
+
+  @include breakpoint(768px) {
+    text-align: right;
+    a {
+      width: inherit;
+    }
   }
 }
 
@@ -108,13 +151,9 @@ $contentSize: calc(70% - 1rem);
   a {
     width: 100%;
   }
-}
 
-@include breakpoint(768px) {
-  .listAction,
-  .listActionBottom {
+  @include breakpoint(768px) {
     text-align: right;
-
     a {
       width: inherit;
     }
@@ -124,114 +163,74 @@ $contentSize: calc(70% - 1rem);
 .menuItems {
   display: flex;
   flex-direction: column;
-}
 
-.menuItem {
-  margin-bottom: 1rem;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-}
-
-.menuItemInner {
-  width: 100%;
-  height: 100%;
-  padding: 1rem;
-  background-color: $white;
-  display: inline-block;
-  text-align: center;
-  @include defaultTransition;
-
-  svg {
-    text-align: center;
-    font-size: 2rem;
-    margin: 0 auto 1rem;
-  }
-
-  h3 {
+  .item {
     margin-bottom: 1rem;
-  }
 
-  p {
-    margin: 0;
-  }
-
-  &:hover,
-  &:active,
-  &:focus {
-    @include boxShadow;
-    text-decoration: none;
-
-    svg {
-      color: $main;
+    &:last-child {
+      margin-bottom: 0;
     }
-  }
-}
 
-@include breakpoint(768px) {
-  .wrapper {
-    flex-direction: row;
-    justify-content: space-between;
-  }
+    .inner {
+      width: 100%;
+      height: 100%;
+      padding: 1rem;
+      background-color: $white;
+      display: inline-block;
+      text-align: center;
+      @include defaultTransition;
 
-  .sidebar {
-    width: $sidebarSize;
-    top: 0;
-    position: sticky;
-    position: -webkit-sticky;
-    height: 100%;
-    margin-bottom: 0;
+      svg {
+        text-align: center;
+        font-size: 2rem;
+        margin: 0 auto 1rem;
+      }
 
-    ul {
-      li {
-        a {
-          padding: .75rem;
+      h3 {
+        margin-bottom: 1rem;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      &:hover,
+      &:active,
+      &:focus {
+        @include boxShadow;
+        text-decoration: none;
+
+        svg {
+          color: $main;
         }
       }
     }
   }
 
-  .content {
-    width: $contentSize;
-  }
-
-  //.contentTitle {
-  //  font-size: 1.75rem;
-  //}
-
-  .menuItems {
+  @include breakpoint(768px) {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-  }
 
-  .menuItem {
-    width: 50%;
-    padding: 0 .5rem;
+    .item {
+      width: 50%;
+      padding: 0 .5rem;
 
-    &:last-child {
-      margin-bottom: 1rem;
+      &:last-child {
+        margin-bottom: 1rem;
+      }
     }
   }
-}
 
-@include breakpoint(992px) {
-  .sidebar {
-    width: 25%;
+  @include breakpoint(992px) {
+    .item {
+      width: 33.333333%
+    }
   }
 
-  .content {
-    width: calc(75% - 1rem);
-  }
-
-  .menuItem {
-    width: 33.333333%
-  }
-}
-
-@include breakpoint(1200px) {
-  .menuItem {
-    width: 25%;
+  @include breakpoint(1200px) {
+    .item {
+      width: 25%;
+    }
   }
 }
