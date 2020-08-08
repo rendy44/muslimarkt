@@ -23,6 +23,33 @@ $contentSize: calc(70% - 1rem);
   border: 1px solid $lightest_line;
   @include boxShadow();
 
+  .info {
+    display: flex;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+
+    .pic {
+      margin-right: 1rem;
+
+      img {
+        width: 50px;
+        height: 50px;
+        @include borderRadius(50%);
+      }
+    }
+
+    .name {
+      p {
+        font-weight: 600;
+        margin: 0 0 .5rem;
+      }
+
+      a {
+        font-size: 90%;
+      }
+    }
+  }
+
   ul {
     padding: 0;
     margin: 0;
@@ -41,33 +68,6 @@ $contentSize: calc(70% - 1rem);
         }
       }
     }
-  }
-}
-
-.info {
-  display: flex;
-  margin-bottom: 1rem;
-  padding: 0 1rem;
-}
-
-.pic {
-  margin-right: 1rem;
-
-  img {
-    width: 50px;
-    height: 50px;
-    @include borderRadius(50%);
-  }
-}
-
-.name {
-  p {
-    font-weight: 600;
-    margin: 0 0 .5rem;
-  }
-
-  a {
-    font-size: 90%;
   }
 }
 

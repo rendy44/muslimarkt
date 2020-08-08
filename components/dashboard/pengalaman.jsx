@@ -18,7 +18,7 @@ function ExperienceItem(props) {
     const usedDateEnd = props.dateEnd ? props.dateEnd : 'sekarang';
     return (
         <div className={Styles.experience}>
-            <div className={Styles.experienceInner}>
+            <div className={Styles.inner}>
                 <div className={Styles.edit}>
                     <LinkBtn
                         href={'/dashboard/pengaturan/pengalaman/[pengalamanId]'}

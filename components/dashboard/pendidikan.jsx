@@ -17,7 +17,7 @@ function Studies(props) {
 function StudyItem(props) {
     return (
         <div className={Styles.study}>
-            <div className={Styles.studyInner}>
+            <div className={Styles.inner}>
                 <div className={Styles.edit}>
                     <LinkBtn
                         href={'/dashboard/pengaturan/pendidikan/[pendidikanId]'}
@@ -28,8 +28,8 @@ function StudyItem(props) {
                     <Btn label={''} variant={'danger'} isSubmit={false} icon={<IoMdTrash/>}/>
                 </div>
                 <h3>{props.institute}</h3>
-                <p className={Styles.itemCompany}>{props.qualification} {props.major} <span>{props.country}</span></p>
-                <p className={Styles.itemPeriod}>{props.graduation}</p>
+                <p className={Styles.detail}>{props.qualification} {props.major} <span>{props.country}</span></p>
+                <p className={Styles.period}>{props.graduation}</p>
             </div>
         </div>
     )
