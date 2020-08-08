@@ -10,7 +10,7 @@ function Hero() {
             <h1>Portal Lowongan Pekerjaan<br/>Kaum Muslimin</h1>
             <p>Insya Allah Berkah dan Amanah!</p>
             <div className={heroStyles.actions}>
-                <LinkBtn variant='success' label='Daftar Sekarang' href='/daftar'/>
+                <LinkBtn variant='danger' label='Daftar Sekarang' href='/daftar'/>
                 <LinkBtn variant='transparent' label='Masuk' href='/masuk'/>
             </div>
         </Section>
