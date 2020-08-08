@@ -5,14 +5,22 @@ import {IoMdSettings, IoMdTrash} from "react-icons/io";
 import {ListAction} from "./index";
 
 function Studies(props) {
-    return (
-        <ListAction href={'/dashboard/pengaturan/pendidikan/tambah'}>
-            <div className={Styles.studies}>
-                {props.children}
-            </div>
-        </ListAction>
-    )
+    const studyContent = <div className={Styles.studies}>{props.children}</div>;
+
+    if (!props.isHideAction) {
+        return (
+            <ListAction href={'/dashboard/pengaturan/pendidikan/tambah'}>
+                {studyContent}
+            </ListAction>
+        )
+    } else {
+        return (studyContent)
+    }
 }
+
+Studies.propTypes = {
+    isHideAction: PropTypes.bool
+};
 
 function StudyItem(props) {
     return (

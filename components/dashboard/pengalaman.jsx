@@ -5,14 +5,22 @@ import {IoMdSettings, IoMdTrash} from 'react-icons/io';
 import {ListAction} from "./index";
 
 function Experiences(props) {
-    return (
-        <ListAction href={'/dashboard/pengaturan/pengalaman/tambah'}>
-            <div className={Styles.experiences}>
-                {props.children}
-            </div>
-        </ListAction>
-    )
+    const expContent = <div className={Styles.experiences}>{props.children}</div>;
+
+    if (!props.isHideAction) {
+        return (
+            <ListAction href={'/dashboard/pengaturan/pengalaman/tambah'}>
+                {expContent}
+            </ListAction>
+        )
+    } else {
+        return (expContent)
+    }
 }
+
+Experiences.propTypes = {
+    isHideAction: PropTypes.bool
+};
 
 function ExperienceItem(props) {
     const usedDateEnd = props.dateEnd ? props.dateEnd : 'sekarang';
