@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {IoMdCall, IoMdMail, IoMdPin} from 'react-icons/io';
 import styles from './akun.module.scss';
 
@@ -26,4 +27,26 @@ function AccountHeader(props) {
     )
 }
 
-export {AccountHeader}
+function AccountItems(props) {
+    return (
+        <div className={styles.items}>
+            {props.children}
+        </div>
+    )
+}
+
+function AccountItem(props) {
+    return (
+        <div className={styles.item}>
+            <label>{props.label}</label>
+            <span>{props.value}</span>
+        </div>
+    )
+}
+
+AccountItem.propTypes = {
+    label: PropTypes.string.isRequired,
+    value: PropTypes.string
+};
+
+export {AccountHeader, AccountItems, AccountItem}
