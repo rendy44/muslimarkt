@@ -83,8 +83,11 @@ export default function PageDaftar() {
                             validationMessage={'Konfirmasi kata sandi harus sama'}
                             noPadding={true}
                         />
-                        <p>Dengan mendaftar Anda otomatis setuju terhadap <Link href='/ketentuan-layanan'><a>ketentuan
-                            layanan</a></Link> dan <Link href='/kebijakan-privasi'><a>kebijakan privasi</a></Link>.</p>
+                        <div className={styles.disclaimer}>
+                            <p>Dengan mendaftar Anda otomatis setuju terhadap <Link href='/ketentuan-layanan'><a>ketentuan
+                                layanan</a></Link> dan <Link href='/kebijakan-privasi'><a>kebijakan privasi</a></Link>.
+                            </p>
+                        </div>
                         <FormAction variant={'success'} label={buttonLbl} disabled={isLoading} otherLink={'/'}/>
                     </form>
                 </div>

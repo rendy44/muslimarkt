@@ -1,5 +1,22 @@
 @import '../../styles/mainUtil';
 
+.brandLink {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: $main;
+
+  span {
+    color: $black;
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+    color: $main;
+  }
+}
+
 .header {
   height: 60px;
   display: flex;
@@ -15,23 +32,6 @@
 
     .brand {
       max-width: 120px;
-
-      .brandLink {
-        font-weight: 700;
-        font-size: 1.5rem;
-        color: $main;
-
-        span {
-          color: $black;
-        }
-
-        &:hover,
-        &:active,
-        &:focus {
-          text-decoration: none;
-          color: $main;
-        }
-      }
     }
 
     .nav {
