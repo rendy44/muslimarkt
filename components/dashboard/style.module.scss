@@ -120,35 +120,27 @@ $contentSize: calc(70% - 1rem);
     }
   }
 
-  @include breakpoint(768px) {
+  @include breakpoint(992px) {
     flex-direction: row;
     justify-content: space-between;
 
     .sidebar {
-      width: $sidebarSize;
+      width: 25%;
       top: 0;
       position: sticky;
       position: -webkit-sticky;
       height: 100%;
       margin-bottom: 0;
 
-      ul {
-        li {
-          a {
-            padding: .75rem;
-          }
+      .info {
+        button {
+          display: none;
         }
       }
-    }
 
-    .content {
-      width: $contentSize;
-    }
-  }
-
-  @include breakpoint(992px) {
-    .sidebar {
-      width: 25%;
+      ul {
+        height: auto;
+      }
     }
 
     .content {
