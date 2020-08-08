@@ -57,6 +57,17 @@ function DashboardSidebar(props) {
 
     return (
         <div className={styles.sidebar}>
+            <div className={styles.info}>
+                <div className={styles.pic}>
+                    <img src={'/random.jpg'} alt={'Foto profil'}/>
+                </div>
+                <div className={styles.name}>
+                    <p>Abdullah</p>
+                    <Link href={'/profil'}>
+                        <a>Lihat profil saya</a>
+                    </Link>
+                </div>
+            </div>
             <ul>
                 {sidebarLinkHtml}
             </ul>
