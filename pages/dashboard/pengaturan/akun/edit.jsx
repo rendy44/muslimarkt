@@ -76,35 +76,47 @@ export default function PageEditAkun() {
                             value={account.nama_belakang}
                         />
                     </div>
-                    <div className='col-sm-1-3'>
+                    <div className='col-sm-1-2'>
                         <DropDown
-                            name={'tanggal_lahir'}
-                            label={'Tanggal Lahir'}
+                            name={'jenis_kelamin'}
+                            label={'Jenis Kelamin'}
                             handler={register({required: true})}
                             errorsRef={errors}
-                            values={tglValue}
-                            value={account.tanggal_lahir}
+                            values={['Laki-laki', 'Perempuan']}
+                            value={account.jenis_kelamin}
                         />
                     </div>
-                    <div className='col-sm-1-3'>
-                        <DropDown
-                            name={'bulan_lahir'}
-                            label={'Bulan Lahir'}
-                            handler={register({required: true})}
-                            errorsRef={errors}
-                            values={['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des']}
-                            value={account.bulan_lahir}
-                        />
-                    </div>
-                    <div className='col-sm-1-3'>
-                        <DropDown
-                            name={'tahun_lahir'}
-                            label={'Tahun Lahir'}
-                            handler={register({required: true})}
-                            errorsRef={errors}
-                            values={thnValue}
-                            value={account.tahun_lahir}
-                        />
+                    <div className='col-sm-1-2'>
+                        <div className='frow'>
+                            <div className='col-xs-1-3'>
+                                <DropDown
+                                    name={'tanggal_lahir'}
+                                    label={'Kelahiran'}
+                                    handler={register({required: true})}
+                                    errorsRef={errors}
+                                    values={tglValue}
+                                    value={account.tanggal_lahir}
+                                />
+                            </div>
+                            <div className='col-xs-1-3'>
+                                <DropDown
+                                    name={'bulan_lahir'}
+                                    handler={register({required: true})}
+                                    errorsRef={errors}
+                                    values={['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des']}
+                                    value={account.bulan_lahir}
+                                />
+                            </div>
+                            <div className='col-xs-1-3'>
+                                <DropDown
+                                    name={'tahun_lahir'}
+                                    handler={register({required: true})}
+                                    errorsRef={errors}
+                                    values={thnValue}
+                                    value={account.tahun_lahir}
+                                />
+                            </div>
+                        </div>
                     </div>
                     <div className='col-sm-2-3'>
                         <InputText
@@ -141,16 +153,6 @@ export default function PageEditAkun() {
                             errorsRef={errors}
                             values={provinces}
                             value={account.provinsi}
-                        />
-                    </div>
-                    <div className='col-sm-1-3'>
-                        <DropDown
-                            name={'jenis_kelamin'}
-                            label={'Jenis Kelamin'}
-                            handler={register({required: true})}
-                            errorsRef={errors}
-                            values={['Laki-laki', 'Perempuan']}
-                            value={account.jenis_kelamin}
                         />
                     </div>
                     <div className='col-sm-2-3'>
