@@ -1,5 +1,5 @@
 import {DashboardSettingLayout} from "../../../../components/dashboard";
-import {DropDown, FormAction, InputText} from "../../../../components/form";
+import {DropDown, FormAction, InputText, TextArea} from "../../../../components/form";
 import {useForm} from "react-hook-form";
 import {useContext, useState, useEffect} from 'react';
 import UserContext from "../../../../components/global/userContext";
@@ -61,7 +61,7 @@ export default function PageEditAkun() {
                     <div className='col-sm-1-2'>
                         <InputText
                             name={'nama_depan'}
-                            label={'Nama Depan'}
+                            label={'Nama depan'}
                             handler={register({required: true})}
                             errorsRef={errors}
                             value={account.nama_depan}
@@ -70,13 +70,13 @@ export default function PageEditAkun() {
                     <div className='col-sm-1-2'>
                         <InputText
                             name={'nama_belakang'}
-                            label={'Nama Belakang'}
+                            label={'Nama belakang'}
                             handler={register}
                             errorsRef={errors}
                             value={account.nama_belakang}
                         />
                     </div>
-                    <div className='col-sm-1-2'>
+                    <div className='col-sm-1-3'>
                         <DropDown
                             name={'jenis_kelamin'}
                             label={'Jenis Kelamin'}
@@ -86,7 +86,7 @@ export default function PageEditAkun() {
                             value={account.jenis_kelamin}
                         />
                     </div>
-                    <div className='col-sm-1-2'>
+                    <div className='col-sm-2-3'>
                         <div className='frow'>
                             <div className='col-xs-1-3'>
                                 <DropDown
@@ -155,14 +155,32 @@ export default function PageEditAkun() {
                             value={account.provinsi}
                         />
                     </div>
+                    <div className='col-sm-1-3'>
+                        <DropDown
+                            name={'jenis_identitas'}
+                            label={'Jenis identitas'}
+                            values={['KTP', 'SIM', 'Passport']}
+                            handler={register}
+                            errorsRef={errors}
+                        />
+                    </div>
                     <div className='col-sm-2-3'>
                         <InputText
                             name={'no_identitas'}
-                            label={'Nomor Identitas'}
+                            label={'No. Identitas'}
                             handler={register({required: true})}
                             errorsRef={errors}
                             value={account.no_identitas}
                         />
+                    </div>
+                    <div className='col-xs-1-1'>
+                        <TextArea
+                            name={'catatan'}
+                            label={'Catatan'}
+                            placeholder={'Catatan tentang diri Anda'}
+                            rows={6}
+                            handler={register({required: true})}
+                            errorsRef={errors}/>
                     </div>
                 </div>
                 <FormAction
