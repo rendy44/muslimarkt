@@ -1,21 +1,5 @@
 @import "../../styles/mainUtil";
 
-.listAction {
-  margin-bottom: 2rem;
-
-  a {
-    width: 100%;
-  }
-}
-
-.listActionBottom {
-  margin-top: 2rem;
-
-  a {
-    width: 100%;
-  }
-}
-
 .experiences {
   display: flex;
   flex-direction: column;
@@ -93,17 +77,6 @@
         width: 25%;
         color: lighten($black, 50%);
       }
-    }
-  }
-}
-
-@include breakpoint(768px) {
-  .listAction,
-  .listActionBottom {
-    text-align: right;
-
-    a {
-      width: inherit;
     }
   }
 }

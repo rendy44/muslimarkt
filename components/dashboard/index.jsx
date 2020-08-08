@@ -6,6 +6,9 @@ import Link from "next/link";
 import {IoMdPerson, IoMdSchool, IoMdBriefcase, IoMdSettings, IoMdStar} from 'react-icons/io';
 import {AlertView, Layout, Section} from "../global";
 import UserContext from "../global/userContext";
+import Styles from "./pendidikan.module.scss";
+import {LinkBtn} from "../form";
+import {IoMdAddCircle} from "react-icons/io";
 
 function DashboardSidebar(props) {
     const [activeLink, setActiveLink] = useState('');
@@ -76,16 +79,18 @@ function DashboardSidebar(props) {
 }
 
 function DashboardCenter(props) {
+    const maybeTitle = !props.isHideTitle ? <h1 className={styles.contentTitle}>{props.title}</h1> : '';
     return (
         <div className={styles.content}>
-            <h1 className={styles.contentTitle}>{props.title}</h1>
+            {maybeTitle}
             {props.children}
         </div>
     )
 }
 
 DashboardCenter.propTypes = {
-    title: PropTypes.string.isRequired
+    title: PropTypes.string.isRequired,
+    isHideTitle: PropTypes.bool
 };
 
 function DashboardWrapper(props) {
@@ -134,14 +139,15 @@ function DashboardSettingLayout(props) {
         <DashboardPageLayout title={props.title} hideTitle={true}>
             <DashboardWrapper>
                 <DashboardSidebar/>
-                <DashboardCenter title={props.title}>{props.children}</DashboardCenter>
+                <DashboardCenter title={props.title} isHideTitle={props.isHideTitle}>{props.children}</DashboardCenter>
             </DashboardWrapper>
         </DashboardPageLayout>
     )
 }
 
 DashboardSettingLayout.propTypes = {
-    title: PropTypes.string.isRequired
+    title: PropTypes.string.isRequired,
+    isHideTitle: PropTypes.bool
 };
 
 function DashboardPageLayout(props) {
@@ -190,6 +196,35 @@ MenuItem.propTypes = {
     icon: PropTypes.object.isRequired
 };
 
+function ListAction(props) {
+    return (
+        <>
+            <div className={styles.listAction}>
+                <LinkBtn
+                    href={props.href}
+                    label={props.label ? props.label : 'Tambah baru'}
+                    icon={props.icon ? props.icon : <IoMdAddCircle/>}
+                    variant={props.variant ? props.variant : 'success'}/>
+            </div>
+            {props.children}
+            <div className={styles.listActionBottom}>
+                <LinkBtn
+                    href={props.href}
+                    label={props.label ? props.label : 'Tambah baru'}
+                    icon={props.icon ? props.icon : <IoMdAddCircle/>}
+                    variant={props.variant ? props.variant : 'success'}/>
+            </div>
+        </>
+    )
+}
+
+ListAction.propTypes = {
+    href: PropTypes.string.isRequired,
+    label: PropTypes.string,
+    variant: PropTypes.string,
+    icon: PropTypes.object
+};
+
 export {
     DashboardWrapper,
     DashboardSidebar,
@@ -197,6 +232,7 @@ export {
     DashboardGeneralLayout,
     DashboardSettingLayout,
     DashboardPageLayout,
+    ListAction,
     MenuItems,
     MenuItem
 }

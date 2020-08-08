@@ -59,7 +59,7 @@
   background-color: $white;
   padding: 1rem .5rem;
   @include boxShadow;
-  @include borderRadius(4px);
+  //@include borderRadius(4px);
 
   @include breakpoint(768px) {
   }

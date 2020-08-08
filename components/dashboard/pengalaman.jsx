@@ -1,29 +1,16 @@
 import PropTypes from 'prop-types';
 import Styles from './pengalaman.module.scss';
 import {LinkBtn, Btn} from "../form";
-import {IoMdAddCircle, IoMdSettings, IoMdTrash} from 'react-icons/io';
+import {IoMdSettings, IoMdTrash} from 'react-icons/io';
+import {ListAction} from "./index";
 
 function Experiences(props) {
     return (
-        <>
-            <div className={Styles.listAction}>
-                <LinkBtn
-                    href={'/dashboard/pengaturan/pengalaman/tambah'}
-                    label={'Tambah baru'}
-                    icon={<IoMdAddCircle/>}
-                    variant={'success'}/>
-            </div>
+        <ListAction href={'/dashboard/pengaturan/pengalaman/tambah'}>
             <div className={Styles.experiences}>
                 {props.children}
             </div>
-            <div className={Styles.listActionBottom}>
-                <LinkBtn
-                    href={'/dashboard/pengaturan/pengalaman/tambah'}
-                    label={'Tambah baru'}
-                    icon={<IoMdAddCircle/>}
-                    variant={'success'}/>
-            </div>
-        </>
+        </ListAction>
     )
 }
 

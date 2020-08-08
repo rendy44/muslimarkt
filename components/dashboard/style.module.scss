@@ -94,6 +94,33 @@ $contentSize: calc(70% - 1rem);
   @include defaultTransition;
 }
 
+.listAction {
+  margin-bottom: 2rem;
+
+  a {
+    width: 100%;
+  }
+}
+
+.listActionBottom {
+  margin-top: 2rem;
+
+  a {
+    width: 100%;
+  }
+}
+
+@include breakpoint(768px) {
+  .listAction,
+  .listActionBottom {
+    text-align: right;
+
+    a {
+      width: inherit;
+    }
+  }
+}
+
 .menuItems {
   display: flex;
   flex-direction: column;

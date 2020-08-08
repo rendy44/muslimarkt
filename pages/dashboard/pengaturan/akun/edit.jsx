@@ -1,14 +1,14 @@
-import {DashboardSettingLayout} from "../../../components/dashboard";
-import {DropDown, FormAction, InputText} from "../../../components/form";
+import {DashboardSettingLayout} from "../../../../components/dashboard";
+import {DropDown, FormAction, InputText} from "../../../../components/form";
 import {useForm} from "react-hook-form";
 import {useContext, useState, useEffect} from 'react';
-import UserContext from "../../../components/global/userContext";
+import UserContext from "../../../../components/global/userContext";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
-import User from "../../../src/user";
-import provinces from '../../../src/provinsi.json';
+import User from "../../../../src/user";
+import provinces from '../../../../src/provinsi.json';
 
-export default function PageAkun() {
+export default function PageEditAkun() {
     const {register, handleSubmit, errors} = useForm();
     const [isLoading, setIsLoading] = useState(false);
     const {userKey, account, updateAccount} = useContext(UserContext);
@@ -21,8 +21,6 @@ export default function PageAkun() {
     for (let i = 1950; i <= 2010; i++) {
         thnValue.push(i);
     }
-
-    console.log(account);
 
     const onSubmit = async (data, e) => {
         // set to loading.
