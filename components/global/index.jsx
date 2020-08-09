@@ -36,7 +36,7 @@ function TopHeader() {
 }
 
 function Header() {
-    const [isUseTopHeader, setIsUseTopHeader] = useState(false);
+    const [isUseTopHeader, setIsUseTopHeader] = useState(true);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const {userKey} = useContext(UserContext);
 
@@ -46,8 +46,8 @@ function Header() {
         }
 
         // We'll use top header in all pages except homepage.
-        if ('/' !== Router.route) {
-            setIsUseTopHeader(true);
+        if ('/' === Router.route) {
+            setIsUseTopHeader(false);
         }
     });
 
