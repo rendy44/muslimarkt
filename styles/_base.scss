@@ -6,6 +6,10 @@ body {
   @include mainFont;
 }
 
+#__next {
+  position: relative;
+}
+
 p {
   line-height: 1.4;
 }
