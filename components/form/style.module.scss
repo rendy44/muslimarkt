@@ -24,6 +24,11 @@
       font-weight: normal;
       font-size: 15px;
     }
+
+    input[type=checkbox]:checked {
+      background-color: $main;
+      border-color: $lightest_line;
+    }
   }
 
   @include breakpoint(768px) {

@@ -26,7 +26,7 @@ function InputText(props) {
                     name={props.name}
                     type={inputType} value={props.value}
                     placeholder={props.placeholder ? props.placeholder : props.label}
-                    ref={props.handler}/>
+                    ref={props.handler} disabled={props.isDisabled}/>
                 {props.errorsRef[props.name] && <span>{errMsg}</span>}
             </label>
         </FormGroup>
@@ -42,7 +42,8 @@ InputText.propTypes = {
     handler: PropTypes.func.isRequired,
     errorsRef: PropTypes.object.isRequired,
     validationMessage: PropTypes.string,
-    noPadding: PropTypes.bool
+    noPadding: PropTypes.bool,
+    isDisabled: PropTypes.bool
 };
 
 function DropDown(props) {
@@ -55,7 +56,7 @@ function DropDown(props) {
     return (
         <FormGroup noPadding={props.noPadding}>
             <label><span>{props.label ? props.label : '\u00A0'}</span>
-                <select name={props.name} ref={props.handler}>
+                <select name={props.name} ref={props.handler} disabled={props.isDisabled}>
                     {dropDownHtml}
                 </select>
                 {props.errorsRef[props.name] && <span>{errMsg}</span>}
@@ -72,7 +73,8 @@ DropDown.propTypes = {
     handler: PropTypes.func.isRequired,
     errorsRef: PropTypes.object.isRequired,
     validationMessage: PropTypes.string,
-    noPadding: PropTypes.bool
+    noPadding: PropTypes.bool,
+    isDisabled: PropTypes.bool
 };
 
 function Checkbox(props) {
@@ -80,7 +82,7 @@ function Checkbox(props) {
     return (
         <FormGroup noPadding={props.noPadding}>
             <label className="row-start">
-                <input type="checkbox" name={props.name} value={usedValue} ref={props.handler}
+                <input type="checkbox" name={props.name} value={usedValue} ref={props.handler} onChange={props.onChange}
                        checked={props.isChecked}/> <span className={styles.cb}>{props.label}</span>
             </label>
         </FormGroup>
@@ -95,7 +97,8 @@ Checkbox.propTypes = {
     handler: PropTypes.func.isRequired,
     errorsRef: PropTypes.object.isRequired,
     validationMessage: PropTypes.string,
-    noPadding: PropTypes.bool
+    noPadding: PropTypes.bool,
+    onChange: PropTypes.func,
 };
 
 function TextArea(props) {

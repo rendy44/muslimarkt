@@ -6,8 +6,14 @@ import {useState} from "react";
 export default function PengalamanForm(props) {
     const {register, handleSubmit, errors} = useForm();
     const [isLoading, setIsLoading] = useState(false);
+    const [isCurrentlyWork, setIsCurrentlyWork] = useState(false);
     const onSubmit = async (data, e) => {
 
+    };
+
+    const onChange = (e) => {
+        const isChecked = e.target.checked;
+        setIsCurrentlyWork(isChecked);
     };
 
     return (
@@ -59,6 +65,7 @@ export default function PengalamanForm(props) {
                                 handler={register({required: true})}
                                 errorsRef={errors}
                                 values={['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des']}
+                                isDisabled={isCurrentlyWork}
                             />
                         </div>
                         <div className='col-xs-1-2 col-sm-1-2'>
@@ -67,6 +74,7 @@ export default function PengalamanForm(props) {
                                 handler={register({required: true})}
                                 errorsRef={errors}
                                 placeholder={'Tahun Selesai'}
+                                isDisabled={isCurrentlyWork}
                             />
                         </div>
                     </div>
@@ -77,6 +85,8 @@ export default function PengalamanForm(props) {
                         label={'Masih bekerja'}
                         handler={register}
                         errorsRef={errors}
+                        onChange={onChange}
+                        isChecked={isCurrentlyWork}
                     />
                 </div>
                 <div className='col-sm-1-2'>
