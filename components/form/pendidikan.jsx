@@ -17,6 +17,7 @@ export default function PendidikanForm(props) {
                     <InputText
                         name={'insitusi'}
                         label={'Institusi'}
+                        placeholder={'Nama institusi atau universitas'}
                         handler={register({required: true})}
                         errorsRef={errors}
                     />
@@ -33,7 +34,8 @@ export default function PendidikanForm(props) {
                 <div className='col-sm-1-2'>
                     <InputText
                         name={'bidang_studi'}
-                        label={'Bidang studi'}
+                        label={'Bidang Studi'}
+                        placeholder={'Bidang studi'}
                         handler={register({required: true})}
                         errorsRef={errors}
                     />
@@ -61,9 +63,9 @@ export default function PendidikanForm(props) {
                 </div>
                 <div className='col-sm-1-1'>
                     <TextArea
-                        name={'keterangan'}
-                        label={'Keterangan'}
-                        placeholder={'Keterangan tambahan'}
+                        name={'catatan'}
+                        label={'Catatan'}
+                        placeholder={'Catatan tentang pendidikan Anda'}
                         handler={register}
                         errorsRef={errors}
                         rows={6}/>

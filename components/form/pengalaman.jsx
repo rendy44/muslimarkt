@@ -29,8 +29,9 @@ export default function PengalamanForm(props) {
                 </div>
                 <div className='col-sm-1-2'>
                     <InputText
-                        name={'nama_perusahaan'}
-                        label={'Nama Perusahaan'}
+                        name={'perusahaan'}
+                        label={'Perusahaan'}
+                        placeholder={'Nama perusahaan'}
                         handler={register({required: true})}
                         errorsRef={errors}
                     />
@@ -51,7 +52,7 @@ export default function PengalamanForm(props) {
                                 name={'tahun_mulai'}
                                 handler={register({required: true})}
                                 errorsRef={errors}
-                                placeholder={'Tahun Mulai'}
+                                placeholder={'Tahun mulai'}
                             />
                         </div>
                     </div>
@@ -73,7 +74,7 @@ export default function PengalamanForm(props) {
                                 name={'tahun_selesai'}
                                 handler={register({required: true})}
                                 errorsRef={errors}
-                                placeholder={'Tahun Selesai'}
+                                placeholder={'Tahun selesai'}
                                 isDisabled={isCurrentlyWork}
                             />
                         </div>
@@ -93,6 +94,7 @@ export default function PengalamanForm(props) {
                     <InputText
                         name={'jabatan'}
                         label={'Jabatan'}
+                        placeholder={'Tingkatan jabatan'}
                         handler={register({required: true})}
                         errorsRef={errors}
                     />
@@ -125,9 +127,9 @@ export default function PengalamanForm(props) {
                 </div>
                 <div className='col-sm-1-1'>
                     <TextArea
-                        name={'keterangan'}
-                        label={'Keterangan'}
-                        placeholder={'Detail mengenai pekerjaan'}
+                        name={'catatan'}
+                        label={'Catatan'}
+                        placeholder={'Catatan tentang pekerjaan Anda'}
                         handler={register}
                         errorsRef={errors}
                         rows={6}/>

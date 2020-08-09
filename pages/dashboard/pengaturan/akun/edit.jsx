@@ -61,7 +61,8 @@ export default function PageEditAkun() {
                     <div className='col-sm-1-2'>
                         <InputText
                             name={'nama_depan'}
-                            label={'Nama depan'}
+                            label={'Nama Depan'}
+                            placeholder={'Nama depan'}
                             handler={register({required: true})}
                             errorsRef={errors}
                             value={account.nama_depan}
@@ -70,7 +71,8 @@ export default function PageEditAkun() {
                     <div className='col-sm-1-2'>
                         <InputText
                             name={'nama_belakang'}
-                            label={'Nama belakang'}
+                            label={'Nama Belakang'}
+                            placeholder={'Nama belakang'}
                             handler={register}
                             errorsRef={errors}
                             value={account.nama_belakang}
@@ -122,6 +124,7 @@ export default function PageEditAkun() {
                         <InputText
                             name={'alamat'}
                             label={'Alamat'}
+                            placeholder={'Alamat lengkap'}
                             handler={register({required: true})}
                             errorsRef={errors}
                             value={account.alamat}
@@ -131,6 +134,7 @@ export default function PageEditAkun() {
                         <InputText
                             name={'kode_pos'}
                             label={'Kode Pos'}
+                            placeholder={'Kode pos'}
                             handler={register({required: true})}
                             errorsRef={errors}
                             value={account.kode_pos}
@@ -139,7 +143,8 @@ export default function PageEditAkun() {
                     <div className='col-sm-1-2'>
                         <InputText
                             name={'kota'}
-                            label={'Kota'}
+                            label={'Kota/Kab'}
+                            placeholder={'Nama kota atau kabupaten'}
                             handler={register({required: true})}
                             errorsRef={errors}
                             value={account.kota}
@@ -158,7 +163,7 @@ export default function PageEditAkun() {
                     <div className='col-sm-1-3'>
                         <DropDown
                             name={'jenis_identitas'}
-                            label={'Jenis identitas'}
+                            label={'Jenis Sdentitas'}
                             values={['KTP', 'SIM', 'Passport']}
                             handler={register}
                             errorsRef={errors}
@@ -168,6 +173,7 @@ export default function PageEditAkun() {
                         <InputText
                             name={'no_identitas'}
                             label={'No. Identitas'}
+                            placeholder={'No. identitas'}
                             handler={register({required: true})}
                             errorsRef={errors}
                             value={account.no_identitas}
