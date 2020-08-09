@@ -6,12 +6,37 @@ import footerStyles from './footer.module.scss';
 import alertStyles from './alert.module.scss';
 import {IoMdLogIn, IoMdPersonAdd, IoMdPerson, IoMdSettings, IoMdLogOut} from 'react-icons/io';
 import Link from 'next/link';
+import Router from "next/router";
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 import conf from '../../global.config.json';
 import UserContext from "./userContext";
 
+function TopHeader() {
+    return (
+        <div className={headerStyles.top}>
+            <div className='frow-container'>
+                <div className={headerStyles.inner}>
+                    <ul>
+                        <li>
+                            <Link href={'/'}>
+                                <a>Beranda</a>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href={'/lowongan'}>
+                                <a>Lowongan</a>
+                            </Link>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    )
+}
+
 function Header() {
+    const maybeTopHeader = '/' !== Router.route ? <TopHeader/> : '';
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const {userKey} = useContext(UserContext);
     useEffect(() => {
@@ -53,20 +78,23 @@ function Header() {
         </li>
     ];
     return (
-        <header className={headerStyles.header}>
-            <div className='frow-container'>
-                <div className={headerStyles.inner}>
-                    <div className={headerStyles.brand}>
-                        <LogoLink/>
-                    </div>
-                    <div className={headerStyles.nav}>
-                        <ul>
-                            {menuLinks}
-                        </ul>
+        <>
+            {maybeTopHeader}
+            <header className={headerStyles.header}>
+                <div className='frow-container'>
+                    <div className={headerStyles.inner}>
+                        <div className={headerStyles.brand}>
+                            <LogoLink/>
+                        </div>
+                        <div className={headerStyles.nav}>
+                            <ul>
+                                {menuLinks}
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </header>
+            </header>
+        </>
     )
 }
 

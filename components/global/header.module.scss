@@ -60,3 +60,32 @@
     }
   }
 }
+
+.top {
+  height: 45px;
+  background-color: $main;
+  color: $white;
+  display: flex;
+  align-items: center;
+
+  .inner {
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      li {
+        display: inline-block;
+        margin-right: .5rem;
+
+        a {
+          color: $white;
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
