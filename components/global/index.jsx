@@ -36,12 +36,18 @@ function TopHeader() {
 }
 
 function Header() {
-    const maybeTopHeader = '/' !== Router.route ? <TopHeader/> : '';
+    const [isUseTopHeader, setIsUseTopHeader] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const {userKey} = useContext(UserContext);
+
     useEffect(() => {
         if (userKey) {
             setIsLoggedIn(true);
+        }
+
+        // We'll use top header in all pages except homepage.
+        if ('/' !== Router.route) {
+            setIsUseTopHeader(true);
         }
     });
 
@@ -77,6 +83,8 @@ function Header() {
             </Link>
         </li>
     ];
+
+    const maybeTopHeader = isUseTopHeader ? <TopHeader/> : '';
     return (
         <>
             {maybeTopHeader}
