@@ -133,7 +133,7 @@ function Btn(props) {
     const buttonType = props.isSubmit ? 'submit' : 'button';
     const cssClass = btnStyles.btn + ' ' + props.variant;
     return (
-        <button type={buttonType} className={cssClass} disabled={props.disabled}>
+        <button type={buttonType} className={cssClass} disabled={props.disabled} onClick={props.onClick}>
             {props.label ? <span>{props.label}</span> : ''}{props.icon ? <span>{props.icon}</span> : ''}
         </button>
     )
@@ -143,7 +143,8 @@ Btn.propTypes = {
     isSubmit: PropTypes.bool.isRequired,
     label: PropTypes.string.isRequired,
     variant: PropTypes.string.isRequired,
-    icon: PropTypes.object
+    icon: PropTypes.object,
+    onClick: PropTypes.func
 };
 
 function LinkBtn(props) {
