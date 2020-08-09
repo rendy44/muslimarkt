@@ -204,7 +204,7 @@ MenuItem.propTypes = {
 };
 
 function ListAction(props) {
-    const maybeBottomAction = !props.isHideBottom ? <div className={styles.listActionBottom}>
+    const maybeBottomAction = !props.isHideBottom ? <div className={styles.listAction + ' ' + styles.bottom}>
         <LinkBtn
             href={props.href}
             label={props.label ? props.label : 'Tambah baru'}
