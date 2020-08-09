@@ -1,7 +1,7 @@
 import {DashboardSettingLayout} from "../../../../components/dashboard";
 import {DropDown, FormAction, InputText, TextArea} from "../../../../components/form";
 import {useForm} from "react-hook-form";
-import {useContext, useState, useEffect} from 'react';
+import {useContext, useState} from 'react';
 import UserContext from "../../../../components/global/userContext";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
@@ -55,7 +55,7 @@ export default function PageEditAkun() {
             })
     };
     return (
-        <DashboardSettingLayout title={'Pengaturan Akun'} isNoAction={true}>
+        <DashboardSettingLayout title={'Sunting Akun'} isNoAction={true}>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className='frow'>
                     <div className='col-sm-1-2'>
