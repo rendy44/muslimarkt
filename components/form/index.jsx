@@ -75,6 +75,29 @@ DropDown.propTypes = {
     noPadding: PropTypes.bool
 };
 
+function Checkbox(props) {
+    const usedValue = props.value ? props.value : 1;
+    return (
+        <FormGroup noPadding={props.noPadding}>
+            <label className="row-start">
+                <input type="checkbox" name={props.name} value={usedValue} ref={props.handler}
+                       checked={props.isChecked}/> <span className={styles.cb}>{props.label}</span>
+            </label>
+        </FormGroup>
+    )
+}
+
+Checkbox.propTypes = {
+    name: PropTypes.string.isRequired,
+    label: PropTypes.string,
+    value: PropTypes.string,
+    isChecked: PropTypes.bool,
+    handler: PropTypes.func.isRequired,
+    errorsRef: PropTypes.object.isRequired,
+    validationMessage: PropTypes.string,
+    noPadding: PropTypes.bool
+};
+
 function TextArea(props) {
     const errMsg = props.validationMessage ? props.validationMessage : props.label + ' harus diisi.';
     return (
@@ -158,4 +181,4 @@ FormAction.propTypes = {
     label: PropTypes.string,
     otherLink: PropTypes.string
 };
-export {Btn, LinkBtn, InputText, TextArea, DropDown, FormAction}
+export {Btn, LinkBtn, InputText, Checkbox, TextArea, DropDown, FormAction}

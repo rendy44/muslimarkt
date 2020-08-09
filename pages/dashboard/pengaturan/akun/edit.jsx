@@ -55,7 +55,7 @@ export default function PageEditAkun() {
             })
     };
     return (
-        <DashboardSettingLayout title={'Pengaturan Akun'}>
+        <DashboardSettingLayout title={'Pengaturan Akun'} isNoAction={true}>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className='frow'>
                     <div className='col-sm-1-2'>

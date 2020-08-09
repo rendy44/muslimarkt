@@ -88,7 +88,7 @@ function DashboardSidebar(props) {
 function DashboardCenter(props) {
     const maybeTitle = !props.isHideTitle ? <h1 className={styles.title}>{props.title}</h1> : '';
     return (
-        <div className={styles.content}>
+        <div className={props.isNoAction ? styles.content + ' ' + styles.noAction : styles.content}>
             {maybeTitle}
             {props.children}
         </div>
@@ -97,7 +97,8 @@ function DashboardCenter(props) {
 
 DashboardCenter.propTypes = {
     title: PropTypes.string.isRequired,
-    isHideTitle: PropTypes.bool
+    isHideTitle: PropTypes.bool,
+    isNoAction: PropTypes.bool
 };
 
 function DashboardWrapper(props) {
@@ -146,7 +147,8 @@ function DashboardSettingLayout(props) {
         <DashboardPageLayout title={props.title} hideTitle={true}>
             <DashboardWrapper>
                 <DashboardSidebar/>
-                <DashboardCenter title={props.title} isHideTitle={props.isHideTitle}>{props.children}</DashboardCenter>
+                <DashboardCenter title={props.title} isHideTitle={props.isHideTitle}
+                                 isNoAction={props.isNoAction}>{props.children}</DashboardCenter>
             </DashboardWrapper>
         </DashboardPageLayout>
     )
@@ -154,7 +156,8 @@ function DashboardSettingLayout(props) {
 
 DashboardSettingLayout.propTypes = {
     title: PropTypes.string.isRequired,
-    isHideTitle: PropTypes.bool
+    isHideTitle: PropTypes.bool,
+    isNoAction: PropTypes.bool
 };
 
 function DashboardPageLayout(props) {

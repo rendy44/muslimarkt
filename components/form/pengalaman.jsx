@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import {DropDown, FormAction, InputText, TextArea} from "./index";
+import {Checkbox, DropDown, FormAction, InputText, TextArea} from "./index";
 import {useForm} from "react-hook-form";
 import {useState} from "react";
 
@@ -29,9 +29,9 @@ export default function PengalamanForm(props) {
                         errorsRef={errors}
                     />
                 </div>
-                <div className='col-sm-1-2'>
+                <div className='col-sm-4-11'>
                     <div className='frow'>
-                        <div className='col-xs-1-2 col-sm-1-3'>
+                        <div className='col-xs-1-2 col-sm-1-2'>
                             <DropDown
                                 name={'bulan_mulai'}
                                 label={'Periode Mulai'}
@@ -40,7 +40,7 @@ export default function PengalamanForm(props) {
                                 values={['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des']}
                             />
                         </div>
-                        <div className='col-xs-1-2 col-sm-2-3'>
+                        <div className='col-xs-1-2 col-sm-1-2'>
                             <InputText
                                 name={'tahun_mulai'}
                                 handler={register({required: true})}
@@ -50,9 +50,9 @@ export default function PengalamanForm(props) {
                         </div>
                     </div>
                 </div>
-                <div className='col-sm-1-2'>
+                <div className='col-sm-4-11'>
                     <div className='frow'>
-                        <div className='col-xs-1-2 col-sm-1-3'>
+                        <div className='col-xs-1-2 col-sm-1-2'>
                             <DropDown
                                 name={'bulan_selesai'}
                                 label={'Periode Selesai'}
@@ -61,7 +61,7 @@ export default function PengalamanForm(props) {
                                 values={['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des']}
                             />
                         </div>
-                        <div className='col-xs-1-2 col-sm-2-3'>
+                        <div className='col-xs-1-2 col-sm-1-2'>
                             <InputText
                                 name={'tahun_selesai'}
                                 handler={register({required: true})}
@@ -70,6 +70,14 @@ export default function PengalamanForm(props) {
                             />
                         </div>
                     </div>
+                </div>
+                <div className='col-sm-3-11'>
+                    <Checkbox
+                        name={'masih_bekerja'}
+                        label={'Masih bekerja'}
+                        handler={register}
+                        errorsRef={errors}
+                    />
                 </div>
                 <div className='col-sm-1-2'>
                     <InputText

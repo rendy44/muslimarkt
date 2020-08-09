@@ -127,11 +127,16 @@ $contentSize: calc(70% - 1rem);
 
   @include breakpoint(768px) {
     .content {
-      padding-right: calc(1rem + 36px + 1rem);
-
       .title {
         font-size: 1.6rem;
-        margin-right: calc((1rem + 36px + 1rem) * -1);
+      }
+
+      &:not(.noAction) {
+        padding-right: calc(1rem + 36px + 1rem);
+
+        .title {
+          margin-right: calc((1rem + 36px + 1rem) * -1);
+        }
       }
     }
   }

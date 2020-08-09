@@ -1,12 +1,28 @@
 @import "../../styles/mainUtil";
 
 .formGroup {
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+
   label {
-    span {
-      //margin-top: .3rem;
-      //font-size: 90%;
-      //font-weight: 400;
-      //color: $danger;
+    input, textarea {
+      &::placeholder, &::-webkit-input-placeholder {
+        text-transform: lowercase;
+
+        &:first-letter {
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+
+  label {
+    input[type=checkbox],
+    span.cb {
+      margin-bottom: 4px;
+      font-weight: normal;
+      font-size: 15px;
     }
   }
 

@@ -6,7 +6,7 @@ export default function PageEditPendidikan() {
     let router = useRouter();
     let {pendidikanId} = router.query;
     return (
-        <DashboardSettingLayout title={'Sunting Pendidikan'}>
+        <DashboardSettingLayout title={'Sunting Pendidikan'} isNoAction={true}>
             <PendidikanForm pendidikanId={pendidikanId}/>
         </DashboardSettingLayout>
     )
