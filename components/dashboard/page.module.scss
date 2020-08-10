@@ -98,9 +98,9 @@
   }
 
   .content {
-    background-color: $white;
-    @include boxShadow;
-    padding: 1rem;
+    //background-color: $white;
+    //@include boxShadow;
+    //padding: 1rem;
   }
 
   @include breakpoint(768px) {
