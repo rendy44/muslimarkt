@@ -3,7 +3,7 @@ import {JobItem, ListJobs} from "../components/lowongan";
 
 export default function PageLowongan() {
     return (
-        <PageWithSidebar title={'Lowongan'} sidebar={''}>
+        <PageWithSidebar title={'Lowongan'} sidebar={<></>}>
             <ListJobs>
                 <JobItem
                     dbId={'0'}

@@ -1,9 +1,8 @@
-import {DashboardPageLayout} from "../../components/dashboard";
+import {PageWithSidebar} from "../../components/dashboard/page";
 
 export default function PageDashboardStatus() {
     return (
-        <DashboardPageLayout title={'Status Lamaran'}>
-            Hallo juragan
-        </DashboardPageLayout>
+        <PageWithSidebar title={'Status Lamaran'} sidebar={<></>}>
+        </PageWithSidebar>
     )
 }

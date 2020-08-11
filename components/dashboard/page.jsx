@@ -82,7 +82,9 @@ function PageWithSidebar(props) {
                         {props.sidebar}
                         <SidebarBottom/>
                     </div>
-                    <div className={styles.content}>{props.children}</div>
+                    <div className={styles.content}>
+                        {props.children}
+                    </div>
                 </div>
             </Section>
         </Layout>
