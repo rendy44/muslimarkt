@@ -54,11 +54,10 @@ function DashboardSidebar(props) {
     let sidebarLinkHtml = [];
     sidebarLinks.map((link, index) => {
         let linkFix = '/dashboard/pengaturan' + link.id;
-        let maybeActive = linkFix === activeLink ? styles.active : '';
         sidebarLinkHtml.push(
             <li key={index}>
                 <Link href={linkFix}>
-                    <a className={maybeActive}><span>{link.icon}</span><span>{link.label}</span></a>
+                    <a className={linkFix === activeLink ? styles.active : ''}><span>{link.icon}</span><span>{link.label}</span></a>
                 </Link>
             </li>
         );
@@ -86,10 +85,9 @@ function DashboardSidebar(props) {
 }
 
 function DashboardCenter(props) {
-    const maybeTitle = !props.isHideTitle ? <h1 className={styles.title}>{props.title}</h1> : '';
     return (
         <div className={props.isNoAction ? styles.content + ' ' + styles.noAction : styles.content}>
-            {maybeTitle}
+            {!props.isHideTitle && (<h1 className={styles.title}>{props.title}</h1>)}
             {props.children}
         </div>
     )
@@ -111,17 +109,12 @@ function DashboardWrapper(props) {
 
 function DashboardNotification() {
     const {isProfileCompleted} = useContext(UserContext);
-    let maybeNotification = '';
-
-    if (!isProfileCompleted) {
-        maybeNotification = <AlertView variant={'warning'}>
-            <p>Silahkan selesaikan profil Anda sebelum mengirim lamaran.</p>
-        </AlertView>
-    }
     return (
         <>
             <div className={styles.notifications}>
-                {maybeNotification}
+                {!isProfileCompleted && (<AlertView variant={'warning'}>
+                    <p>Silahkan selesaikan profil Anda sebelum mengirim lamaran.</p>
+                </AlertView>)}
             </div>
         </>
     )
@@ -161,10 +154,10 @@ DashboardSettingLayout.propTypes = {
 };
 
 function DashboardPageLayout(props) {
-    const maybeTitle = !props.hideTitle ? props.title : '';
     return (
         <DashboardGeneralLayout title={props.title}>
-            <Section id={'dashboardPage'} isLightColor={true} isFull={true} isNoTopPadding={true} title={maybeTitle}
+            <Section id={'dashboardPage'} isLightColor={true} isFull={true} isNoTopPadding={true}
+                     title={!props.hideTitle && props.title}
                      isFirstTitle={true}>
                 {props.children}
             </Section>
@@ -207,13 +200,6 @@ MenuItem.propTypes = {
 };
 
 function ListAction(props) {
-    const maybeBottomAction = !props.isHideBottom ? <div className={styles.listAction + ' ' + styles.bottom}>
-        <LinkBtn
-            href={props.href}
-            label={props.label ? props.label : 'Tambah baru'}
-            icon={props.icon ? props.icon : <IoMdAddCircle/>}
-            variant={props.variant ? props.variant : 'success'}/>
-    </div> : '';
     return (
         <>
             <div className={styles.listAction}>
@@ -224,7 +210,13 @@ function ListAction(props) {
                     variant={props.variant ? props.variant : 'success'}/>
             </div>
             {props.children}
-            {maybeBottomAction}
+            {!props.isHideBottom && (<div className={styles.listAction + ' ' + styles.bottom}>
+                <LinkBtn
+                    href={props.href}
+                    label={props.label ? props.label : 'Tambah baru'}
+                    icon={props.icon ? props.icon : <IoMdAddCircle/>}
+                    variant={props.variant ? props.variant : 'success'}/>
+            </div>)}
         </>
     )
 }

@@ -4,13 +4,6 @@ import Link from "next/link";
 import {IoMdPin} from 'react-icons/io';
 import {FaDollarSign} from 'react-icons/fa';
 
-function Sidebar() {
-    return (
-        <>
-        </>
-    )
-}
-
 function ListJobs(props) {
     return (
         <div className={styles.wrapper}>
@@ -25,7 +18,6 @@ function truncate(str, n) {
 
 function JobItem(props) {
     const usedSalary = props.salaryFix ? props.salaryFix : props.salaryMin + ' - ' + props.salaryMax
-    const maybeLogo = props.companyLogo ? <img src={props.companyLogo} alt='Logo'/> : '';
     return (
         <div className={styles.job}>
             <div className={styles.inner}>
@@ -35,7 +27,7 @@ function JobItem(props) {
                         <a><h3>{props.title}</h3></a>
                     </Link>
                     <div className={styles.logo}>
-                        {maybeLogo}
+                        {props.companyLogo && (<img src={props.companyLogo} alt='Logo'/>)}
                     </div>
                 </div>
                 <div className={styles.company}>

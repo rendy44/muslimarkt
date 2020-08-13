@@ -84,10 +84,9 @@ function Header() {
         </li>
     ];
 
-    const maybeTopHeader = isUseTopHeader ? <TopHeader/> : '';
     return (
         <>
-            {maybeTopHeader}
+            {isUseTopHeader && (<TopHeader/>)}
             <header className={headerStyles.header}>
                 <div className='frow-container'>
                     <div className={headerStyles.inner}>
@@ -288,18 +287,15 @@ function Layout(props) {
     const {siteName, siteDesc} = conf;
     const {docTitle, isHideTitle, isHideHeader, isHideFooter} = props;
     const usedTitle = docTitle ? docTitle + ' | ' + siteName : siteName + ' | ' + siteDesc;
-    const maybeUsePageTitle = !isHideTitle ? <PageTitle title={docTitle}/> : '';
-    const maybeUseHeader = !isHideHeader ? <Header/> : '';
-    const maybeUseFooter = !isHideFooter ? <Footer/> : '';
     return (
         <>
             <Head>
                 <title>{usedTitle}</title>
             </Head>
-            {maybeUseHeader}
-            {maybeUsePageTitle}
+            {!isHideHeader && (<Header/>)}
+            {!isHideTitle && (<PageTitle title={docTitle}/>)}
             {props.children}
-            {maybeUseFooter}
+            {!isHideFooter && (<Footer/>)}
         </>
     )
 }
@@ -337,25 +333,14 @@ function Section(props) {
         cssClass += ' ' + sectionStyles.noTopPadding;
     }
 
-    // Maybe add title.
-    let maybeTitle = '';
-    if (props.title) {
-        if (props.isFirstTitle) {
-            maybeTitle = <h1 className={sectionStyles.title}>{props.title}</h1>
-        } else {
-            maybeTitle = <h2 className={sectionStyles.title}>{props.title}</h2>
-        }
-    }
-
-    // Maybe add description.
-    const maybeDesc = props.desc ? <p className={sectionStyles.lead}>{props.desc}</p> : '';
     return (
         <section className={cssClass}>
             <div className='frow-container'>
                 <div className='frow'>
                     <div className={columnSize}>
-                        {maybeTitle}
-                        {maybeDesc}
+                        {props.title && (props.isFirstTitle ? <h1 className={sectionStyles.title}>{props.title}</h1> :
+                            <h2 className={sectionStyles.title}>{props.title}</h2>)}
+                        {props.desc && (<p className={sectionStyles.lead}>{props.desc}</p>)}
                         {props.children}
                     </div>
                 </div>

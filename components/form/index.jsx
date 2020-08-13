@@ -168,13 +168,11 @@ LinkBtn.propTypes = {
 };
 
 function FormAction(props) {
-    const maybeNextLink = props.otherLink ?
-        <LinkBtn href={props.otherLink} label={'Batal'} variant={'transparent'}/> : '';
     return (
         <div className={btnStyles.action}>
             <Btn isSubmit={true} label={props.label} variant={props.variant ? props.variant : 'main'}
                  disabled={props.disabled}/>
-            {maybeNextLink}
+            {props.otherLink && (<LinkBtn href={props.otherLink} label={'Batal'} variant={'transparent'}/>)}
         </div>
     )
 }

@@ -14,7 +14,7 @@ function ActionButton() {
     )
 }
 
-function Header(props) {
+function JobHeader(props) {
     const usedSalary = props.salaryFix ? props.salaryFix : props.salaryMin + ' - ' + props.salaryMax
     return (
         <div className={styles.header}>
@@ -35,7 +35,7 @@ function Header(props) {
     )
 }
 
-Header.propTypes = {
+JobHeader.propTypes = {
     title: PropTypes.string.isRequired,
     companyName: PropTypes.string.isRequired,
     companySlug: PropTypes.string.isRequired,
@@ -91,4 +91,4 @@ Description.propTypes = {
     companyLogo: PropTypes.string
 }
 
-export {ActionButton, Header, Description}
+export {ActionButton, JobHeader, Description}
