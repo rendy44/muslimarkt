@@ -73,6 +73,7 @@ function SidebarBottom() {
 }
 
 function PageWithSidebar(props) {
+    const maybeBottomSidebar = !props.isHideBottomSidebar ? <SidebarBottom/>:'';
     return (
         <Layout isHideTitle={true} docTitle={props.title}>
             <Section id={'lowongan'} isLightColor={true} isNoTopPadding={true} isFull={true}>
@@ -80,7 +81,7 @@ function PageWithSidebar(props) {
                     <div className={styles.sidebar}>
                         <SidebarHeader/>
                         {props.sidebar}
-                        <SidebarBottom/>
+                        {maybeBottomSidebar}
                     </div>
                     <div className={styles.content}>
                         {props.children}
@@ -93,7 +94,8 @@ function PageWithSidebar(props) {
 
 PageWithSidebar.propTypes = {
     title: PropTypes.string.isRequired,
-    sidebar: PropTypes.object.isRequired
+    sidebar: PropTypes.object.isRequired,
+    isHideBottomSidebar: PropTypes.bool
 }
 
 export {PageWithSidebar}

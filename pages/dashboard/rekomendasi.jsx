@@ -11,7 +11,7 @@ export default function PageRekomendasiLowongan() {
                     companyName={'Nama Perusahaan'}
                     companyDbId={'0'}
                     postDate={'20 Jul 20'}
-                    slug={'lowongan/lowongan-pertama'}
+                    slug={'lowongan-pertama'}
                     location={'Yogyakarta'}
                     companyLogo={'/logo_a.png'}
                     salaryFix={5000000}
@@ -23,7 +23,7 @@ export default function PageRekomendasiLowongan() {
                     companyName={'PT. Contoh Nama'}
                     companyDbId={'1'}
                     postDate={'21 Jul 20'}
-                    slug={'lowongan/lowongan-kedua'}
+                    slug={'lowongan-kedua'}
                     location={'Surabaya'}
                     companyLogo={'/logo_b.jpg'}
                     salaryMin={3000000}
@@ -36,7 +36,7 @@ export default function PageRekomendasiLowongan() {
                     companyName={'PT. Perusahaan'}
                     companyDbId={'2'}
                     postDate={'21 Jul 20'}
-                    slug={'lowongan/lowongan-ketiga'}
+                    slug={'lowongan-ketiga'}
                     location={'Surabaya'}
                     companyLogo={'/logo_c.jpg'}
                     salaryMin={4000000}

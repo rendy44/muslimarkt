@@ -1,0 +1,169 @@
+@import "../../styles/mainUtil";
+
+.action {
+  background-color: $white;
+  @include boxShadow;
+  padding: 1rem;
+
+  button {
+    width: 100%;
+    margin-bottom: .5rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.header {
+  background-color: $white;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  @include boxShadow;
+
+  .title {
+    margin-bottom: .5rem;
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .info {
+    margin-bottom: .5rem;
+    font-size: 90%;
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        display: flex;
+        margin-bottom: .2rem;
+
+        svg {
+          color: $main;
+          margin-right: .3rem;
+        }
+      }
+    }
+  }
+
+  @include breakpoint(768px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .title {
+      max-width: 70%;
+
+      h1 {
+        margin-bottom: .5rem;
+      }
+    }
+    .info {
+      padding-left: 1rem;
+    }
+  }
+
+  @include breakpoint(768px) {
+    .title {
+      max-width: 67%;
+      margin-bottom: 0;
+    }
+  }
+
+  @include breakpoint(1200px) {
+    .title {
+      max-width: 75%;
+    }
+  }
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+
+  .block {
+    .inner {
+      background-color: $white;
+      padding: 1rem;
+      @include boxShadow;
+      margin-bottom: 1rem;
+
+      .title {
+        margin-bottom: 1rem;
+        font-size: 1.25rem;
+      }
+
+      .subtitle {
+        margin-bottom: .5rem;
+        font-size: 1rem;
+      }
+
+      p {
+        margin: 0 0 1rem;
+        line-height: 1.4;
+      }
+
+      .companyLogo {
+        text-align: center;
+        margin-bottom: 1rem;
+
+        img {
+          max-width: 200px;
+          max-height: 200px;
+        }
+      }
+
+      .images {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        .image {
+          width: 50%;
+          padding-right: .25rem;
+          margin-bottom: .5rem;
+
+          img {
+            max-width: 100%;
+          }
+
+          &:nth-child(even) {
+            padding-left: .25rem;
+            padding-right: 0;
+          }
+        }
+      }
+    }
+  }
+
+  @include breakpoint(768px) {
+    flex-direction: row;
+    .block {
+      padding-left: .5rem;
+      width: 50%;
+
+      .inner {
+        margin-bottom: 0;
+
+        .images {
+          .image {
+            width: 33.333333%;
+            padding: 0 .25rem !important;
+          }
+        }
+      }
+
+      &:nth-child(odd) {
+        padding-left: 0;
+        padding-right: .5rem;
+      }
+    }
+  }
+}

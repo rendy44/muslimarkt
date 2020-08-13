@@ -30,7 +30,8 @@ function JobItem(props) {
         <div className={styles.job}>
             <div className={styles.inner}>
                 <div className={styles.title}>
-                    <Link href={'/job/lowongan-pertama'}>
+                    <Link href={'/lowongan/[lowonganSlug]'}
+                          as={'/lowongan/' + props.slug}>
                         <a><h3>{props.title}</h3></a>
                     </Link>
                     <div className={styles.logo}>
