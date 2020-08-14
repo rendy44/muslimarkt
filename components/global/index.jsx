@@ -375,4 +375,10 @@ AlertView.propTypes = {
     variant: PropTypes.string.isRequired
 };
 
-export {Header, LogoLink, Footer, Layout, Section, AlertView};
+function Box(props) {
+    return (
+        <div className={sectionStyles.box}>{props.children}</div>
+    )
+}
+
+export {Header, LogoLink, Footer, Layout, Section, AlertView, Box};

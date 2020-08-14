@@ -1,12 +1,17 @@
 import {useRouter} from 'next/router';
-import {PageWithSidebar} from "../../components/dashboard/page";
-import {ActionButton, Description, JobHeader} from "../../components/lowongan/detail";
+import {PageWithSidebar} from "../../../components/dashboard/page";
+import {ActionButton, Description, JobHeader} from "../../../components/lowongan/detail";
+import React from "react";
 
 export default function PageDetailLowongan() {
     let router = useRouter();
     const {lowonganSlug} = router.query;
     return (
-        <PageWithSidebar title={'Detail Lowongan'} sidebar={<ActionButton/>} isHideBottomSidebar={true}>
+        <PageWithSidebar
+            title={'Detail Lowongan'}
+            sidebar={<ActionButton slug={lowonganSlug}/>}
+            isHideBottomSidebar={true}
+        >
             <JobHeader
                 title={'Judul Lowongan'}
                 companyName={'PT. Nama Perusahaan'}

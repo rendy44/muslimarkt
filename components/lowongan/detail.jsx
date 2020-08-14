@@ -1,18 +1,24 @@
 import PropTypes from 'prop-types';
 import styles from './detail.module.scss';
-import {Btn} from "../form";
-import {IoMdSend, IoMdPin, IoMdLaptop,IoMdPhonePortrait} from 'react-icons/io';
+import {Btn, LinkBtn} from "../form";
+import {IoMdSend, IoMdPin, IoMdLaptop, IoMdPhonePortrait} from 'react-icons/io';
 import {FaDollarSign} from 'react-icons/fa';
 import Link from "next/link";
 import {AccountItem, AccountItems} from "../dashboard/akun";
 
-function ActionButton() {
+function ActionButton(props) {
     return (
         <div className={styles.action}>
-            <Btn isSubmit={false} label={'Lamar Sekarang'} variant={'success'} icon={<IoMdSend/>}/>
+            <LinkBtn href={'/lowongan/[lowonganSlug]/lamar'} as={'/lowongan/' + props.slug + '/lamar'}
+                     label={'Lamar Sekarang'}
+                     variant={'success'} icon={<IoMdSend/>}/>
             <Btn isSubmit={false} label={'Simpan Pekerjaan'} variant={'transparent'}/>
         </div>
     )
+}
+
+ActionButton.propTypes = {
+    slug: PropTypes.string
 }
 
 function JobHeader(props) {
@@ -79,7 +85,9 @@ function Description(props) {
                     <div className={styles.companyInfo}>
                         <AccountItems>
                             <AccountItem label={'Lokasi'} value={'Jl. Contoh 45, Sleman 1234, Yogyakarta, Indonesia'}/>
-                            <AccountItem label={'Situs'} value={'<a href="http://sample.url" target="_blank">http://sample.url</a>'} isHtml={true}/>
+                            <AccountItem label={'Situs'}
+                                         value={'<a href="http://sample.url" target="_blank">http://sample.url</a>'}
+                                         isHtml={true}/>
                             <AccountItem label={'Industri'} value={'Konsultan IT'}/>
                             <AccountItem label={'Bahasa'} value={'Bahasa Inggris'}/>
                             <AccountItem label={'Pakaian'} value={'Kasual'}/>
