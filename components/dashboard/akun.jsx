@@ -39,14 +39,15 @@ function AccountItem(props) {
     return (
         <div className={styles.item}>
             <label>{props.label}</label>
-            <span>{props.value}</span>
+            <span>{props.isHtml ? <div dangerouslySetInnerHTML={{__html: props.value}}/> : props.value}</span>
         </div>
     )
 }
 
 AccountItem.propTypes = {
     label: PropTypes.string.isRequired,
-    value: PropTypes.string
+    value: PropTypes.string,
+    isHtml: PropTypes.bool
 };
 
 export {AccountHeader, AccountItems, AccountItem}

@@ -120,6 +120,26 @@
         }
       }
 
+      .companyInfo {
+        margin-bottom: 1rem;
+
+        > div {
+          > div {
+            display: block;
+            margin-bottom: .5rem;
+
+            > label {
+              width: unset;
+              margin: 0;
+
+              &:after {
+                content: '';
+              }
+            }
+          }
+        }
+      }
+
       .images {
         display: flex;
         flex-direction: row;
@@ -151,6 +171,26 @@
 
       .inner {
         margin-bottom: 0;
+
+        .companyInfo {
+          > div {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+
+            > div {
+              &:not(:first-child) {
+                width: 50%;
+                padding-right: .25rem;
+
+                &:nth-child(odd) {
+                  padding-left: .25rem;
+                  padding-right: 0;
+                }
+              }
+            }
+          }
+        }
 
         .images {
           .image {

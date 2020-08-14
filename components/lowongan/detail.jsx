@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import styles from './detail.module.scss';
 import {Btn} from "../form";
-import {IoMdSend, IoMdPin} from 'react-icons/io';
+import {IoMdSend, IoMdPin, IoMdLaptop,IoMdPhonePortrait} from 'react-icons/io';
 import {FaDollarSign} from 'react-icons/fa';
 import Link from "next/link";
+import {AccountItem, AccountItems} from "../dashboard/akun";
 
 function ActionButton() {
     return (
@@ -29,6 +30,7 @@ function JobHeader(props) {
                 <ul>
                     <li><IoMdPin/> {props.location}</li>
                     <li><FaDollarSign/> {usedSalary}</li>
+                    <li><IoMdPhonePortrait/> {props.isRemote ? 'Boleh jarak jauh' : 'Harus di lokasi'}</li>
                 </ul>
             </div>
         </div>
@@ -42,7 +44,8 @@ JobHeader.propTypes = {
     location: PropTypes.string.isRequired,
     salaryMin: PropTypes.number,
     salaryMax: PropTypes.number,
-    salaryFix: PropTypes.number
+    salaryFix: PropTypes.number,
+    isRemote: PropTypes.bool
 }
 
 function Description(props) {
@@ -73,6 +76,15 @@ function Description(props) {
                     {props.companyLogo && (
                         <div className={styles.companyLogo}><img src={props.companyLogo} alt={'Logo'}/></div>)}
                     <p>{props.companyDesc}</p>
+                    <div className={styles.companyInfo}>
+                        <AccountItems>
+                            <AccountItem label={'Lokasi'} value={'Jl. Contoh 45, Sleman 1234, Yogyakarta, Indonesia'}/>
+                            <AccountItem label={'Situs'} value={'<a href="http://sample.url" target="_blank">http://sample.url</a>'} isHtml={true}/>
+                            <AccountItem label={'Industri'} value={'Konsultan IT'}/>
+                            <AccountItem label={'Bahasa'} value={'Bahasa Inggris'}/>
+                            <AccountItem label={'Pakaian'} value={'Kasual'}/>
+                        </AccountItems>
+                    </div>
                     <h3 className={styles.subtitle}>Galeri</h3>
                     <div className={styles.images}>
                         {slideImagesHtml}
