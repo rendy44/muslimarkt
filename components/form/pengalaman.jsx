@@ -18,7 +18,7 @@ export default function PengalamanForm(props) {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <div className='frow'>
+            <div className='frow items-start'>
                 <div className='col-sm-1-2'>
                     <InputText
                         name={'posisi'}
