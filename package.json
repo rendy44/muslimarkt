@@ -18,8 +18,6 @@
     "react-icons": "^3.10.0",
     "react-loading": "^2.0.3",
     "sass": "^1.26.10",
-    "slate": "^0.58.4",
-    "slate-react": "^0.58.4",
     "sweetalert2": "^9.17.1",
     "sweetalert2-react-content": "^3.0.3",
     "swiper": "^6.0.4"
