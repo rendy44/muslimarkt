@@ -157,7 +157,7 @@ function DashboardPageLayout(props) {
     return (
         <DashboardGeneralLayout title={props.title}>
             <Section id={'dashboardPage'} isLightColor={true} isFull={true} isNoTopPadding={true}
-                     title={!props.hideTitle && props.title}
+                     title={!props.hideTitle ? props.title : ''}
                      isFirstTitle={true}>
                 {props.children}
             </Section>
