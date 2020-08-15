@@ -13,7 +13,7 @@ import Hamburger from "../global/hamburger";
 function DashboardSidebar(props) {
     const [activeLink, setActiveLink] = useState('');
     const [isOpen, setIsOpen] = useState(false);
-    const {userAvatarUrl, userDisplayName, userFirstName, userEmail, userKey, isProfileComplete} = useContext(UserContext);
+    const {userAvatarUrl, userDisplayName} = useContext(UserContext);
 
     useEffect(() => {
         const currentRoute = Router.route;
@@ -71,7 +71,6 @@ function DashboardSidebar(props) {
                     <img src={userAvatarUrl} alt={'Foto profil'}/>
                 </div>
                 <div className={styles.name}>
-                    {userFirstName}
                     <p>{userDisplayName}</p>
                     <Link href={'/profil'}>
                         <a>Lihat profil saya</a>

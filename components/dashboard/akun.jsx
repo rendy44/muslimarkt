@@ -1,26 +1,29 @@
 import PropTypes from 'prop-types';
 import {IoMdCall, IoMdMail, IoMdPin} from 'react-icons/io';
 import styles from './akun.module.scss';
+import {useContext} from "react";
+import UserContext from "../global/userContext";
 
 function AccountHeader(props) {
+    const {userAvatarUrl, userDisplayName, userEmail, userPhone, userProvince} = useContext(UserContext);
     return (
         <div className={styles.header}>
             <div className={styles.pic}>
-                <img src={'/random.jpg'} alt={'Foto profil'}/>
+                <img src={userAvatarUrl} alt={'Foto profil'}/>
             </div>
             <div className={styles.info}>
-                <h3>Fulan bin Abdullah</h3>
+                <h3>{userDisplayName}</h3>
                 <p>#SedangMencariPekerjaan</p>
                 <ul>
+                    {userPhone && (<li>
+                        <IoMdCall/><span>{userPhone}</span>
+                    </li>)}
                     <li>
-                        <IoMdCall/><span>(+62) 0812312313</span>
+                        <IoMdMail/><span>{userEmail}</span>
                     </li>
-                    <li>
-                        <IoMdMail/><span>user@ema.il</span>
-                    </li>
-                    <li>
-                        <IoMdPin/><span>Yogyakarta, Indonesia</span>
-                    </li>
+                    {userProvince && (<li>
+                        <IoMdPin/><span>{userProvince}</span>
+                    </li>)}
                 </ul>
             </div>
         </div>

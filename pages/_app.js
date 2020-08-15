@@ -13,9 +13,21 @@ export default class MyApp extends App {
         last_name: '',
         display_name: '',
         email: '',
+        phone: '',
+        province: ''
     };
 
-    commonFields = ['user_key', 'is_profile_complete', 'avatar_url', 'first_name', 'last_name', 'display_name', 'email'];
+    commonFields = [
+        'user_key',
+        'is_profile_complete',
+        'avatar_url',
+        'first_name',
+        'last_name',
+        'display_name',
+        'email',
+        'phone',
+        'province'
+    ];
     prefix = 'muslimarkt-';
 
     componentDidMount = () => {
@@ -48,7 +60,9 @@ export default class MyApp extends App {
             first_name: userData.first_name,
             last_name: userData.last_name,
             display_name: userData.display_name,
-            email: userData.email
+            email: userData.email,
+            phone: userData.phone,
+            province: userData.province
         };
 
         this.commonFields.map(field => this.saveLocal(field, userData[field]));
@@ -66,7 +80,9 @@ export default class MyApp extends App {
             avatar_url: '',
             first_name: '',
             last_name: '',
-            email: ''
+            email: '',
+            phone: '',
+            province: ''
         });
     };
 
@@ -78,7 +94,7 @@ export default class MyApp extends App {
 
     render() {
         const {Component, pageProps} = this.props;
-        const {avatar_url, first_name, display_name, last_name, email, user_key, is_profile_complete} = this.state;
+        const {avatar_url, first_name, display_name, last_name, email, phone, province, user_key, is_profile_complete} = this.state;
 
         return (
             <UserContext.Provider value={{
@@ -87,6 +103,8 @@ export default class MyApp extends App {
                 userLastName: last_name,
                 userDisplayName: display_name,
                 userEmail: email,
+                userPhone: phone,
+                userProvince: province,
                 userKey: user_key,
                 isProfileComplete: is_profile_complete,
                 saveLoginData: this.saveLoginData,
