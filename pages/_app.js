@@ -7,26 +7,28 @@ import Router from "next/router";
 export default class MyApp extends App {
     state = {
         user_key: '',
-        is_profile_completed: false,
+        is_profile_complete: false,
         avatar_url: '',
         first_name: '',
         last_name: '',
-        email: ''
+        display_name: '',
+        email: '',
     };
 
-    componentDidMount = () => {
-        const freePage = ['/', '/masuk', '/daftar'];
-        const userData = localStorage.getItem('muslimarkt-loginData');
+    commonFields = ['user_key', 'is_profile_complete', 'avatar_url', 'first_name', 'last_name', 'display_name', 'email'];
+    prefix = 'muslimarkt-';
 
-        if (userData) {
-            this.setState({
-                user_key: userData.user_key,
-                is_profile_completed: userData.is_profile_completed,
-                avatar_url: userData.avatar_url,
-                first_name: userData.nama_depan,
-                last_name: userData.nama_belakang,
-                email: userData.email
-            });
+    componentDidMount = () => {
+        // console.log(this.state);
+        const freePage = ['/', '/masuk', '/daftar'];
+
+        let stateObj = {};
+
+        // Loop common fields.
+        this.commonFields.map(field => stateObj[field] = this.getLocal(field))
+
+        if (stateObj.user_key) {
+            this.setState(stateObj);
         } else {
 
             // Detect if current page is not a free access page.
@@ -39,24 +41,28 @@ export default class MyApp extends App {
     };
 
     saveLoginData = (userData) => {
-        localStorage.setItem('muslimarkt-loginData', userData);
-
-        // Update global state.
-        this.setState({
+        const objData = {
             user_key: userData.user_key,
             is_profile_completed: userData.is_profile_completed,
             avatar_url: userData.avatar_url,
-            first_name: userData.nama_depan,
-            last_name: userData.nama_belakang,
+            first_name: userData.first_name,
+            last_name: userData.last_name,
+            display_name: userData.display_name,
             email: userData.email
-        })
+        };
+
+        this.commonFields.map(field => this.saveLocal(field, userData[field]));
+
+        // Update global state.
+        this.setState(objData)
     };
 
     signOut = () => {
-        localStorage.removeItem('muslimarkt-userKey');
+        this.commonFields.map(field => this.removeLocal(field));
+
         this.setState({
             user_key: '',
-            is_profile_completed: false,
+            is_profile_complete: false,
             avatar_url: '',
             first_name: '',
             last_name: '',
@@ -72,18 +78,35 @@ export default class MyApp extends App {
 
     render() {
         const {Component, pageProps} = this.props;
+        const {avatar_url, first_name, display_name, last_name, email, user_key, is_profile_complete} = this.state;
 
         return (
             <UserContext.Provider value={{
-                userKey: this.state.user_key,
-                isProfileCompleted: this.state.is_profile_completed,
+                userAvatarUrl: avatar_url,
+                userFirstName: first_name,
+                userLastName: last_name,
+                userDisplayName: display_name,
+                userEmail: email,
+                userKey: user_key,
+                isProfileComplete: is_profile_complete,
                 saveLoginData: this.saveLoginData,
                 signOut: this.signOut,
-                account: this.state.account,
                 updateAccount: this.updateAccount
             }}>
                 <Component {...pageProps} />
             </UserContext.Provider>
         );
+    }
+
+    saveLocal(key, value) {
+        localStorage.setItem(this.prefix + key, value);
+    }
+
+    getLocal(key) {
+        return localStorage.getItem(this.prefix + key);
+    }
+
+    removeLocal(key) {
+        localStorage.removeItem(this.prefix + key);
     }
 }
