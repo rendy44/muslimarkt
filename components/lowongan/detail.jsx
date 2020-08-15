@@ -5,15 +5,18 @@ import {IoMdSend, IoMdPin, IoMdLaptop, IoMdPhonePortrait} from 'react-icons/io';
 import {FaDollarSign} from 'react-icons/fa';
 import Link from "next/link";
 import {AccountItem, AccountItems} from "../dashboard/akun";
+import {Box} from "../global";
 
 function ActionButton(props) {
     return (
-        <div className={styles.action}>
-            <LinkBtn href={'/lowongan/[lowonganSlug]/lamar'} as={'/lowongan/' + props.slug + '/lamar'}
-                     label={'Lamar Sekarang'}
-                     variant={'success'} icon={<IoMdSend/>}/>
-            <Btn isSubmit={false} label={'Simpan Pekerjaan'} variant={'transparent'}/>
-        </div>
+        <Box>
+            <div className={styles.action}>
+                <LinkBtn href={'/lowongan/[lowonganSlug]/lamar'} as={'/lowongan/' + props.slug + '/lamar'}
+                         label={'Lamar Sekarang'}
+                         variant={'success'} icon={<IoMdSend/>}/>
+                <Btn isSubmit={false} label={'Simpan Pekerjaan'} variant={'transparent'}/>
+            </div>
+        </Box>
     )
 }
 
@@ -22,24 +25,27 @@ ActionButton.propTypes = {
 }
 
 function JobHeader(props) {
-    const usedSalary = props.salaryFix ? props.salaryFix : props.salaryMin + ' - ' + props.salaryMax
     return (
-        <div className={styles.header}>
-            <div className={styles.title}>
-                <h1>{props.title}</h1>
-                <Link href={'/perusahaan/[perusahaanSlug]'}
-                      as={'/perusahaan/' + props.companySlug}>
-                    <a>{props.companyName}</a>
-                </Link>
+        <Box>
+            <div className={styles.header}>
+                <div className={styles.title}>
+                    <h1>{props.title}</h1>
+                    <Link href={'/perusahaan/[perusahaanSlug]'}
+                          as={'/perusahaan/' + props.companySlug}>
+                        <a>{props.companyName}</a>
+                    </Link>
+                </div>
+                <div className={styles.info}>
+                    <ul>
+                        <li><IoMdPin/> {props.location}</li>
+                        <li>
+                            <FaDollarSign/> {props.salaryFix || props.salaryMin || props.salaryMax ? (props.salaryFix ? props.salaryFix : props.salaryMin + ' - ' + props.salaryMax) : 'Dirahasiakan'}
+                        </li>
+                        <li><IoMdPhonePortrait/> {props.isRemote ? 'Boleh jarak jauh' : 'Harus di lokasi'}</li>
+                    </ul>
+                </div>
             </div>
-            <div className={styles.info}>
-                <ul>
-                    <li><IoMdPin/> {props.location}</li>
-                    <li><FaDollarSign/> {usedSalary}</li>
-                    <li><IoMdPhonePortrait/> {props.isRemote ? 'Boleh jarak jauh' : 'Harus di lokasi'}</li>
-                </ul>
-            </div>
-        </div>
+        </Box>
     )
 }
 
@@ -67,37 +73,42 @@ function Description(props) {
     return (
         <div className={styles.description}>
             <div className={styles.block}>
-                <div className={styles.inner}>
-                    <h2 className={styles.title}>Deskripsi</h2>
-                    <p>{props.description}</p>
-                    <h3 className={styles.subtitle}>Tanggung Jawab</h3>
-                    <p>{props.responsibility}</p>
-                    <h3 className={styles.subtitle}>Persyaratan</h3>
-                    <p>{props.requirement}</p>
-                </div>
+                <Box>
+                    <div className={styles.inner}>
+                        <h2 className={styles.title}>Deskripsi</h2>
+                        <p>{props.description}</p>
+                        <h3 className={styles.subtitle}>Tanggung Jawab</h3>
+                        <p>{props.responsibility}</p>
+                        <h3 className={styles.subtitle}>Persyaratan</h3>
+                        <p>{props.requirement}</p>
+                    </div>
+                </Box>
             </div>
             <div className={styles.block}>
-                <div className={styles.inner}>
-                    <h2 className={styles.title}>Tentang Perusahaan</h2>
-                    {props.companyLogo && (
-                        <div className={styles.companyLogo}><img src={props.companyLogo} alt={'Logo'}/></div>)}
-                    <p>{props.companyDesc}</p>
-                    <div className={styles.companyInfo}>
-                        <AccountItems>
-                            <AccountItem label={'Lokasi'} value={'Jl. Contoh 45, Sleman 1234, Yogyakarta, Indonesia'}/>
-                            <AccountItem label={'Situs'}
-                                         value={'<a href="http://sample.url" target="_blank">http://sample.url</a>'}
-                                         isHtml={true}/>
-                            <AccountItem label={'Industri'} value={'Konsultan IT'}/>
-                            <AccountItem label={'Bahasa'} value={'Bahasa Inggris'}/>
-                            <AccountItem label={'Pakaian'} value={'Kasual'}/>
-                        </AccountItems>
+                <Box>
+                    <div className={styles.inner}>
+                        <h2 className={styles.title}>Tentang Perusahaan</h2>
+                        {props.companyLogo && (
+                            <div className={styles.companyLogo}><img src={props.companyLogo} alt={'Logo'}/></div>)}
+                        <p>{props.companyDesc}</p>
+                        <div className={styles.companyInfo}>
+                            <AccountItems>
+                                <AccountItem label={'Lokasi'}
+                                             value={'Jl. Contoh 45, Sleman 1234, Yogyakarta, Indonesia'}/>
+                                <AccountItem label={'Situs'}
+                                             value={'<a href="http://sample.url" target="_blank">http://sample.url</a>'}
+                                             isHtml={true}/>
+                                <AccountItem label={'Industri'} value={'Konsultan IT'}/>
+                                <AccountItem label={'Bahasa'} value={'Bahasa Inggris'}/>
+                                <AccountItem label={'Pakaian'} value={'Kasual'}/>
+                            </AccountItems>
+                        </div>
+                        <h3 className={styles.subtitle}>Galeri</h3>
+                        <div className={styles.images}>
+                            {slideImagesHtml}
+                        </div>
                     </div>
-                    <h3 className={styles.subtitle}>Galeri</h3>
-                    <div className={styles.images}>
-                        {slideImagesHtml}
-                    </div>
-                </div>
+                </Box>
             </div>
         </div>
     )

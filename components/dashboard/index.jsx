@@ -4,7 +4,7 @@ import Router from 'next/router';
 import styles from './style.module.scss';
 import Link from "next/link";
 import {IoMdPerson, IoMdSchool, IoMdBriefcase, IoMdSettings, IoMdStar, IoMdMenu} from 'react-icons/io';
-import {AlertView, Layout, Section} from "../global";
+import {AlertView, Box, Layout, Section} from "../global";
 import UserContext from "../global/userContext";
 import {LinkBtn} from "../form";
 import {IoMdAddCircle} from "react-icons/io";

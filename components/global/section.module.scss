@@ -48,4 +48,17 @@
   background-color: $white;
   @include boxShadow;
   margin-bottom: 1rem;
+
+  &.noPadding {
+    padding: 0;
+  }
+
+  &.noMargin {
+    margin-bottom: 0 !important;
+  }
+
+  &.noVerticalPadding {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
 }

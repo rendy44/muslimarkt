@@ -1,10 +1,6 @@
 @import "../../styles/mainUtil";
 
 .action {
-  background-color: $white;
-  @include boxShadow;
-  padding: 1rem;
-
   a, button {
     width: 100%;
     margin-bottom: .5rem;
@@ -16,12 +12,8 @@
 }
 
 .header {
-  background-color: $white;
-  margin-bottom: 1rem;
-  padding: 1rem;
   display: flex;
   flex-direction: column;
-  @include boxShadow;
 
   .title {
     margin-bottom: .5rem;
@@ -90,11 +82,6 @@
 
   .block {
     .inner {
-      background-color: $white;
-      padding: 1rem;
-      @include boxShadow;
-      margin-bottom: 1rem;
-
       .title {
         margin-bottom: 1rem;
         font-size: 1.25rem;

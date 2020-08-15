@@ -376,9 +376,28 @@ AlertView.propTypes = {
 };
 
 function Box(props) {
+    let cssClass = sectionStyles.box;
+    // maybe no vertical padding.
+    if (props.isNoVerticalPadding) {
+        cssClass += ' ' + sectionStyles.noVerticalPadding;
+    }
+    // maybe no padding.
+    if (props.isNoPadding) {
+        cssClass += ' ' + sectionStyles.noPadding;
+    }
+    // maybe no margin.
+    if (props.isNoMargin) {
+        cssClass += ' ' + sectionStyles.noMargin;
+    }
     return (
-        <div className={sectionStyles.box}>{props.children}</div>
+        <div className={cssClass}>{props.children}</div>
     )
+}
+
+Box.propTypes = {
+    isNoVerticalPadding: PropTypes.bool,
+    isNoPadding: PropTypes.bool,
+    isNoMargin: PropTypes.bool
 }
 
 export {Header, LogoLink, Footer, Layout, Section, AlertView, Box};

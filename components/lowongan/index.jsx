@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Link from "next/link";
 import {IoMdPin} from 'react-icons/io';
 import {FaDollarSign} from 'react-icons/fa';
+import {Box} from "../global";
 
 function ListJobs(props) {
     return (
@@ -20,30 +21,32 @@ function JobItem(props) {
     const usedSalary = props.salaryFix ? props.salaryFix : props.salaryMin + ' - ' + props.salaryMax
     return (
         <div className={styles.job}>
-            <div className={styles.inner}>
-                <div className={styles.title}>
-                    <Link href={'/lowongan/[lowonganSlug]'}
-                          as={'/lowongan/' + props.slug}>
-                        <a><h3>{props.title}</h3></a>
-                    </Link>
-                    <div className={styles.logo}>
-                        {props.companyLogo && (<img src={props.companyLogo} alt='Logo'/>)}
+            <Box isNoMargin={true}>
+                <div className={styles.inner}>
+                    <div className={styles.title}>
+                        <Link href={'/lowongan/[lowonganSlug]'}
+                              as={'/lowongan/' + props.slug}>
+                            <a><h3>{props.title}</h3></a>
+                        </Link>
+                        <div className={styles.logo}>
+                            {props.companyLogo && (<img src={props.companyLogo} alt='Logo'/>)}
+                        </div>
                     </div>
+                    <div className={styles.company}>
+                        <Link href={'/company/company-name'}>
+                            <a>{props.companyName}</a>
+                        </Link>
+                    </div>
+                    <div className={styles.info}>
+                        <ul>
+                            <li><IoMdPin/> {props.location}</li>
+                            <li><FaDollarSign/> {usedSalary}</li>
+                        </ul>
+                    </div>
+                    <p className={styles.desc}>{truncate(props.shortDesc, 100)}</p>
+                    <p className={styles.date}>{props.postDate}</p>
                 </div>
-                <div className={styles.company}>
-                    <Link href={'/company/company-name'}>
-                        <a>{props.companyName}</a>
-                    </Link>
-                </div>
-                <div className={styles.info}>
-                    <ul>
-                        <li><IoMdPin/> {props.location}</li>
-                        <li><FaDollarSign/> {usedSalary}</li>
-                    </ul>
-                </div>
-                <p className={styles.desc}>{truncate(props.shortDesc, 100)}</p>
-                <p className={styles.date}>{props.postDate}</p>
-            </div>
+            </Box>
         </div>
     )
 }
