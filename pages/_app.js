@@ -8,14 +8,25 @@ export default class MyApp extends App {
     state = {
         user_key: '',
         is_profile_completed: false,
-        account: []
+        avatar_url: '',
+        first_name: '',
+        last_name: '',
+        email: ''
     };
 
     componentDidMount = () => {
         const freePage = ['/', '/masuk', '/daftar'];
-        const userKey = localStorage.getItem('muslimarkt-userKey');
-        if (userKey) {
-            this.setState({user_key: userKey});
+        const userData = localStorage.getItem('muslimarkt-loginData');
+
+        if (userData) {
+            this.setState({
+                user_key: userData.user_key,
+                is_profile_completed: userData.is_profile_completed,
+                avatar_url: userData.avatar_url,
+                first_name: userData.nama_depan,
+                last_name: userData.nama_belakang,
+                email: userData.email
+            });
         } else {
 
             // Detect if current page is not a free access page.
@@ -27,17 +38,29 @@ export default class MyApp extends App {
         }
     };
 
-    signIn = (userData) => {
-        localStorage.setItem('muslimarkt-userKey', userData.user_key);
+    saveLoginData = (userData) => {
+        localStorage.setItem('muslimarkt-loginData', userData);
 
-        this.setState(userData);
+        // Update global state.
+        this.setState({
+            user_key: userData.user_key,
+            is_profile_completed: userData.is_profile_completed,
+            avatar_url: userData.avatar_url,
+            first_name: userData.nama_depan,
+            last_name: userData.nama_belakang,
+            email: userData.email
+        })
     };
 
     signOut = () => {
         localStorage.removeItem('muslimarkt-userKey');
         this.setState({
             user_key: '',
-            is_profile_completed: false
+            is_profile_completed: false,
+            avatar_url: '',
+            first_name: '',
+            last_name: '',
+            email: ''
         });
     };
 
@@ -54,7 +77,7 @@ export default class MyApp extends App {
             <UserContext.Provider value={{
                 userKey: this.state.user_key,
                 isProfileCompleted: this.state.is_profile_completed,
-                signIn: this.signIn,
+                saveLoginData: this.saveLoginData,
                 signOut: this.signOut,
                 account: this.state.account,
                 updateAccount: this.updateAccount

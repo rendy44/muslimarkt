@@ -12,7 +12,7 @@ import UserContext from '../components/global/userContext';
 export default function PageMasuk() {
     const {register, handleSubmit, errors} = useForm();
     const [isLoading, setIsLoading] = useState(false);
-    const {signIn} = useContext(UserContext);
+    const {saveLoginData} = useContext(UserContext);
     const MySwal = withReactContent(Swal);
 
     const onSubmit = async (data, e) => {
@@ -25,13 +25,11 @@ export default function PageMasuk() {
                 // Handle for success error.
                 if (result.success) {
 
-                    // Save Auth.
-                    signIn(result.data);
-
-                    const routeTo = result.data.is_profile_completed ? '/dashboard' : '/dashboard/pengaturan/akun';
+                    // Save login data.
+                    saveLoginData(result.data);
 
                     // Redirect user to dashboard.
-                    Router.push(routeTo);
+                    Router.push(result.data.is_profile_completed ? '/dashboard' : '/dashboard/pengaturan/akun');
                 } else {
                     MySwal.fire({
                         icon: 'error',
