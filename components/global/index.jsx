@@ -9,8 +9,12 @@ import Link from 'next/link';
 import Router from "next/router";
 import Head from 'next/head';
 import PropTypes from 'prop-types';
-import conf from '../../global.config.json';
 import UserContext from "./userContext";
+
+const detailName = {
+    "siteName": "Muslimarkt",
+    "siteDesc": "Portal Lowongan Pekerjaan Kaum Muslimin",
+}
 
 function TopHeader() {
     return (
@@ -250,8 +254,10 @@ function Footer() {
                 <div className='frow'>
                     <div className='col-sm-1-1 col-md-4-10'>
                         <div className={footerStyles.brand}>
-                            <h3>{conf.siteName}</h3>
-                            <p className={footerStyles.desc}>{conf.siteLongDesc}</p>
+                            <h3>{detailName.siteName}</h3>
+                            <p className={footerStyles.desc}>Muslimarkt adalah portal lowongan pekerjaan kaum muslimin
+                                di Indonesia untuk membantu pengusaha muslim dan talenta muslim terhubung dalam ikatan
+                                profesionalisme.</p>
                         </div>
                     </div>
                     <div className='col-sm-1-3 col-md-2-10'>
@@ -276,7 +282,7 @@ function Footer() {
             </div>
             <div className={footerStyles.bottom}>
                 <div className='frow-container'>
-                    <p>&copy; 2020 {conf.siteName} - {conf.siteDesc}</p>
+                    <p>&copy; 2020 {detailName.siteName} - {detailName.siteDesc}</p>
                 </div>
             </div>
         </footer>
@@ -284,9 +290,8 @@ function Footer() {
 }
 
 function Layout(props) {
-    const {siteName, siteDesc} = conf;
     const {docTitle, isHideTitle, isHideHeader, isHideFooter} = props;
-    const usedTitle = docTitle ? docTitle + ' | ' + siteName : siteName + ' | ' + siteDesc;
+    const usedTitle = docTitle ? docTitle + ' | ' + detailName.siteName : detailName.siteName + ' | ' + detailName.siteDesc;
     return (
         <>
             <Head>

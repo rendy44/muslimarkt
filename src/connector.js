@@ -1,7 +1,5 @@
-import conf from '../global.config';
-
 export default class Connector {
-    baseUrl = conf.baseUr;
+    baseUrl = 'http://muslimarkt.local';
     nameSpace = '/wp-json/muslimarkt/';
 
     constructor(endpoint, method, data) {
