@@ -9,6 +9,10 @@ export default class User {
         return new Connector('login', 'post', param)
     }
 
+    static account(param) {
+        return new Connector('account', 'post', param)
+    }
+
     static update(param) {
         return new Connector('user', 'put', param)
     }

@@ -29,7 +29,7 @@ export default function PageMasuk() {
                     saveLoginData(result.data);
 
                     // Redirect user to dashboard.
-                    Router.push(result.data.is_profile_completed ? '/dashboard' : '/dashboard/pengaturan/akun');
+                    Router.push(result.data.is_profile_complete ? '/dashboard' : '/dashboard/pengaturan/akun');
                 } else {
                     MySwal.fire({
                         icon: 'error',

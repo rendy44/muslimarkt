@@ -6,28 +6,58 @@ import Router from "next/router";
 
 export default class MyApp extends App {
     state = {
-        user_key: '',
-        is_profile_complete: false,
-        avatar_url: '',
         first_name: '',
         last_name: '',
         display_name: '',
         email: '',
+        avatar_url: '',
+        day_birth: '',
+        month_birth: '',
+        year_birth: '',
         phone: '',
-        province: ''
+        address: '',
+        postal: '',
+        city: '',
+        province: '',
+        sex: '',
+        id_type: '',
+        no_id: '',
+        notes: '',
+        user_key: '',
+        is_profile_complete: false,
     };
 
     commonFields = [
-        'user_key',
-        'is_profile_complete',
-        'avatar_url',
         'first_name',
         'last_name',
         'display_name',
         'email',
+        'avatar_url',
+        'day_birth',
+        'month_birth',
+        'year_birth',
         'phone',
-        'province'
+        'address',
+        'postal',
+        'city',
+        'province',
+        'sex',
+        'id_type',
+        'no_id',
+        'notes',
+        'user_key',
+        'is_profile_complete',
     ];
+
+    uneditedFields = [
+        'display_name',
+        'email',
+        'avatar_url',
+        'phone',
+        'user_key',
+        'is_profile_complete',
+    ];
+
     prefix = 'muslimarkt-';
 
     componentDidMount = () => {
@@ -39,7 +69,10 @@ export default class MyApp extends App {
         // Loop common fields.
         this.commonFields.map(field => stateObj[field] = this.getLocal(field))
 
+        // Make sure that user key is exist.
         if (stateObj.user_key) {
+
+            // Save into state.
             this.setState(stateObj);
         } else {
 
@@ -53,19 +86,12 @@ export default class MyApp extends App {
     };
 
     saveLoginData = (userData) => {
-        const objData = {
-            user_key: userData.user_key,
-            is_profile_completed: userData.is_profile_completed,
-            avatar_url: userData.avatar_url,
-            first_name: userData.first_name,
-            last_name: userData.last_name,
-            display_name: userData.display_name,
-            email: userData.email,
-            phone: userData.phone,
-            province: userData.province
-        };
+        let objData = {};
 
-        this.commonFields.map(field => this.saveLocal(field, userData[field]));
+        this.commonFields.map((field) => {
+            this.saveLocal(field, userData[field])
+            objData[field] = userData[field];
+        });
 
         // Update global state.
         this.setState(objData)
@@ -74,37 +100,67 @@ export default class MyApp extends App {
     signOut = () => {
         this.commonFields.map(field => this.removeLocal(field));
 
-        this.setState({
-            user_key: '',
-            is_profile_complete: false,
-            avatar_url: '',
-            first_name: '',
-            last_name: '',
-            email: '',
-            phone: '',
-            province: ''
-        });
+        this.setState({});
     };
 
-    updateAccount = (data) => {
-        localStorage.setItem('muslimarkt-account', data);
+    updateAccount = (userData) => {
 
-        this.setState({account: data})
+        // console.log(userData)
+        // let objData = {};
+
+        // Loop common fields.
+        this.commonFields.map((field) => {
+            this.saveLocal(field, userData[field])
+            // objData[field] = userData[field];
+        });
+
+        // console.log(objData)
+        this.setState(userData)
     };
 
     render() {
         const {Component, pageProps} = this.props;
-        const {avatar_url, first_name, display_name, last_name, email, phone, province, user_key, is_profile_complete} = this.state;
+        const {
+            first_name,
+            last_name,
+            display_name,
+            email,
+            avatar_url,
+            day_birth,
+            month_birth,
+            year_birth,
+            phone,
+            address,
+            postal,
+            city,
+            province,
+            sex,
+            id_type,
+            no_id,
+            notes,
+            user_key,
+            is_profile_complete,
+        } = this.state;
 
         return (
             <UserContext.Provider value={{
-                userAvatarUrl: avatar_url,
                 userFirstName: first_name,
                 userLastName: last_name,
                 userDisplayName: display_name,
                 userEmail: email,
+                userAvatarUrl: avatar_url,
+                userDayBirth: day_birth,
+                userMonthBirth: month_birth,
+                userYearBirth: year_birth,
                 userPhone: phone,
+                userAddress: address,
+                userPostal: postal,
+                userCity: city,
                 userProvince: province,
+                userSex: sex,
+                userIdType: id_type,
+                userNoId: no_id,
+                userNotes: notes,
                 userKey: user_key,
                 isProfileComplete: is_profile_complete,
                 saveLoginData: this.saveLoginData,

@@ -1,5 +1,6 @@
 import {DashboardSettingLayout} from "../../../../components/dashboard";
 import {DropDown, FormAction, InputText, TextArea} from "../../../../components/form";
+import Router from 'next/router';
 import {useForm} from "react-hook-form";
 import {useContext, useState} from 'react';
 import UserContext from "../../../../components/global/userContext";
@@ -8,11 +9,28 @@ import Swal from "sweetalert2";
 import User from "../../../../src/user";
 import provinces from '../../../../src/provinsi.json';
 
-export default function PageEditAkun() {
+export default function PageEditAkun(props) {
     const {register, handleSubmit, errors} = useForm();
     const [isLoading, setIsLoading] = useState(false);
-    const {userKey, account, updateAccount} = useContext(UserContext);
+    const {
+        userKey,
+        updateAccount,
+        userFirstName,
+        userLastName,
+        userDayBirth,
+        userMonthBirth,
+        userYearBirth,
+        userAddress,
+        userPostal,
+        userCity,
+        userProvince,
+        userSex,
+        userIdType,
+        userNoId,
+        userNotes,
+    } = useContext(UserContext);
     const MySwal = withReactContent(Swal);
+
     let tglValue = [];
     for (let i = 1; i <= 31; i++) {
         tglValue.push(i);
@@ -34,16 +52,19 @@ export default function PageEditAkun() {
             .then((result) => {
                 setIsLoading(false);
 
-                // Show alert based on request status.
-                const alertType = result.success ? 'success' : 'error';
-                MySwal.fire({
-                    icon: alertType,
-                    text: result.data,
-                });
-
                 // Update the state when update is success.
                 if (result.success) {
-                    updateAccount(data);
+
+                    // Update account.
+                    updateAccount(result.data);
+
+                    // Back to view.
+                    Router.push('/dashboard/pengaturan/akun')
+                } else {
+                    MySwal.fire({
+                        icon: 'error',
+                        text: result.data,
+                    });
                 }
             })
             .catch((err) => {
@@ -54,139 +75,143 @@ export default function PageEditAkun() {
                 });
             })
     };
+
     return (
         <DashboardSettingLayout title={'Sunting Akun'} isNoAction={true}>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className='frow'>
                     <div className='col-sm-1-2'>
                         <InputText
-                            name={'nama_depan'}
+                            name={'first_name'}
                             label={'Nama Depan'}
                             placeholder={'Nama depan'}
                             handler={register({required: true})}
                             errorsRef={errors}
-                            value={account.nama_depan}
+                            value={userFirstName}
                         />
                     </div>
                     <div className='col-sm-1-2'>
                         <InputText
-                            name={'nama_belakang'}
+                            name={'last_name'}
                             label={'Nama Belakang'}
                             placeholder={'Nama belakang'}
                             handler={register}
                             errorsRef={errors}
-                            value={account.nama_belakang}
+                            value={userLastName}
                         />
                     </div>
                     <div className='col-sm-1-3'>
                         <DropDown
-                            name={'jenis_kelamin'}
+                            name={'sex'}
                             label={'Jenis Kelamin'}
                             handler={register({required: true})}
                             errorsRef={errors}
                             values={['Laki-laki', 'Perempuan']}
-                            value={account.jenis_kelamin}
+                            value={userSex}
                         />
                     </div>
                     <div className='col-sm-2-3'>
                         <div className='frow'>
                             <div className='col-xs-1-3'>
                                 <DropDown
-                                    name={'tanggal_lahir'}
+                                    name={'day_birth'}
                                     label={'Kelahiran'}
                                     handler={register({required: true})}
                                     errorsRef={errors}
                                     values={tglValue}
-                                    value={account.tanggal_lahir}
+                                    value={userDayBirth}
                                 />
                             </div>
                             <div className='col-xs-1-3'>
                                 <DropDown
-                                    name={'bulan_lahir'}
+                                    name={'month_birth'}
                                     handler={register({required: true})}
                                     errorsRef={errors}
                                     values={['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des']}
-                                    value={account.bulan_lahir}
+                                    value={userMonthBirth}
                                 />
                             </div>
                             <div className='col-xs-1-3'>
                                 <DropDown
-                                    name={'tahun_lahir'}
+                                    name={'year_birth'}
                                     handler={register({required: true})}
                                     errorsRef={errors}
                                     values={thnValue}
-                                    value={account.tahun_lahir}
+                                    value={userYearBirth}
                                 />
                             </div>
                         </div>
                     </div>
                     <div className='col-sm-2-3'>
                         <InputText
-                            name={'alamat'}
+                            name={'address'}
                             label={'Alamat'}
                             placeholder={'Alamat lengkap'}
                             handler={register({required: true})}
                             errorsRef={errors}
-                            value={account.alamat}
+                            value={userAddress}
                         />
                     </div>
                     <div className='col-sm-1-3'>
                         <InputText
-                            name={'kode_pos'}
+                            name={'postal'}
                             label={'Kode Pos'}
                             placeholder={'Kode pos'}
                             handler={register({required: true})}
                             errorsRef={errors}
-                            value={account.kode_pos}
+                            value={userPostal}
                         />
                     </div>
                     <div className='col-sm-1-2'>
                         <InputText
-                            name={'kota'}
+                            name={'city'}
                             label={'Kota/Kab'}
                             placeholder={'Nama kota atau kabupaten'}
                             handler={register({required: true})}
                             errorsRef={errors}
-                            value={account.kota}
+                            value={userCity}
                         />
                     </div>
                     <div className='col-sm-1-2'>
                         <DropDown
-                            name={'provinsi'}
+                            name={'province'}
                             label={'Provinsi'}
                             handler={register({required: true})}
                             errorsRef={errors}
                             values={provinces}
-                            value={account.provinsi}
+                            value={userProvince}
                         />
                     </div>
                     <div className='col-sm-1-3'>
                         <DropDown
-                            name={'jenis_identitas'}
+                            name={'id_type'}
                             label={'Jenis Sdentitas'}
                             values={['KTP', 'SIM', 'Passport']}
                             handler={register}
                             errorsRef={errors}
+                            value={userIdType}
                         />
                     </div>
                     <div className='col-sm-2-3'>
                         <InputText
-                            name={'no_identitas'}
+                            name={'no_id'}
                             label={'No. Identitas'}
                             placeholder={'No. identitas'}
                             handler={register({required: true})}
                             errorsRef={errors}
-                            value={account.no_identitas}
+                            value={userNoId}
                         />
                     </div>
                     <div className='col-xs-1-1'>
                         <TextArea
-                            name={'catatan'}
+                            name={'notes'}
                             label={'Catatan'}
                             placeholder={'Catatan tentang diri Anda'}
                             rows={6}
                             handler={register({required: true})}
-                            errorsRef={errors}/>
+                            errorsRef={errors}
+                            value={userNotes}
+                        />
                     </div>
                 </div>
                 <FormAction

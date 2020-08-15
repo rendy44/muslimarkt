@@ -1,8 +1,28 @@
 import {DashboardSettingLayout, ListAction} from "../../../../components/dashboard";
 import {IoMdSettings} from 'react-icons/io';
 import {AccountHeader, AccountItem, AccountItems} from "../../../../components/dashboard/akun";
+import UserContext from "../../../../components/global/userContext";
+import {useContext} from "react";
 
 export default function PageAkun() {
+    const {
+        userKey,
+        updateAccount,
+        userFirstName,
+        userLastName,
+        userDisplayName,
+        userDayBirth,
+        userMonthBirth,
+        userYearBirth,
+        userAddress,
+        userPostal,
+        userCity,
+        userProvince,
+        userSex,
+        userIdType,
+        userNoId,
+        userNotes,
+    } = useContext(UserContext);
     return (
         <DashboardSettingLayout title={'Akun'} isHideTitle={true}>
             <ListAction
@@ -13,13 +33,14 @@ export default function PageAkun() {
             >
                 <AccountHeader/>
                 <AccountItems>
-                    <AccountItem label={'Nama Lengkap'} value={'Fulan bin Abdullah'}/>
-                    <AccountItem label={'Jenis Kelamin'} value={'Laki-laki'}/>
-                    <AccountItem label={'Tanggal Lahir'} value={'14 Agu 1994'}/>
-                    <AccountItem label={'Alamat'} value={'Jl Contoh No 1000, Kab. Jauh, Jawa Timur, 62111'}/>
-                    <AccountItem label={'No KTP'} value={'123010000013'}/>
-                    <AccountItem label={'Catatan'}
-                                 value={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tristique ante vel dui porttitor volutpat.'}/>
+                    <AccountItem label={'Nama Lengkap'} value={userDisplayName}/>
+                    <AccountItem label={'Jenis Kelamin'} value={userSex}/>
+                    <AccountItem label={'Tanggal Lahir'}
+                                 value={userDayBirth + ' ' + userMonthBirth + ' ' + userYearBirth}/>
+                    <AccountItem label={'Alamat'}
+                                 value={userAddress && userCity && userProvince && userPostal ? userAddress + ' ' + userCity + ', ' + userProvince + ' ' + userPostal : ''}/>
+                    <AccountItem label={'No ' + userIdType} value={userNoId}/>
+                    <AccountItem label={'Catatan'} value={userNotes}/>
                 </AccountItems>
             </ListAction>
         </DashboardSettingLayout>

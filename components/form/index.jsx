@@ -24,7 +24,7 @@ function InputText(props) {
             <label><span>{props.label ? props.label : '\u00A0'}</span>
                 <input
                     name={props.name}
-                    type={inputType} value={props.value}
+                    type={inputType} defaultValue={props.value}
                     placeholder={props.placeholder ? props.placeholder : props.label}
                     ref={props.handler} disabled={props.isDisabled}/>
                 {props.errorsRef[props.name] && <span>{errMsg}</span>}
@@ -56,7 +56,7 @@ function DropDown(props) {
     return (
         <FormGroup noPadding={props.noPadding}>
             <label><span>{props.label ? props.label : '\u00A0'}</span>
-                <select name={props.name} ref={props.handler} disabled={props.isDisabled}>
+                <select name={props.name} ref={props.handler} disabled={props.isDisabled} defaultValue={props.value}>
                     {dropDownHtml}
                 </select>
                 {props.errorsRef[props.name] && <span>{errMsg}</span>}
@@ -109,7 +109,7 @@ function TextArea(props) {
                 <textarea
                     name={props.name}
                     placeholder={props.placeholder ? props.placeholder : props.label}
-                    ref={props.handler} value={props.value}
+                    ref={props.handler} defaultValue={props.value}
                     rows={props.rows ? props.rows : 3}/>
                 {props.errorsRef[props.name] && <span>{errMsg}</span>}
             </label>
