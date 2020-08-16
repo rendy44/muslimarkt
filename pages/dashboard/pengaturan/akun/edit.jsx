@@ -52,20 +52,25 @@ export default function PageEditAkun(props) {
             .then((result) => {
                 setIsLoading(false);
 
+                let alertIcon = 'error',
+                    alertMsg = result.data;
+
                 // Update the state when update is success.
                 if (result.success) {
 
                     // Update account.
                     updateAccount(result.data);
 
-                    // Back to view.
-                    Router.push('/dashboard/pengaturan/akun')
-                } else {
-                    MySwal.fire({
-                        icon: 'error',
-                        text: result.data,
-                    });
+                    // Change alert.
+                    alertIcon = 'success';
+                    alertMsg = 'Sukses diperbarui';
                 }
+
+                MySwal.fire({
+                    icon: alertIcon,
+                    text: alertMsg,
+                });
+
             })
             .catch((err) => {
                 setIsLoading(false);

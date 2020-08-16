@@ -2,6 +2,7 @@ import Link from 'next/link';
 import styles from './style.module.scss';
 import btnStyles from './button.module.scss';
 import PropTypes from 'prop-types';
+import {useState, useEffect} from 'react';
 
 function FormGroup(props) {
     const groupCss = props.noPadding ? styles.formGroup + ' ' + styles.noPadding : styles.formGroup;
@@ -47,16 +48,26 @@ InputText.propTypes = {
 };
 
 function DropDown(props) {
+    const [value, setValue] = useState('');
     const errMsg = props.validationMessage ? props.validationMessage : props.label + ' harus diisi.';
     let dropDownHtml = [];
     props.values.map((val, index) => {
         dropDownHtml.push(<option key={index}>{val}</option>);
     });
 
+    const onChange = props.onChange ? props.onChange : (e) => {
+        setValue(e.target.value);
+    }
+
+    useEffect(() => {
+        setValue(props.value)
+    }, [])
+
     return (
         <FormGroup noPadding={props.noPadding}>
             <label><span>{props.label ? props.label : '\u00A0'}</span>
-                <select name={props.name} ref={props.handler} disabled={props.isDisabled} defaultValue={props.value}>
+                <select name={props.name} ref={props.handler} disabled={props.isDisabled} value={value}
+                        onChange={onChange}>
                     {dropDownHtml}
                 </select>
                 {props.errorsRef[props.name] && <span>{errMsg}</span>}
@@ -74,7 +85,8 @@ DropDown.propTypes = {
     errorsRef: PropTypes.object.isRequired,
     validationMessage: PropTypes.string,
     noPadding: PropTypes.bool,
-    isDisabled: PropTypes.bool
+    isDisabled: PropTypes.bool,
+    onChange: PropTypes.func
 };
 
 function Checkbox(props) {

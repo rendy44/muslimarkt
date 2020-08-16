@@ -3,6 +3,7 @@ import App from 'next/app';
 import UserContext from '../components/global/userContext';
 import '../styles/app.scss';
 import Router from "next/router";
+import user from "../src/user";
 
 export default class MyApp extends App {
     state = {
@@ -105,16 +106,11 @@ export default class MyApp extends App {
 
     updateAccount = (userData) => {
 
-        // console.log(userData)
-        // let objData = {};
-
         // Loop common fields.
         this.commonFields.map((field) => {
             this.saveLocal(field, userData[field])
-            // objData[field] = userData[field];
         });
 
-        // console.log(objData)
         this.setState(userData)
     };
 
