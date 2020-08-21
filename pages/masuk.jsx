@@ -9,35 +9,33 @@ import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 import UserContext from '../components/global/userContext';
 
-export default function PageMasuk() {
+const PageMasuk = () => {
     const {register, handleSubmit, errors} = useForm();
     const [isLoading, setIsLoading] = useState(false);
     const {saveLoginData} = useContext(UserContext);
     const MySwal = withReactContent(Swal);
-
     const onSubmit = async (data, e) => {
         setIsLoading(true);
         User.login(data)
-            .then(response => response.json())
-            .then((result) => {
+            .then(result => {
                 setIsLoading(false);
 
                 // Handle for success error.
-                if (result.success) {
+                if (result.data.success) {
 
                     // Save login data.
-                    saveLoginData(result.data);
+                    saveLoginData(result.data.data);
 
                     // Redirect user to dashboard.
                     Router.push(result.data.is_profile_complete ? '/dashboard' : '/dashboard/pengaturan/akun');
                 } else {
                     MySwal.fire({
                         icon: 'error',
-                        text: result.data,
+                        text: result.data.data,
                     });
                 }
             })
-            .catch((err) => {
+            .catch(err => {
                 setIsLoading(false);
                 MySwal.fire({
                     icon: 'error',
@@ -45,7 +43,6 @@ export default function PageMasuk() {
                 });
             })
     };
-    const buttonLbl = isLoading ? 'Loading...' : 'Masuk';
 
     return (
         <Layout docTitle='Masuk' isHideTitle={true} isHideHeader={true} isHideFooter={true}>
@@ -71,10 +68,12 @@ export default function PageMasuk() {
                             label={'Kata Sandi'}
                             noPadding={true}
                         />
-                        <FormAction label={buttonLbl} otherLink={'/'} disabled={isLoading}/>
+                        <FormAction label={isLoading ? 'Loading...' : 'Masuk'} otherLink={'/'} disabled={isLoading}/>
                     </form>
                 </div>
             </Section>
         </Layout>
     )
 }
+
+export default PageMasuk;

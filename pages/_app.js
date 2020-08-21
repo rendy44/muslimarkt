@@ -2,10 +2,11 @@ import React from 'react';
 import App from 'next/app';
 import UserContext from '../components/global/userContext';
 import '../styles/app.scss';
-import Router from "next/router";
-import user from "../src/user";
+import Router from 'next/router';
+import {destroyCookie, parseCookies, setCookie} from 'nookies'
+import User from "../src/user";
 
-export default class MyApp extends App {
+class MyApp extends App {
     state = {
         first_name: '',
         last_name: '',
@@ -50,68 +51,75 @@ export default class MyApp extends App {
         'is_profile_complete',
     ];
 
-    uneditedFields = [
-        'display_name',
-        'email',
-        'avatar_url',
-        'phone',
-        'user_key',
-        'is_profile_complete',
-    ];
-
-    prefix = 'muslimarkt-';
-
-    componentDidMount = () => {
-        // console.log(this.state);
+    componentDidMount = async () => {
+        // Define freeAccess Page.
         const freePage = ['/', '/masuk', '/daftar'];
 
-        let stateObj = {};
-
-        // Loop common fields.
-        this.commonFields.map(field => stateObj[field] = this.getLocal(field))
+        // Get key from cookie.
+        const userKey = this.getLocal('key');
 
         // Make sure that user key is exist.
-        if (stateObj.user_key) {
+        if (userKey) {
 
-            // Save into state.
-            this.setState(stateObj);
+            // Fetch user details.
+            User.account({key: userKey})
+                .then(result => {
+
+                    // Validate result.
+                    if (result.data.success) {
+
+                        this.saveLoginData(result.data.data);
+                    } else {
+                        this.signOut();
+                    }
+                })
         } else {
 
             // Detect if current page is not a free access page.
             if (!freePage.includes(Router.route)) {
 
                 // Redirect to login page.
-                Router.push('/masuk')
+                await Router.push('/masuk')
             }
         }
     };
 
-    saveLoginData = (userData) => {
-        let objData = {};
+    saveLoginData = async (userData) => {
+        // Prepare state obj.
+        let stateObj = {};
 
-        this.commonFields.map((field) => {
-            this.saveLocal(field, userData[field])
-            objData[field] = userData[field];
-        });
+        // Save key into cookie.
+        this.saveLocal('key', userData.user_key)
 
-        // Update global state.
-        this.setState(objData)
+        // Parse obj.
+        this.commonFields.map(field => stateObj[field] = userData[field]);
+
+        // Update user state.
+        await this.setState(stateObj);
     };
 
-    signOut = () => {
-        this.commonFields.map(field => this.removeLocal(field));
+    signOut = async () => {
+        // Prepare state obj.
+        let stateObj = {};
 
-        this.setState({});
+        // Remove key from cookie.
+        this.removeLocal('key')
+
+        // Parse obj.
+        this.commonFields.map(field => stateObj[field] = '');
+
+        // Update user state.
+        await this.setState(stateObj);
     };
 
-    updateAccount = (userData) => {
+    updateAccount = async (userData) => {
 
         // Loop common fields.
         this.commonFields.map((field) => {
             this.saveLocal(field, userData[field])
         });
 
-        this.setState(userData)
+        await this.setState(userData)
     };
 
     render() {
@@ -169,14 +177,25 @@ export default class MyApp extends App {
     }
 
     saveLocal(key, value) {
-        localStorage.setItem(this.prefix + key, value);
+        // localStorage.setItem(this.prefix + key, value);
+        setCookie(null, key, value, {
+            maxAge: 30 * 24 * 60 * 60,
+            path: '/',
+        })
     }
 
     getLocal(key) {
-        return localStorage.getItem(this.prefix + key);
+        let cookies = this.getLocals()
+        return cookies[key];
+    }
+
+    getLocals() {
+        return parseCookies();
     }
 
     removeLocal(key) {
-        localStorage.removeItem(this.prefix + key);
+        destroyCookie(null, key);
     }
 }
+
+export default MyApp;

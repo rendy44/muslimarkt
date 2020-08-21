@@ -9,7 +9,7 @@ export default function PageKeluar() {
         signOut();
 
         Router.push('/');
-    });
+    }, []);
 
     return (
         <>
