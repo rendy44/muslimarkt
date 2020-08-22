@@ -4,7 +4,7 @@ export default class Connector {
     baseUrl = 'http://muslimarkt.local';
     nameSpace = '/wp-json/muslimarkt/';
 
-    constructor(endpoint, method, data) {
+    constructor(endpoint, method, data = []) {
         const apiUrl = this.baseUrl + this.nameSpace;
         switch (method) {
             case 'post':

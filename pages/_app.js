@@ -62,7 +62,7 @@ export default class MyApp extends App {
         if (userKey) {
 
             // Fetch user details.
-            User.account({key: userKey})
+            User.detail(userKey)
                 .then(result => {
 
                     // Validate result.
@@ -72,6 +72,9 @@ export default class MyApp extends App {
                     } else {
                         this.signOut();
                     }
+                })
+                .catch(err => {
+                    console.log(err)
                 })
         } else {
 
@@ -98,10 +101,6 @@ export default class MyApp extends App {
 
         // Update user state.
         await this.setState(stateObj);
-
-        console.log(userData)
-        console.log(stateObj)
-        console.log(this.state)
     };
 
     signOut() {

@@ -9,8 +9,8 @@ export default class User {
         return new Connector('login', 'post', param)
     }
 
-    static account(param) {
-        return new Connector('account', 'post', param)
+    static detail(key) {
+        return new Connector('user?key='+ key, 'get')
     }
 
     static update(param) {
