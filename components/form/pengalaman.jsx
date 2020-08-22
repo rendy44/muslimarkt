@@ -37,7 +37,7 @@ export default function PengalamanForm(props) {
                     />
                 </div>
                 <div className='col-sm-4-11'>
-                    <div className='frow'>
+                    <div className='frow items-start'>
                         <div className='col-xs-1-2 col-sm-1-2'>
                             <DropDown
                                 name={'bulan_mulai'}
@@ -58,7 +58,7 @@ export default function PengalamanForm(props) {
                     </div>
                 </div>
                 <div className='col-sm-4-11'>
-                    <div className='frow'>
+                    <div className='frow items-start'>
                         <div className='col-xs-1-2 col-sm-1-2'>
                             <DropDown
                                 name={'bulan_selesai'}

@@ -83,7 +83,7 @@ export default function PageEditAkun(props) {
     return (
         <DashboardSettingLayout title={'Sunting Akun'} isNoAction={true}>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <div className='frow'>
+                <div className='frow items-start'>
                     <div className='col-sm-1-2'>
                         <InputText
                             name={'first_name'}

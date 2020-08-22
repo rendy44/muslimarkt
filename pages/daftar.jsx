@@ -17,21 +17,21 @@ export default function PageDaftar() {
     const onSubmit = async (data, e) => {
         setIsLoading(true);
         User.add(data)
-            .then(response => response.json())
-            .then((data) => {
+            .then(result => {
                 setIsLoading(false);
+
                 let swalType = 'error';
                 // Handle for success error.
-                if (data.success) {
+                if (result.data.success) {
                     swalType = 'success';
                     e.target.reset();
                 }
                 const MySwal = withReactContent(Swal);
                 MySwal.fire({
                     icon: swalType,
-                    text: data.data,
+                    text: result.data.data,
                     onClose: () => {
-                        if (data.success) {
+                        if (result.data.success) {
                             router.push('/masuk');
                         }
                     }

@@ -5,7 +5,11 @@ import PropTypes from 'prop-types';
 import {useState, useEffect} from 'react';
 
 function FormGroup(props) {
-    const groupCss = props.noPadding ? styles.formGroup + ' ' + styles.noPadding : styles.formGroup;
+    let groupCss = props.noPadding ? styles.formGroup + ' ' + styles.noPadding : styles.formGroup;
+    // Maybe add extra class.
+    if (props.extraClass) {
+        groupCss += ' ' + props.extraClass
+    }
     return (
         <div className={groupCss}>
             {props.children}
@@ -14,21 +18,21 @@ function FormGroup(props) {
 }
 
 FormGroup.propTypes = {
-    noPadding: PropTypes.bool
+    noPadding: PropTypes.bool,
+    extraClass: PropTypes.string
 };
 
 function InputText(props) {
-    const inputType = props.type ?? 'text';
-    const errMsg = props.validationMessage ? props.validationMessage : props.label + ' harus diisi.';
     return (
         <FormGroup noPadding={props.noPadding}>
-            <label><span>{props.label ? props.label : '\u00A0'}</span>
+            <label>
+                <span>{props.label ?? '\u00A0'}</span>
                 <input
                     name={props.name}
-                    type={inputType} defaultValue={props.value}
-                    placeholder={props.placeholder ? props.placeholder : props.label}
+                    type={props.type ?? 'text'} defaultValue={props.value}
+                    placeholder={props.placeholder ?? props.label}
                     ref={props.handler} disabled={props.isDisabled}/>
-                {props.errorsRef[props.name] && <span>{errMsg}</span>}
+                {props.errorsRef[props.name] && <span className={styles.alert}>{props.validationMessage ?? 'Harus diisi.'}</span>}
             </label>
         </FormGroup>
     )
@@ -49,7 +53,6 @@ InputText.propTypes = {
 
 function DropDown(props) {
     const [value, setValue] = useState('');
-    const errMsg = props.validationMessage ? props.validationMessage : props.label + ' harus diisi.';
     let dropDownHtml = [];
     props.values.map((val, index) => {
         dropDownHtml.push(<option key={index}>{val}</option>);
@@ -65,12 +68,12 @@ function DropDown(props) {
 
     return (
         <FormGroup noPadding={props.noPadding}>
-            <label><span>{props.label ? props.label : '\u00A0'}</span>
+            <label><span>{props.label ?? '\u00A0'}</span>
                 <select name={props.name} ref={props.handler} disabled={props.isDisabled} value={value}
                         onChange={onChange}>
                     {dropDownHtml}
                 </select>
-                {props.errorsRef[props.name] && <span>{errMsg}</span>}
+                {props.errorsRef[props.name] && <span className={styles.alert}>{props.validationMessage ?? 'Harus diisi.'}</span>}
             </label>
         </FormGroup>
     )
@@ -90,11 +93,11 @@ DropDown.propTypes = {
 };
 
 function Checkbox(props) {
-    const usedValue = props.value ? props.value : 1;
     return (
-        <FormGroup noPadding={props.noPadding}>
+        <FormGroup noPadding={props.noPadding} extraClass={styles.cbox}>
             <label className="row-start">
-                <input type="checkbox" name={props.name} value={usedValue} ref={props.handler} onChange={props.onChange}
+                <input type="checkbox" name={props.name} value={props.value ?? 1} ref={props.handler}
+                       onChange={props.onChange}
                        checked={props.isChecked}/> <span className={styles.cb}>{props.label}</span>
             </label>
         </FormGroup>
@@ -114,16 +117,15 @@ Checkbox.propTypes = {
 };
 
 function TextArea(props) {
-    const errMsg = props.validationMessage ? props.validationMessage : props.label + ' harus diisi.';
     return (
         <FormGroup noPadding={props.noPadding}>
-            <label><span>{props.label ? props.label : '\u00A0'}</span>
+            <label><span>{props.label ?? '\u00A0'}</span>
                 <textarea
                     name={props.name}
-                    placeholder={props.placeholder ? props.placeholder : props.label}
+                    placeholder={props.placeholder ?? props.label}
                     ref={props.handler} defaultValue={props.value}
-                    rows={props.rows ? props.rows : 3}/>
-                {props.errorsRef[props.name] && <span>{errMsg}</span>}
+                    rows={props.rows ?? 3}/>
+                {props.errorsRef[props.name] && <span className={styles.alert}>{props.validationMessage ?? 'Harus diisi.'}</span>}
             </label>
         </FormGroup>
     )
@@ -182,7 +184,7 @@ LinkBtn.propTypes = {
 function FormAction(props) {
     return (
         <div className={btnStyles.action}>
-            <Btn isSubmit={true} label={props.label} variant={props.variant ? props.variant : 'main'}
+            <Btn isSubmit={true} label={props.label} variant={props.variant ?? 'main'}
                  disabled={props.disabled}/>
             {props.otherLink && (<LinkBtn href={props.otherLink} label={'Batal'} variant={'transparent'}/>)}
         </div>
