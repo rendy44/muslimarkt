@@ -6,7 +6,7 @@ import Router from 'next/router';
 import {destroyCookie, parseCookies, setCookie} from 'nookies'
 import User from "../src/user";
 
-class MyApp extends App {
+export default class MyApp extends App {
     state = {
         first_name: '',
         last_name: '',
@@ -84,21 +84,27 @@ class MyApp extends App {
         }
     };
 
-    saveLoginData = async (userData) => {
+    saveLoginData = async (userData, saveKey = true) => {
         // Prepare state obj.
         let stateObj = {};
 
-        // Save key into cookie.
-        this.saveLocal('key', userData.user_key)
+        if (saveKey) {
+            // Save key into cookie.
+            this.saveLocal('key', userData.user_key)
+        }
 
         // Parse obj.
         this.commonFields.map(field => stateObj[field] = userData[field]);
 
         // Update user state.
         await this.setState(stateObj);
+
+        console.log(userData)
+        console.log(stateObj)
+        console.log(this.state)
     };
 
-    signOut = async () => {
+    signOut() {
         // Prepare state obj.
         let stateObj = {};
 
@@ -109,17 +115,7 @@ class MyApp extends App {
         this.commonFields.map(field => stateObj[field] = '');
 
         // Update user state.
-        await this.setState(stateObj);
-    };
-
-    updateAccount = async (userData) => {
-
-        // Loop common fields.
-        this.commonFields.map((field) => {
-            this.saveLocal(field, userData[field])
-        });
-
-        await this.setState(userData)
+        this.setState(stateObj);
     };
 
     render() {
@@ -147,30 +143,31 @@ class MyApp extends App {
         } = this.state;
 
         return (
-            <UserContext.Provider value={{
-                userFirstName: first_name,
-                userLastName: last_name,
-                userDisplayName: display_name,
-                userEmail: email,
-                userAvatarUrl: avatar_url,
-                userDayBirth: day_birth,
-                userMonthBirth: month_birth,
-                userYearBirth: year_birth,
-                userPhone: phone,
-                userAddress: address,
-                userPostal: postal,
-                userCity: city,
-                userProvince: province,
-                userSex: sex,
-                userIdType: id_type,
-                userNoId: no_id,
-                userNotes: notes,
-                userKey: user_key,
-                isProfileComplete: is_profile_complete,
-                saveLoginData: this.saveLoginData,
-                signOut: this.signOut,
-                updateAccount: this.updateAccount
-            }}>
+            <UserContext.Provider
+                value={{
+                    state: this.state,
+                    userFirstName: first_name,
+                    userLastName: last_name,
+                    userDisplayName: display_name,
+                    userEmail: email,
+                    userAvatarUrl: avatar_url,
+                    userDayBirth: day_birth,
+                    userMonthBirth: month_birth,
+                    userYearBirth: year_birth,
+                    userPhone: phone,
+                    userAddress: address,
+                    userPostal: postal,
+                    userCity: city,
+                    userProvince: province,
+                    userSex: sex,
+                    userIdType: id_type,
+                    userNoId: no_id,
+                    userNotes: notes,
+                    userKey: user_key,
+                    isProfileComplete: is_profile_complete,
+                    saveLoginData: this.saveLoginData,
+                    signOut: this.signOut
+                }}>
                 <Component {...pageProps} />
             </UserContext.Provider>
         );
@@ -197,5 +194,3 @@ class MyApp extends App {
         destroyCookie(null, key);
     }
 }
-
-export default MyApp;

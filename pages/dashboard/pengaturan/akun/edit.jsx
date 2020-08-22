@@ -14,7 +14,7 @@ export default function PageEditAkun(props) {
     const [isLoading, setIsLoading] = useState(false);
     const {
         userKey,
-        updateAccount,
+        saveLoginData,
         userFirstName,
         userLastName,
         userDayBirth,
@@ -48,18 +48,17 @@ export default function PageEditAkun(props) {
 
         // Process update.
         User.update(data)
-            .then(response => response.json())
-            .then((result) => {
+            .then(result => {
                 setIsLoading(false);
 
                 let alertIcon = 'error',
-                    alertMsg = result.data;
+                    alertMsg = result.data.data;
 
                 // Update the state when update is success.
-                if (result.success) {
+                if (result.data.success) {
 
                     // Update account.
-                    updateAccount(result.data);
+                    saveLoginData(result.data.data, false);
 
                     // Change alert.
                     alertIcon = 'success';
@@ -76,7 +75,7 @@ export default function PageEditAkun(props) {
                 setIsLoading(false);
                 MySwal.fire({
                     icon: 'error',
-                    text: err.data,
+                    text: err.message,
                 });
             })
     };

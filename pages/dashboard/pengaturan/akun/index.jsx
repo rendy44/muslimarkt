@@ -6,10 +6,6 @@ import {useContext} from "react";
 
 export default function PageAkun() {
     const {
-        userKey,
-        updateAccount,
-        userFirstName,
-        userLastName,
         userDisplayName,
         userDayBirth,
         userMonthBirth,
