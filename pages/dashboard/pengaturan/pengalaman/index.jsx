@@ -1,36 +1,56 @@
+import React, {useContext, useEffect, useState} from "react";
 import {DashboardSettingLayout} from "../../../../components/dashboard";
 import {ExperienceItem, Experiences} from "../../../../components/dashboard/pengalaman";
+import Experience from "../../../../src/experience";
+import UserContext from "../../../../components/global/userContext";
 
 export default function PagePengalaman() {
+    const {userKey} = useContext(UserContext);
+    const [contentHtml, setContentHtml] = useState([]);
+    const [isLoaded, setIsLoaded] = useState(false);
+    useEffect(() => {
+
+        let experienceHtml = [];
+
+        // Only fetch if items hasn't been loaded yet.
+        if (userKey && !isLoaded) {
+
+            // Fetch experiences.
+            Experience.get(userKey)
+                .then(result => {
+
+                    // Update load status.
+                    setIsLoaded(true);
+
+                    // Validate.
+                    if (result.data.success) {
+
+                        // Loop data.
+                        result.data.data.map((experience, index) => {
+                            return (
+                                experienceHtml.push(<ExperienceItem
+                                    key={index}
+                                    dbId={experience.id}
+                                    slug={experience.slug}
+                                    role={experience.role}
+                                    position={experience.position}
+                                    companyName={experience.company}
+                                    companyLocation={experience.province}
+                                    dateStart={experience.month_start + ' ' + experience.year_start}
+                                    companyIndustry={experience.industry}
+                                />)
+                            )
+                        });
+
+                        setContentHtml(experienceHtml);
+                    }
+                })
+        }
+    }, [userKey, isLoaded])
     return (
         <DashboardSettingLayout title={'Pengalaman'}>
             <Experiences>
-                <ExperienceItem
-                    dbId={'0'}
-                    role={'WordPress Developer'}
-                    position={'Pegawai (non-manajemen & non-supervisor)'}
-                    companyName={'PT. Contoh Perusahaan'}
-                    companyLocation={'Yogyakarta, Indonesia'}
-                    dateStart={'Jan 2018'}
-                    companyIndustry={'Komputer / Teknik Informatika (Perangkat Lunak)'}/>
-                <ExperienceItem
-                    dbId={'1'}
-                    role={'Front-end Developer'}
-                    position={'Pegawai (non-manajemen & non-supervisor)'}
-                    companyName={'PT. Perusahaan Lain'}
-                    companyLocation={'Malang, Indonesia'}
-                    dateStart={'Feb 2014'}
-                    dateEnd={'Des 2018'}
-                    companyIndustry={'Komputer / Teknik Informatika (Perangkat Lunak)'}/>
-                <ExperienceItem
-                    dbId={'1'}
-                    role={'.Net Developer'}
-                    position={'Pegawai (non-manajemen & non-supervisor)'}
-                    companyName={'PT. Contoh Nama'}
-                    companyLocation={'Jakarta, Indonesia'}
-                    dateStart={'Mar 2010'}
-                    dateEnd={'Jan 2014'}
-                    companyIndustry={'Komputer / Teknik Informatika (Perangkat Lunak)'}/>
+                {isLoaded ? contentHtml : 'Loading...'}
             </Experiences>
         </DashboardSettingLayout>
     )

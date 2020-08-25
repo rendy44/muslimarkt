@@ -29,14 +29,14 @@ function ExperienceItem(props) {
             <div className={Styles.inner}>
                 <div className={Styles.edit}>
                     <LinkBtn
-                        href={'/dashboard/pengaturan/pengalaman/[pengalamanId]'}
-                        as={'/dashboard/pengaturan/pengalaman/' + props.dbId}
+                        href={'/dashboard/pengaturan/pengalaman/[pengalamanSlug]'}
+                        as={'/dashboard/pengaturan/pengalaman/' + props.slug}
                         label={''}
                         icon={<IoMdSettings/>}
                         variant={'warning'}/>
                     <Btn label={''} variant={'danger'} isSubmit={false} icon={<IoMdTrash/>}/>
                 </div>
-                <h3>{props.role}</h3>
+                <h3>{props.position}</h3>
                 <p className={Styles.itemCompany}>{props.companyName} <span>{props.companyLocation}</span></p>
                 <p className={Styles.itemPeriod}>{props.dateStart} - {usedDateEnd}</p>
                 <div className={Styles.companyDetail}>
@@ -46,7 +46,7 @@ function ExperienceItem(props) {
                     </p>
                     <p>
                         <span>Jabatan:</span>
-                        <span>{props.position}</span>
+                        <span>{props.role}</span>
                     </p>
                 </div>
             </div>
@@ -55,7 +55,8 @@ function ExperienceItem(props) {
 }
 
 ExperienceItem.propTypes = {
-    dbId: PropTypes.string.isRequired,
+    dbId: PropTypes.number.isRequired,
+    slug: PropTypes.string.isRequired,
     role: PropTypes.string.isRequired,
     position: PropTypes.string.isRequired,
     companyName: PropTypes.string.isRequired,

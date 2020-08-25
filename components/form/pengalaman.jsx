@@ -144,5 +144,5 @@ export default function PengalamanForm(props) {
 }
 
 PengalamanForm.propTypes = {
-    pengalamanId: PropTypes.string
+    pengalamanSlug: PropTypes.string
 };
