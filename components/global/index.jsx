@@ -1,4 +1,4 @@
-import {useState, useEffect, useContext} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import headerStyles from './header.module.scss';
 import sectionStyles from './section.module.scss';
 import heroStyles from './hero.module.scss';
@@ -10,10 +10,19 @@ import Router from "next/router";
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 import UserContext from "./userContext";
+import ReactLoading from 'react-loading';
 
 const detailName = {
     "siteName": "Muslimarkt",
     "siteDesc": "Portal Lowongan Pekerjaan Kaum Muslimin",
+}
+
+function FullLoading() {
+    return (
+        <div className={headerStyles.screenLoading}>
+            <ReactLoading type={'cylon'} color={'#368887'} width={100} height={80}/>
+        </div>
+    )
 }
 
 function TopHeader() {
@@ -405,4 +414,4 @@ Box.propTypes = {
     isNoMargin: PropTypes.bool
 }
 
-export {Header, LogoLink, Footer, Layout, Section, AlertView, Box};
+export {Header, LogoLink, Footer, Layout, Section, AlertView, Box, FullLoading};
