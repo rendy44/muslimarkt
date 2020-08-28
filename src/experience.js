@@ -10,7 +10,7 @@ export default class Experience {
     }
 
     static get(key) {
-        return new Connector('experience?key='+ key, 'get')
+        return new Connector('experience/'+ key, 'get')
     }
 
     static update(param) {

@@ -3,6 +3,7 @@ import {DashboardSettingLayout} from "../../../../components/dashboard";
 import {ExperienceItem, Experiences} from "../../../../components/dashboard/pengalaman";
 import Experience from "../../../../src/experience";
 import UserContext from "../../../../components/global/userContext";
+import {FullLoading} from "../../../../components/global";
 
 export default function PagePengalaman() {
     const {userKey} = useContext(UserContext);
@@ -45,13 +46,16 @@ export default function PagePengalaman() {
                         setContentHtml(experienceHtml);
                     }
                 })
+                .catch(err => {
+                    console.log(err)
+                })
         }
     }, [userKey, isLoaded])
     return (
         <DashboardSettingLayout title={'Pengalaman'}>
-            <Experiences>
-                {isLoaded ? contentHtml : 'Loading...'}
-            </Experiences>
+            {isLoaded ? <Experiences>
+                {contentHtml}
+            </Experiences> : <FullLoading/>}
         </DashboardSettingLayout>
     )
 }

@@ -10,7 +10,7 @@ export default class User {
     }
 
     static detail(key) {
-        return new Connector('user?key='+ key, 'get')
+        return new Connector('user/'+ key, 'get')
     }
 
     static update(param) {
