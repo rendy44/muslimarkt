@@ -10,7 +10,11 @@ export default class Experience {
     }
 
     static get(key) {
-        return new Connector('experience/'+ key, 'get')
+        return new Connector('experience/' + key, 'get')
+    }
+
+    static detail(slug, key) {
+        return new Connector('experience/' + slug + '/' + key, 'get')
     }
 
     static update(param) {
