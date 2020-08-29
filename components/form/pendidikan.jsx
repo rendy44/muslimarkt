@@ -1,13 +1,106 @@
 import PropTypes from 'prop-types';
 import {DropDown, FormAction, InputText, TextArea} from "./index";
 import {useForm} from "react-hook-form";
-import {useState} from "react";
+import React, {useEffect, useState} from "react";
+import withReactContent from "sweetalert2-react-content";
+import Swal from "sweetalert2";
+import Experience from "../../src/experience";
+import Education from "../../src/education";
 
 export default function PendidikanForm(props) {
     const {register, handleSubmit, errors} = useForm();
     const [isLoading, setIsLoading] = useState(false);
+    const [isEdit, setIsEdit] = useState(false);
+    const mySwal = withReactContent(Swal);
+
+    let thnValue = [];
+    for (let i = 1950; i <= 2030; i++) {
+        thnValue.push(i);
+    }
+
+    useEffect(() => {
+
+        // Check whether update existing experience or create a new one.
+        if (props.fieldData) {
+            setIsEdit(true)
+        }
+    }, [props])
+
     const onSubmit = async (data, e) => {
 
+        // Change status to loading.
+        setIsLoading(true)
+
+        // Identify the process, whether editing or creating a new one.
+        if (isEdit) {
+
+            Experience.update(props.fieldData.slug, props.userKey, data)
+                .then(result => {
+
+                    // Reset loading status.
+                    setIsLoading(false)
+
+                    // Prepare alert data.
+                    let swalData = {
+                        icon: 'error',
+                        text: result.data.data,
+                    }
+
+                    // Validate result.
+                    if (result.data.success) {
+                        swalData.icon = 'success';
+                    }
+
+                    // Trigger alert.
+                    mySwal.fire(swalData)
+                })
+                .catch(err => {
+
+                    // Reset loading status.
+                    setIsLoading(false)
+
+                    mySwal.fire({
+                        icon: 'error',
+                        text: err.message
+                    })
+                })
+        } else {
+            Education.add(props.userKey, data)
+                .then(result => {
+
+                    // Reset loading status.
+                    setIsLoading(false)
+
+                    // Prepare alert data.
+                    let swalData = {
+                        icon: 'error',
+                        text: result.data.data,
+                    }
+
+                    // Validate result.
+                    if (result.data.success) {
+                        swalData = {
+                            icon: 'success',
+                            text: 'Berhasil disimpan'
+                        }
+
+                        // Reset form.
+                        e.target.reset();
+                    }
+
+                    // Trigger alert.
+                    mySwal.fire(swalData)
+                })
+                .catch(err => {
+                    // Reset loading status.
+                    setIsLoading(false)
+
+                    mySwal.fire({
+                        icon: 'error',
+                        text: err.message
+                    })
+                })
+        }
     };
 
     return (
@@ -15,7 +108,7 @@ export default function PendidikanForm(props) {
             <div className='frow items-start'>
                 <div className='col-sm-1-2'>
                     <InputText
-                        name={'insitusi'}
+                        name={'institute'}
                         label={'Institusi'}
                         placeholder={'Nama institusi atau universitas'}
                         handler={register({required: true})}
@@ -24,16 +117,16 @@ export default function PendidikanForm(props) {
                 </div>
                 <div className='col-sm-1-2'>
                     <DropDown
-                        name={'kualifikasi'}
+                        name={'qualification'}
                         label={'Kualifikasi'}
-                        values={['SMA/SMU/SMK/STM', 'Diploma', 'Sarjana', 'Magister', 'Doktor']}
-                        handler={register({required: true})}
+                        values={['SMA / SMU / SMK / STM', 'Diploma', 'Sarjana', 'Magister', 'Doktor']}
+                        handler={register}
                         errorsRef={errors}
                     />
                 </div>
                 <div className='col-sm-1-2'>
                     <InputText
-                        name={'bidang_studi'}
+                        name={'major'}
                         label={'Bidang Studi'}
                         placeholder={'Bidang studi'}
                         handler={register({required: true})}
@@ -44,7 +137,7 @@ export default function PendidikanForm(props) {
                     <div className='frow'>
                         <div className='col-xs-1-2 col-sm-1-3'>
                             <DropDown
-                                name={'bulan_lulus'}
+                                name={'month_graduate'}
                                 label={'Kelulusan'}
                                 handler={register({required: true})}
                                 errorsRef={errors}
@@ -52,18 +145,18 @@ export default function PendidikanForm(props) {
                             />
                         </div>
                         <div className='col-xs-1-2 col-sm-2-3'>
-                            <InputText
-                                name={'tahun_lulus'}
-                                handler={register({required: true})}
+                            <DropDown
+                                name={'year_graduate'}
+                                values={thnValue}
+                                handler={register}
                                 errorsRef={errors}
-                                placeholder={'Tahun lulus'}
                             />
                         </div>
                     </div>
                 </div>
                 <div className='col-sm-1-1'>
                     <TextArea
-                        name={'catatan'}
+                        name={'notes'}
                         label={'Catatan'}
                         placeholder={'Catatan tentang pendidikan Anda'}
                         handler={register}
@@ -80,5 +173,5 @@ export default function PendidikanForm(props) {
 }
 
 PendidikanForm.propTypes = {
-    pendidikanId: PropTypes.string
+    userKey: PropTypes.string.isRequired
 };
