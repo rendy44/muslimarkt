@@ -189,7 +189,9 @@ function FormAction(props) {
         <div className={btnStyles.action}>
             <Btn isSubmit={true} label={props.label} variant={props.variant ?? 'main'}
                  disabled={props.disabled}/>
-            {props.otherLink && (<LinkBtn href={props.otherLink} label={'Batal'} variant={'transparent'}/>)}
+            {props.otherLink && (
+                <LinkBtn href={props.otherLink} label={props.otherLinkLabel ? props.otherLinkLabel : 'Batal'}
+                         variant={'transparent'}/>)}
         </div>
     )
 }
@@ -198,6 +200,7 @@ FormAction.propTypes = {
     variant: PropTypes.string,
     disabled: PropTypes.bool,
     label: PropTypes.string,
-    otherLink: PropTypes.string
+    otherLink: PropTypes.string,
+    otherLinkLabel: PropTypes.string
 };
 export {Btn, LinkBtn, InputText, Checkbox, TextArea, DropDown, FormAction}

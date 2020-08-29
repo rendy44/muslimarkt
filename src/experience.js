@@ -17,7 +17,7 @@ export default class Experience {
         return new Connector('experience/' + slug + '/' + key, 'delete')
     }
 
-    static update(param) {
-        return new Connector('user', 'put', param)
+    static update(slug, key, param) {
+        return new Connector('experience/' + slug + '/' + key, 'put', param)
     }
 }

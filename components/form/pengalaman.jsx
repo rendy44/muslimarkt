@@ -41,6 +41,36 @@ export default function PengalamanForm(props) {
         // Identify the process, whether editing or creating a new one.
         if (isEdit) {
 
+            Experience.update(props.fieldData.slug, props.userKey, data)
+                .then(result => {
+
+                    // Reset loading status.
+                    setIsLoading(false)
+
+                    // Prepare alert data.
+                    let swalData = {
+                        icon: 'error',
+                        text: result.data.data,
+                    }
+
+                    // Validate result.
+                    if (result.data.success) {
+                        swalData.icon = 'success';
+                    }
+
+                    // Trigger alert.
+                    mySwal.fire(swalData)
+                })
+                .catch(err => {
+
+                    // Reset loading status.
+                    setIsLoading(false)
+
+                    mySwal.fire({
+                        icon: 'error',
+                        text: err.message
+                    })
+                })
         } else {
             Experience.add(props.userKey, data)
                 .then(result => {
@@ -67,6 +97,15 @@ export default function PengalamanForm(props) {
 
                     // Trigger alert.
                     mySwal.fire(swalData)
+                })
+                .catch(err => {
+                    // Reset loading status.
+                    setIsLoading(false)
+
+                    mySwal.fire({
+                        icon: 'error',
+                        text: err.message
+                    })
                 })
         }
     };
@@ -216,7 +255,9 @@ export default function PengalamanForm(props) {
             <FormAction
                 label={isLoading ? 'Loading...' : 'Simpan'}
                 disabled={isLoading}
-                otherLink={'/dashboard/pengaturan/pengalaman'}/>
+                otherLink={'/dashboard/pengaturan/pengalaman'}
+                otherLinkLabel={isEdit ? 'Kembali' : ''}
+            />
         </form>
     )
 }
