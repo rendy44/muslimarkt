@@ -119,7 +119,7 @@ export default function PendidikanForm(props) {
                     <DropDown
                         name={'qualification'}
                         label={'Kualifikasi'}
-                        values={['SMA / SMU / SMK / STM', 'Diploma', 'Sarjana', 'Magister', 'Doktor']}
+                        values={['SLTA', 'Diploma', 'Sarjana', 'Magister', 'Doktor']}
                         handler={register}
                         errorsRef={errors}
                     />

@@ -29,16 +29,16 @@ export default function PagePendidikan() {
                     if (result.data.success) {
 
                         // Loop data.
-                        result.data.data.map((experience, index) => {
-                            // return (
-                            //     studyHtml.push(<StudyItem
-                            //         dbId={}
-                            //         institute={}
-                            //         graduation={}
-                            //         qualification={}
-                            //         country={}
-                            //         major={}/>)
-                            // )
+                        result.data.data.map((education, index) => {
+                            return (
+                                studyHtml.push(<StudyItem
+                                    key={index}
+                                    slug={education.slug}
+                                    institute={education.institute}
+                                    qualification={education.qualification}
+                                    major={education.major}
+                                    graduation={education.month_graduate + ' ' + education.year_graduate}/>)
+                            )
                         });
 
                         setContentHtml(studyHtml);

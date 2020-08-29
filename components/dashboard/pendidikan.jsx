@@ -3,6 +3,7 @@ import Styles from "./pendidikan.module.scss";
 import {Btn, LinkBtn} from "../form";
 import {IoMdSettings, IoMdTrash} from "react-icons/io";
 import {ListAction} from "./index";
+import React from "react";
 
 function Studies(props) {
     const studyContent = <div className={Styles.studies}>{props.children}</div>;
@@ -28,15 +29,15 @@ function StudyItem(props) {
             <div className={Styles.inner}>
                 <div className={Styles.edit}>
                     <LinkBtn
-                        href={'/dashboard/pengaturan/pendidikan/[pendidikanId]'}
-                        as={'/dashboard/pengaturan/pendidikan/' + props.dbId}
+                        href={'/dashboard/pengaturan/pendidikan/[pendidikanSlug]'}
+                        as={'/dashboard/pengaturan/pendidikan/' + props.slug}
                         label={''}
                         icon={<IoMdSettings/>}
                         variant={'warning'}/>
                     <Btn label={''} variant={'danger'} isSubmit={false} icon={<IoMdTrash/>}/>
                 </div>
                 <h3>{props.institute}</h3>
-                <p className={Styles.detail}>{props.qualification} {props.major} <span>{props.country}</span></p>
+                <p className={Styles.detail}>{props.qualification} {props.major}</p>
                 <p className={Styles.period}>{props.graduation}</p>
             </div>
         </div>
@@ -44,12 +45,11 @@ function StudyItem(props) {
 }
 
 StudyItem.propTypes = {
-    dbId: PropTypes.string.isRequired,
+    slug: PropTypes.string.isRequired,
     institute: PropTypes.string.isRequired,
-    graduation: PropTypes.string.isRequired,
     qualification: PropTypes.string.isRequired,
-    country: PropTypes.string.isRequired,
     major: PropTypes.string.isRequired,
+    graduation: PropTypes.string.isRequired,
     note: PropTypes.string
 };
 
