@@ -103,7 +103,7 @@ export default class MyApp extends App {
         await this.setState(stateObj);
     };
 
-    signOut() {
+    signOut = async () => {
         // Prepare state obj.
         let stateObj = {};
 
