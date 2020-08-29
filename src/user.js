@@ -2,7 +2,7 @@ import Connector from "./connector.js";
 
 export default class User {
     static add(param) {
-        return new Connector('user', 'post', param)
+        return new Connector('register', 'post', param)
     }
 
     static login(param) {
