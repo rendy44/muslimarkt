@@ -38,6 +38,7 @@ export default function PagePengalaman() {
                                     companyName={experience.company}
                                     companyLocation={experience.province}
                                     dateStart={experience.month_start + ' ' + experience.year_start}
+                                    dateEnd={experience.month_end && experience.year_end ? experience.month_end + ' ' + experience.year_end : ''}
                                     companyIndustry={experience.industry}
                                 />)
                             )
