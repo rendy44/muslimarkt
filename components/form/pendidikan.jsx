@@ -4,7 +4,6 @@ import {useForm} from "react-hook-form";
 import React, {useEffect, useState} from "react";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
-import Experience from "../../src/experience";
 import Education from "../../src/education";
 
 export default function PendidikanForm(props) {
@@ -34,7 +33,7 @@ export default function PendidikanForm(props) {
         // Identify the process, whether editing or creating a new one.
         if (isEdit) {
 
-            Experience.update(props.fieldData.slug, props.userKey, data)
+            Education.update(props.fieldData.slug, props.userKey, data)
                 .then(result => {
 
                     // Reset loading status.
@@ -113,6 +112,7 @@ export default function PendidikanForm(props) {
                         placeholder={'Nama institusi atau universitas'}
                         handler={register({required: true})}
                         errorsRef={errors}
+                        value={isEdit ? props.fieldData.institute : ''}
                     />
                 </div>
                 <div className='col-sm-1-2'>
@@ -122,6 +122,7 @@ export default function PendidikanForm(props) {
                         values={['SLTA', 'Diploma', 'Sarjana', 'Magister', 'Doktor']}
                         handler={register}
                         errorsRef={errors}
+                        value={isEdit ? props.fieldData.qualification : ''}
                     />
                 </div>
                 <div className='col-sm-1-2'>
@@ -131,6 +132,7 @@ export default function PendidikanForm(props) {
                         placeholder={'Bidang studi'}
                         handler={register({required: true})}
                         errorsRef={errors}
+                        value={isEdit ? props.fieldData.major : ''}
                     />
                 </div>
                 <div className='col-sm-1-2'>
@@ -142,6 +144,7 @@ export default function PendidikanForm(props) {
                                 handler={register({required: true})}
                                 errorsRef={errors}
                                 values={['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des']}
+                                value={isEdit ? props.fieldData.month_graduate : ''}
                             />
                         </div>
                         <div className='col-xs-1-2 col-sm-2-3'>
@@ -150,6 +153,7 @@ export default function PendidikanForm(props) {
                                 values={thnValue}
                                 handler={register}
                                 errorsRef={errors}
+                                value={isEdit ? props.fieldData.year_graduate : ''}
                             />
                         </div>
                     </div>
@@ -161,17 +165,22 @@ export default function PendidikanForm(props) {
                         placeholder={'Catatan tentang pendidikan Anda'}
                         handler={register}
                         errorsRef={errors}
-                        rows={6}/>
+                        rows={6}
+                        value={isEdit ? props.fieldData.notes : ''}
+                    />
                 </div>
             </div>
             <FormAction
                 label={isLoading ? 'Loading...' : 'Simpan'}
                 disabled={isLoading}
-                otherLink={'/dashboard/pengaturan/pendidikan'}/>
+                otherLink={'/dashboard/pengaturan/pendidikan'}
+                otherLinkLabel={isEdit ? 'Kembali' : ''}
+            />
         </form>
     )
 }
 
 PendidikanForm.propTypes = {
-    userKey: PropTypes.string.isRequired
+    userKey: PropTypes.string.isRequired,
+    fieldData: PropTypes.object,
 };
