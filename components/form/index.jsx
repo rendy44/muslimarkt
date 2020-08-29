@@ -32,7 +32,8 @@ function InputText(props) {
                     type={props.type ?? 'text'} defaultValue={props.value}
                     placeholder={props.placeholder ?? props.label}
                     ref={props.handler} disabled={props.isDisabled}/>
-                {props.errorsRef[props.name] && <span className={styles.alert}>{props.validationMessage ?? 'Harus diisi.'}</span>}
+                {props.errorsRef[props.name] &&
+                <span className={styles.alert}>{props.validationMessage ?? 'Harus diisi.'}</span>}
             </label>
         </FormGroup>
     )
@@ -64,7 +65,7 @@ function DropDown(props) {
 
     useEffect(() => {
         setValue(props.value)
-    }, [])
+    }, [props])
 
     return (
         <FormGroup noPadding={props.noPadding}>
@@ -73,7 +74,8 @@ function DropDown(props) {
                         onChange={onChange}>
                     {dropDownHtml}
                 </select>
-                {props.errorsRef[props.name] && <span className={styles.alert}>{props.validationMessage ?? 'Harus diisi.'}</span>}
+                {props.errorsRef[props.name] &&
+                <span className={styles.alert}>{props.validationMessage ?? 'Harus diisi.'}</span>}
             </label>
         </FormGroup>
     )
@@ -125,7 +127,8 @@ function TextArea(props) {
                     placeholder={props.placeholder ?? props.label}
                     ref={props.handler} defaultValue={props.value}
                     rows={props.rows ?? 3}/>
-                {props.errorsRef[props.name] && <span className={styles.alert}>{props.validationMessage ?? 'Harus diisi.'}</span>}
+                {props.errorsRef[props.name] &&
+                <span className={styles.alert}>{props.validationMessage ?? 'Harus diisi.'}</span>}
             </label>
         </FormGroup>
     )
