@@ -93,7 +93,7 @@ function ExperienceItem(props) {
                         }}/>
                     </div>
                     <h3>{props.position}</h3>
-                    <p className={Styles.itemCompany}>{props.companyName} <span>{props.companyLocation}</span></p>
+                    <p className={Styles.itemCompany}>{props.companyName} <span>{props.isOverSeas ? 'Luar negeri' : props.companyLocation}</span></p>
                     <p className={Styles.itemPeriod}>{props.dateStart} - {usedDateEnd}</p>
                     <div className={Styles.companyDetail}>
                         <p>
@@ -120,6 +120,7 @@ ExperienceItem.propTypes = {
     companyLocation: PropTypes.string.isRequired,
     companyIndustry: PropTypes.string,
     dateStart: PropTypes.string.isRequired,
-    dateEnd: PropTypes.string
+    dateEnd: PropTypes.string,
+    isOverSeas: PropTypes.string
 };
 export {Experiences, ExperienceItem}

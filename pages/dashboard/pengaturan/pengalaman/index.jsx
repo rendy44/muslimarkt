@@ -35,6 +35,7 @@ export default function PagePengalaman() {
                                     slug={experience.slug}
                                     role={experience.role}
                                     position={experience.position}
+                                    isOverSeas={experience.overseas}
                                     companyName={experience.company}
                                     companyLocation={experience.province}
                                     dateStart={experience.month_start + ' ' + experience.year_start}
