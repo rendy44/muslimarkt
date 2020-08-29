@@ -3,6 +3,9 @@ import {Checkbox, DropDown, FormAction, InputText, TextArea} from "./index";
 import {useForm} from "react-hook-form";
 import React, {useState, useEffect} from "react";
 import provinces from '../../src/provinsi.json';
+import Experience from "../../src/experience";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 export default function PengalamanForm(props) {
     const {register, handleSubmit, errors} = useForm();
@@ -10,6 +13,7 @@ export default function PengalamanForm(props) {
     const [isEdit, setIsEdit] = useState(false);
     const [isCurrentlyWork, setIsCurrentlyWork] = useState(false);
     const [isOverseas, setIsOverseas] = useState(false);
+    const mySwal = withReactContent(Swal);
 
     useEffect(() => {
 
@@ -31,6 +35,40 @@ export default function PengalamanForm(props) {
 
     const onSubmit = async (data, e) => {
 
+        // Change status to loading.
+        setIsLoading(true)
+
+        // Identify the process, whether editing or creating a new one.
+        if (isEdit) {
+
+        } else {
+            Experience.add(props.userKey, data)
+                .then(result => {
+
+                    // Reset loading status.
+                    setIsLoading(false)
+
+                    // Prepare alert data.
+                    let swalData = {
+                        icon: 'error',
+                        text: result.data.data,
+                    }
+
+                    // Validate result.
+                    if (result.data.success) {
+                        swalData = {
+                            icon: 'success',
+                            text: 'Berhasil disimpan'
+                        }
+
+                        // Reset form.
+                        e.target.reset();
+                    }
+
+                    // Trigger alert.
+                    mySwal.fire(swalData)
+                })
+        }
     };
 
     const onChange = (e) => {
@@ -46,7 +84,7 @@ export default function PengalamanForm(props) {
             <div className='frow items-start'>
                 <div className='col-sm-1-2'>
                     <InputText
-                        name={'posisi'}
+                        name={'position'}
                         label={'Posisi'}
                         handler={register({required: true})}
                         errorsRef={errors}
@@ -55,7 +93,7 @@ export default function PengalamanForm(props) {
                 </div>
                 <div className='col-sm-1-2'>
                     <InputText
-                        name={'perusahaan'}
+                        name={'company'}
                         label={'Perusahaan'}
                         placeholder={'Nama perusahaan'}
                         handler={register({required: true})}
@@ -67,7 +105,7 @@ export default function PengalamanForm(props) {
                     <div className='frow items-start'>
                         <div className='col-xs-1-2 col-sm-1-2'>
                             <DropDown
-                                name={'bulan_mulai'}
+                                name={'month_start'}
                                 label={'Periode Mulai'}
                                 handler={register({required: true})}
                                 errorsRef={errors}
@@ -77,10 +115,11 @@ export default function PengalamanForm(props) {
                         </div>
                         <div className='col-xs-1-2 col-sm-1-2'>
                             <InputText
-                                name={'tahun_mulai'}
+                                name={'year_start'}
                                 handler={register({required: true})}
                                 errorsRef={errors}
                                 placeholder={'Tahun mulai'}
+                                type={'number'}
                                 value={isEdit ? props.fieldData.year_start : ''}
                             />
                         </div>
@@ -90,7 +129,7 @@ export default function PengalamanForm(props) {
                     <div className='frow items-start'>
                         <div className='col-xs-1-2 col-sm-1-2'>
                             <DropDown
-                                name={'bulan_selesai'}
+                                name={'month_end'}
                                 label={'Periode Selesai'}
                                 handler={register({required: true})}
                                 errorsRef={errors}
@@ -101,11 +140,12 @@ export default function PengalamanForm(props) {
                         </div>
                         <div className='col-xs-1-2 col-sm-1-2'>
                             <InputText
-                                name={'tahun_selesai'}
+                                name={'year_end'}
                                 handler={register({required: true})}
                                 errorsRef={errors}
                                 placeholder={'Tahun selesai'}
                                 isDisabled={isCurrentlyWork}
+                                type={'number'}
                                 value={isEdit ? props.fieldData.year_end : ''}
                             />
                         </div>
@@ -113,7 +153,7 @@ export default function PengalamanForm(props) {
                 </div>
                 <div className='col-sm-3-11'>
                     <Checkbox
-                        name={'masih_bekerja'}
+                        name={'still_working'}
                         label={'Masih bekerja'}
                         handler={register}
                         errorsRef={errors}
@@ -123,7 +163,7 @@ export default function PengalamanForm(props) {
                 </div>
                 <div className='col-sm-1-2'>
                     <DropDown
-                        name={'jabatan'}
+                        name={'role'}
                         label={'Jabatan'}
                         values={['CEO / Direktur', 'Menejer', 'Supervisor / Kordinator', 'Pegawai', 'Lulusan baru']}
                         handler={register}
@@ -133,7 +173,7 @@ export default function PengalamanForm(props) {
                 </div>
                 <div className='col-sm-1-2'>
                     <InputText
-                        name={'industri'}
+                        name={'industry'}
                         label={'Industri'}
                         handler={register({required: true})}
                         errorsRef={errors}
@@ -142,7 +182,7 @@ export default function PengalamanForm(props) {
                 </div>
                 <div className='col-sm-1-2'>
                     <DropDown
-                        name={'provinsi'}
+                        name={'province'}
                         label={'Provinsi'}
                         handler={register({required: true})}
                         errorsRef={errors}
@@ -153,7 +193,7 @@ export default function PengalamanForm(props) {
                 </div>
                 <div className='col-sm-1-2'>
                     <Checkbox
-                        name={'luar_negeri'}
+                        name={'overseas'}
                         label={'Luar negeri'}
                         handler={register}
                         errorsRef={errors}
@@ -163,7 +203,7 @@ export default function PengalamanForm(props) {
                 </div>
                 <div className='col-sm-1-1'>
                     <TextArea
-                        name={'catatan'}
+                        name={'notes'}
                         label={'Catatan'}
                         placeholder={'Catatan tentang pekerjaan Anda'}
                         handler={register}
@@ -182,5 +222,6 @@ export default function PengalamanForm(props) {
 }
 
 PengalamanForm.propTypes = {
-    fieldData: PropTypes.object
+    userKey: PropTypes.string.isRequired,
+    fieldData: PropTypes.object,
 };

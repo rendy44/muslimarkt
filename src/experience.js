@@ -1,8 +1,8 @@
 import Connector from "./connector.js";
 
 export default class Experience {
-    static add(param) {
-        return new Connector('user', 'post', param)
+    static add(key, param) {
+        return new Connector('experience/' + key, 'post', param)
     }
 
     static login(param) {

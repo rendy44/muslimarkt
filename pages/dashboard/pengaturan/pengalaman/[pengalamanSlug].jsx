@@ -41,7 +41,7 @@ export default function PageEditPengalaman() {
 
     return (
         <DashboardSettingLayout title={'Sunting Pengalaman'} isNoAction={true}>
-            {isLoaded ? <PengalamanForm fieldData={dataObject}/> : <FullLoading/>}
+            {isLoaded ? <PengalamanForm userKey={userKey} fieldData={dataObject}/> : <FullLoading/>}
         </DashboardSettingLayout>
     )
 }
