@@ -6,6 +6,7 @@ import provinces from '../../src/provinsi.json';
 import Experience from "../../src/experience";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import industries from '../../src/industry.json';
 
 export default function PengalamanForm(props) {
     const {register, handleSubmit, errors} = useForm();
@@ -211,10 +212,11 @@ export default function PengalamanForm(props) {
                     />
                 </div>
                 <div className='col-sm-1-2'>
-                    <InputText
+                    <DropDown
                         name={'industry'}
                         label={'Industri'}
-                        handler={register({required: true})}
+                        values={industries}
+                        handler={register}
                         errorsRef={errors}
                         value={isEdit ? props.fieldData.industry : ''}
                     />
