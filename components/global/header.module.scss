@@ -45,19 +45,41 @@
         padding: 0;
 
         li {
-          display: inline-block;
           margin-right: .5rem;
+          display: none;
 
           a {
-            font-size: 1.5rem;
+            font-weight: 500;
+            padding: .5rem 1rem;
+            display: inline-block;
 
             span {
               display: none;
+            }
+
+            &:active,
+            &:hover,
+            &:focus {
+              text-decoration: none;
             }
           }
 
           &:last-child {
             margin-right: 0;
+          }
+
+          &.employee {
+            display: inline-block;
+            background-color: $main;
+            margin-left: 1rem;
+
+            a {
+              color: $white;
+
+              span {
+                display: unset;
+              }
+            }
           }
         }
       }
@@ -69,9 +91,10 @@
       .nav {
         ul {
           li {
-            a {
-              font-size: unset;
+            display: inline-block;
+            margin-right: 0;
 
+            a {
               svg {
                 display: none;
               }

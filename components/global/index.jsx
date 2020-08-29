@@ -90,6 +90,11 @@ function Header() {
             <Link href={'/daftar'}>
                 <a><IoMdPersonAdd/><span>Daftar</span></a>
             </Link>
+        </li>,
+        <li className={headerStyles.employee} key='liPerusahaan'>
+            <Link href={'/perusahaan'}>
+                <a><span>Perusahaan</span></a>
+            </Link>
         </li>
     ];
 
