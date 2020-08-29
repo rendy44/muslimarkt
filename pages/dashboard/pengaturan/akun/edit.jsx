@@ -1,15 +1,14 @@
+import React, {useContext, useState} from 'react';
 import {DashboardSettingLayout} from "../../../../components/dashboard";
 import {DropDown, FormAction, InputText, TextArea} from "../../../../components/form";
-import Router from 'next/router';
 import {useForm} from "react-hook-form";
-import {useContext, useState} from 'react';
 import UserContext from "../../../../components/global/userContext";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 import User from "../../../../src/user";
 import provinces from '../../../../src/provinsi.json';
 
-export default function PageEditAkun(props) {
+export default function PageEditAkun() {
     const {register, handleSubmit, errors} = useForm();
     const [isLoading, setIsLoading] = useState(false);
     const {
@@ -40,14 +39,12 @@ export default function PageEditAkun(props) {
         thnValue.push(i);
     }
 
-    const onSubmit = async (data, e) => {
+    const onSubmit = async (data) => {
         // set to loading.
         setIsLoading(true);
-        // Save user key into obj.
-        data['key'] = userKey;
 
         // Process update.
-        User.update(data)
+        User.update(userKey, data)
             .then(result => {
                 setIsLoading(false);
 
@@ -216,7 +213,7 @@ export default function PageEditAkun(props) {
                             label={'Catatan'}
                             placeholder={'Catatan tentang diri Anda'}
                             rows={6}
-                            handler={register({required: true})}
+                            handler={register}
                             errorsRef={errors}
                             value={userNotes}
                         />

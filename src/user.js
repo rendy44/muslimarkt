@@ -10,10 +10,10 @@ export default class User {
     }
 
     static detail(key) {
-        return new Connector('user/'+ key, 'get')
+        return new Connector('user/' + key, 'get')
     }
 
-    static update(param) {
-        return new Connector('user', 'put', param)
+    static update(key, param) {
+        return new Connector('user/' + key, 'put', param)
     }
 }
