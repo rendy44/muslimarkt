@@ -67,32 +67,28 @@ function Header() {
     const menuLinks = isLoggedIn ? [
         <li key={'liProfile'}>
             <Link href={'/profil'}>
-                <a><IoMdPerson/></a>
+                <a><IoMdPerson/><span>Profil</span></a>
             </Link>
         </li>,
         <li key={'liSetting'}>
             <Link href={'/dashboard/pengaturan/akun'}>
-                <a><IoMdSettings/></a>
+                <a><IoMdSettings/><span>Pengaturan</span></a>
             </Link>
         </li>,
         <li key={'liLogout'}>
             <Link href={'/keluar'}>
-                <a><IoMdLogOut/></a>
+                <a><IoMdLogOut/><span>Keluar</span></a>
             </Link>
         </li>
     ] : [
         <li key='liMasuk'>
             <Link href={'/masuk'}>
-                <a href='#'>
-                    <IoMdLogIn/>
-                </a>
+                <a><IoMdLogIn/><span>Masuk</span></a>
             </Link>
         </li>,
         <li key='liDaftar'>
             <Link href={'/daftar'}>
-                <a>
-                    <IoMdPersonAdd/>
-                </a>
+                <a><IoMdPersonAdd/><span>Daftar</span></a>
             </Link>
         </li>
     ];
