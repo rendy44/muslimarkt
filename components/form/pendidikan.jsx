@@ -5,6 +5,7 @@ import React, {useEffect, useState} from "react";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 import Education from "../../src/education";
+import {FullLoading} from "../global";
 
 export default function PendidikanForm(props) {
     const {register, handleSubmit, errors} = useForm();
@@ -102,82 +103,86 @@ export default function PendidikanForm(props) {
         }
     };
 
-    return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <div className='frow items-start'>
-                <div className='col-sm-1-2'>
-                    <InputText
-                        name={'institute'}
-                        label={'Institusi'}
-                        placeholder={'Nama institusi atau universitas'}
-                        handler={register({required: true})}
-                        errorsRef={errors}
-                        value={isEdit ? props.fieldData.institute : ''}
-                    />
-                </div>
-                <div className='col-sm-1-2'>
-                    <DropDown
-                        name={'qualification'}
-                        label={'Kualifikasi'}
-                        values={['SLTA', 'Diploma', 'Sarjana', 'Magister', 'Doktor']}
-                        handler={register}
-                        errorsRef={errors}
-                        value={isEdit ? props.fieldData.qualification : ''}
-                    />
-                </div>
-                <div className='col-sm-1-2'>
-                    <InputText
-                        name={'major'}
-                        label={'Bidang Studi'}
-                        placeholder={'Bidang studi'}
-                        handler={register({required: true})}
-                        errorsRef={errors}
-                        value={isEdit ? props.fieldData.major : ''}
-                    />
-                </div>
-                <div className='col-sm-1-2'>
-                    <div className='frow'>
-                        <div className='col-xs-1-2 col-sm-1-3'>
-                            <DropDown
-                                name={'month_graduate'}
-                                label={'Kelulusan'}
-                                handler={register({required: true})}
-                                errorsRef={errors}
-                                values={['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des']}
-                                value={isEdit ? props.fieldData.month_graduate : ''}
-                            />
-                        </div>
-                        <div className='col-xs-1-2 col-sm-2-3'>
-                            <DropDown
-                                name={'year_graduate'}
-                                values={thnValue}
-                                handler={register}
-                                errorsRef={errors}
-                                value={isEdit ? props.fieldData.year_graduate : ''}
-                            />
+    if (isLoading) {
+        return (<FullLoading/>)
+    } else {
+        return (
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <div className='frow items-start'>
+                    <div className='col-sm-1-2'>
+                        <InputText
+                            name={'institute'}
+                            label={'Institusi'}
+                            placeholder={'Nama institusi atau universitas'}
+                            handler={register({required: true})}
+                            errorsRef={errors}
+                            value={isEdit ? props.fieldData.institute : ''}
+                        />
+                    </div>
+                    <div className='col-sm-1-2'>
+                        <DropDown
+                            name={'qualification'}
+                            label={'Kualifikasi'}
+                            values={['SLTA', 'Diploma', 'Sarjana', 'Magister', 'Doktor']}
+                            handler={register}
+                            errorsRef={errors}
+                            value={isEdit ? props.fieldData.qualification : ''}
+                        />
+                    </div>
+                    <div className='col-sm-1-2'>
+                        <InputText
+                            name={'major'}
+                            label={'Bidang Studi'}
+                            placeholder={'Bidang studi'}
+                            handler={register({required: true})}
+                            errorsRef={errors}
+                            value={isEdit ? props.fieldData.major : ''}
+                        />
+                    </div>
+                    <div className='col-sm-1-2'>
+                        <div className='frow'>
+                            <div className='col-xs-1-2 col-sm-1-3'>
+                                <DropDown
+                                    name={'month_graduate'}
+                                    label={'Kelulusan'}
+                                    handler={register({required: true})}
+                                    errorsRef={errors}
+                                    values={['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des']}
+                                    value={isEdit ? props.fieldData.month_graduate : ''}
+                                />
+                            </div>
+                            <div className='col-xs-1-2 col-sm-2-3'>
+                                <DropDown
+                                    name={'year_graduate'}
+                                    values={thnValue}
+                                    handler={register}
+                                    errorsRef={errors}
+                                    value={isEdit ? props.fieldData.year_graduate : ''}
+                                />
+                            </div>
                         </div>
                     </div>
+                    <div className='col-sm-1-1'>
+                        <TextArea
+                            name={'notes'}
+                            label={'Catatan'}
+                            placeholder={'Catatan tentang pendidikan Anda'}
+                            handler={register}
+                            errorsRef={errors}
+                            rows={6}
+                            value={isEdit ? props.fieldData.notes : ''}
+                        />
+                    </div>
                 </div>
-                <div className='col-sm-1-1'>
-                    <TextArea
-                        name={'notes'}
-                        label={'Catatan'}
-                        placeholder={'Catatan tentang pendidikan Anda'}
-                        handler={register}
-                        errorsRef={errors}
-                        rows={6}
-                        value={isEdit ? props.fieldData.notes : ''}
-                    />
-                </div>
-            </div>
-            <FormAction
-                label={isLoading ? 'Loading...' : 'Simpan'}
-                disabled={isLoading}
-                otherLink={'/dashboard/pengaturan/pendidikan'}
-                otherLinkLabel={isEdit ? 'Kembali' : ''}
-            />
-        </form>
-    )
+                <FormAction
+                    label={isLoading ? 'Loading...' : 'Simpan'}
+                    disabled={isLoading}
+                    otherLink={'/dashboard/pengaturan/pendidikan'}
+                    otherLinkLabel={isEdit ? 'Kembali' : ''}
+                />
+            </form>
+        )
+    }
 }
 
 PendidikanForm.propTypes = {

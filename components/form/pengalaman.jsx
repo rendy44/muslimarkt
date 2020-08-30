@@ -7,6 +7,7 @@ import Experience from "../../src/experience";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import industries from '../../src/industry.json';
+import {FullLoading} from "../global";
 
 export default function PengalamanForm(props) {
     const {register, handleSubmit, errors} = useForm();
@@ -119,149 +120,153 @@ export default function PengalamanForm(props) {
         setIsOverseas(e.target.checked)
     }
 
-    return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <div className='frow items-start'>
-                <div className='col-sm-1-2'>
-                    <InputText
-                        name={'position'}
-                        label={'Posisi'}
-                        handler={register({required: true})}
-                        errorsRef={errors}
-                        value={isEdit ? props.fieldData.position : ''}
-                    />
-                </div>
-                <div className='col-sm-1-2'>
-                    <InputText
-                        name={'company'}
-                        label={'Perusahaan'}
-                        placeholder={'Nama perusahaan'}
-                        handler={register({required: true})}
-                        errorsRef={errors}
-                        value={isEdit ? props.fieldData.company : ''}
-                    />
-                </div>
-                <div className='col-sm-4-11'>
-                    <div className='frow items-start'>
-                        <div className='col-xs-1-2 col-sm-1-2'>
-                            <DropDown
-                                name={'month_start'}
-                                label={'Periode Mulai'}
-                                handler={register({required: true})}
-                                errorsRef={errors}
-                                values={['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des']}
-                                value={isEdit ? props.fieldData.month_start : ''}
-                            />
-                        </div>
-                        <div className='col-xs-1-2 col-sm-1-2'>
-                            <InputText
-                                name={'year_start'}
-                                handler={register({required: true})}
-                                errorsRef={errors}
-                                placeholder={'Tahun mulai'}
-                                type={'number'}
-                                value={isEdit ? props.fieldData.year_start : ''}
-                            />
+    if (isLoading) {
+        return (<FullLoading/>)
+    } else {
+        return (
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <div className='frow items-start'>
+                    <div className='col-sm-1-2'>
+                        <InputText
+                            name={'position'}
+                            label={'Posisi'}
+                            handler={register({required: true})}
+                            errorsRef={errors}
+                            value={isEdit ? props.fieldData.position : ''}
+                        />
+                    </div>
+                    <div className='col-sm-1-2'>
+                        <InputText
+                            name={'company'}
+                            label={'Perusahaan'}
+                            placeholder={'Nama perusahaan'}
+                            handler={register({required: true})}
+                            errorsRef={errors}
+                            value={isEdit ? props.fieldData.company : ''}
+                        />
+                    </div>
+                    <div className='col-sm-4-11'>
+                        <div className='frow items-start'>
+                            <div className='col-xs-1-2 col-sm-1-2'>
+                                <DropDown
+                                    name={'month_start'}
+                                    label={'Periode Mulai'}
+                                    handler={register({required: true})}
+                                    errorsRef={errors}
+                                    values={['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des']}
+                                    value={isEdit ? props.fieldData.month_start : ''}
+                                />
+                            </div>
+                            <div className='col-xs-1-2 col-sm-1-2'>
+                                <InputText
+                                    name={'year_start'}
+                                    handler={register({required: true})}
+                                    errorsRef={errors}
+                                    placeholder={'Tahun mulai'}
+                                    type={'number'}
+                                    value={isEdit ? props.fieldData.year_start : ''}
+                                />
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className='col-sm-4-11'>
-                    <div className='frow items-start'>
-                        <div className='col-xs-1-2 col-sm-1-2'>
-                            <DropDown
-                                name={'month_end'}
-                                label={'Periode Selesai'}
-                                handler={register(!isCurrentlyWork ? {required: true} : {})}
-                                errorsRef={errors}
-                                values={['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des']}
-                                isDisabled={isCurrentlyWork}
-                                value={isEdit ? props.fieldData.month_end : ''}
-                            />
-                        </div>
-                        <div className='col-xs-1-2 col-sm-1-2'>
-                            <InputText
-                                name={'year_end'}
-                                handler={register(!isCurrentlyWork ? {required: true} : {})}
-                                errorsRef={errors}
-                                placeholder={'Tahun selesai'}
-                                isDisabled={isCurrentlyWork}
-                                type={'number'}
-                                value={isEdit ? props.fieldData.year_end : ''}
-                            />
+                    <div className='col-sm-4-11'>
+                        <div className='frow items-start'>
+                            <div className='col-xs-1-2 col-sm-1-2'>
+                                <DropDown
+                                    name={'month_end'}
+                                    label={'Periode Selesai'}
+                                    handler={register(!isCurrentlyWork ? {required: true} : {})}
+                                    errorsRef={errors}
+                                    values={['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des']}
+                                    isDisabled={isCurrentlyWork}
+                                    value={isEdit ? props.fieldData.month_end : ''}
+                                />
+                            </div>
+                            <div className='col-xs-1-2 col-sm-1-2'>
+                                <InputText
+                                    name={'year_end'}
+                                    handler={register(!isCurrentlyWork ? {required: true} : {})}
+                                    errorsRef={errors}
+                                    placeholder={'Tahun selesai'}
+                                    isDisabled={isCurrentlyWork}
+                                    type={'number'}
+                                    value={isEdit ? props.fieldData.year_end : ''}
+                                />
+                            </div>
                         </div>
                     </div>
+                    <div className='col-sm-3-11'>
+                        <Checkbox
+                            name={'still_working'}
+                            label={'Masih bekerja'}
+                            handler={register}
+                            errorsRef={errors}
+                            onChange={onChange}
+                            isChecked={isCurrentlyWork}
+                        />
+                    </div>
+                    <div className='col-sm-1-2'>
+                        <DropDown
+                            name={'role'}
+                            label={'Jabatan'}
+                            values={['CEO / Direktur', 'Menejer', 'Supervisor / Kordinator', 'Pegawai', 'Lulusan baru']}
+                            handler={register}
+                            errorsRef={errors}
+                            value={isEdit ? props.fieldData.role : ''}
+                        />
+                    </div>
+                    <div className='col-sm-1-2'>
+                        <DropDown
+                            name={'industry'}
+                            label={'Industri'}
+                            values={industries}
+                            handler={register}
+                            errorsRef={errors}
+                            value={isEdit ? props.fieldData.industry : ''}
+                        />
+                    </div>
+                    <div className='col-sm-1-2'>
+                        <DropDown
+                            name={'province'}
+                            label={'Provinsi'}
+                            handler={register({required: true})}
+                            errorsRef={errors}
+                            values={provinces}
+                            value={isEdit ? props.fieldData.province : ''}
+                            isDisabled={isOverseas}
+                        />
+                    </div>
+                    <div className='col-sm-1-2'>
+                        <Checkbox
+                            name={'overseas'}
+                            label={'Luar negeri'}
+                            handler={register}
+                            errorsRef={errors}
+                            onChange={onChangeLocation}
+                            isChecked={isOverseas}
+                        />
+                    </div>
+                    <div className='col-sm-1-1'>
+                        <TextArea
+                            name={'notes'}
+                            label={'Catatan'}
+                            placeholder={'Catatan tentang pekerjaan Anda'}
+                            handler={register}
+                            errorsRef={errors}
+                            rows={6}
+                            value={isEdit ? props.fieldData.notes : ''}
+                        />
+                    </div>
                 </div>
-                <div className='col-sm-3-11'>
-                    <Checkbox
-                        name={'still_working'}
-                        label={'Masih bekerja'}
-                        handler={register}
-                        errorsRef={errors}
-                        onChange={onChange}
-                        isChecked={isCurrentlyWork}
-                    />
-                </div>
-                <div className='col-sm-1-2'>
-                    <DropDown
-                        name={'role'}
-                        label={'Jabatan'}
-                        values={['CEO / Direktur', 'Menejer', 'Supervisor / Kordinator', 'Pegawai', 'Lulusan baru']}
-                        handler={register}
-                        errorsRef={errors}
-                        value={isEdit ? props.fieldData.role : ''}
-                    />
-                </div>
-                <div className='col-sm-1-2'>
-                    <DropDown
-                        name={'industry'}
-                        label={'Industri'}
-                        values={industries}
-                        handler={register}
-                        errorsRef={errors}
-                        value={isEdit ? props.fieldData.industry : ''}
-                    />
-                </div>
-                <div className='col-sm-1-2'>
-                    <DropDown
-                        name={'province'}
-                        label={'Provinsi'}
-                        handler={register({required: true})}
-                        errorsRef={errors}
-                        values={provinces}
-                        value={isEdit ? props.fieldData.province : ''}
-                        isDisabled={isOverseas}
-                    />
-                </div>
-                <div className='col-sm-1-2'>
-                    <Checkbox
-                        name={'overseas'}
-                        label={'Luar negeri'}
-                        handler={register}
-                        errorsRef={errors}
-                        onChange={onChangeLocation}
-                        isChecked={isOverseas}
-                    />
-                </div>
-                <div className='col-sm-1-1'>
-                    <TextArea
-                        name={'notes'}
-                        label={'Catatan'}
-                        placeholder={'Catatan tentang pekerjaan Anda'}
-                        handler={register}
-                        errorsRef={errors}
-                        rows={6}
-                        value={isEdit ? props.fieldData.notes : ''}
-                    />
-                </div>
-            </div>
-            <FormAction
-                label={isLoading ? 'Loading...' : 'Simpan'}
-                disabled={isLoading}
-                otherLink={'/dashboard/pengaturan/pengalaman'}
-                otherLinkLabel={isEdit ? 'Kembali' : ''}
-            />
-        </form>
-    )
+                <FormAction
+                    label={isLoading ? 'Loading...' : 'Simpan'}
+                    disabled={isLoading}
+                    otherLink={'/dashboard/pengaturan/pengalaman'}
+                    otherLinkLabel={isEdit ? 'Kembali' : ''}
+                />
+            </form>
+        )
+    }
 }
 
 PengalamanForm.propTypes = {
