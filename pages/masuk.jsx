@@ -1,6 +1,6 @@
-import {useState, useContext} from "react";
+import React, {useState, useContext} from "react";
 import Router from 'next/router';
-import {Layout, Section, LogoLink} from '../components/global';
+import {Layout, Section, LogoLink, FullLoading} from '../components/global';
 import {useForm} from "react-hook-form";
 import styles from '../components/daftar/style.module.scss';
 import {FormAction, InputText} from '../components/form';
@@ -18,7 +18,6 @@ const PageMasuk = () => {
         setIsLoading(true);
         User.login(data)
             .then(result => {
-                setIsLoading(false);
 
                 // Handle for success error.
                 if (result.data.success) {
@@ -29,6 +28,7 @@ const PageMasuk = () => {
                     // Redirect user to dashboard.
                     Router.push(result.data.is_profile_complete ? '/dashboard' : '/dashboard/pengaturan/akun');
                 } else {
+                    setIsLoading(false);
                     MySwal.fire({
                         icon: 'error',
                         text: result.data.data,
@@ -51,13 +51,14 @@ const PageMasuk = () => {
                     <div className={styles.brand}>
                         <LogoLink/>
                     </div>
-                    <form onSubmit={handleSubmit(onSubmit)}>
+                    {isLoading ? <FullLoading/> : <form onSubmit={handleSubmit(onSubmit)}>
                         <InputText
                             name={'email'}
                             handler={register({required: true})}
                             errorsRef={errors}
                             type={'email'}
                             label={'Alamat Email'}
+                            placeholder={'Alamat email sesuai saat mendaftar'}
                             noPadding={true}
                         />
                         <InputText
@@ -66,10 +67,11 @@ const PageMasuk = () => {
                             errorsRef={errors}
                             type={'password'}
                             label={'Kata Sandi'}
+                            placeholder={'Minimal 8 digit'}
                             noPadding={true}
                         />
                         <FormAction label={isLoading ? 'Loading...' : 'Masuk'} otherLink={'/'} disabled={isLoading}/>
-                    </form>
+                    </form>}
                 </div>
             </Section>
         </Layout>

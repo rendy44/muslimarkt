@@ -27,6 +27,7 @@ export default class MyApp extends App {
         notes: '',
         user_key: '',
         is_profile_complete: false,
+        recruiter: false
     };
 
     commonFields = [
@@ -49,6 +50,7 @@ export default class MyApp extends App {
         'notes',
         'user_key',
         'is_profile_complete',
+        'recruiter'
     ];
 
     componentDidMount = async () => {
@@ -139,6 +141,7 @@ export default class MyApp extends App {
             notes,
             user_key,
             is_profile_complete,
+            recruiter
         } = this.state;
 
         return (
@@ -164,6 +167,7 @@ export default class MyApp extends App {
                     userNotes: notes,
                     userKey: user_key,
                     isProfileComplete: is_profile_complete,
+                    isRecruiter: recruiter,
                     saveLoginData: this.saveLoginData,
                     signOut: this.signOut
                 }}>
