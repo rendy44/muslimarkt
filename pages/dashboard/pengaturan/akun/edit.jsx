@@ -61,15 +61,16 @@ export default function PageEditAkun() {
                     // Change alert.
                     alertIcon = 'success';
                     alertMsg = 'Sukses diperbarui';
-
-                    setTimeout(() => {
-                        location.href = '/dashboard/pengaturan/akun'
-                    }, 2000)
                 }
 
                 MySwal.fire({
                     icon: alertIcon,
                     text: alertMsg,
+                    onClose: () => {
+                        if (result.data.success) {
+                            location.href = '/dashboard/pengaturan/akun'
+                        }
+                    }
                 });
 
             })

@@ -5,6 +5,10 @@ export default class User {
         return new Connector('register', 'post', param)
     }
 
+    static addCompany(param) {
+        return new Connector('company', 'post', param)
+    }
+
     static login(param) {
         return new Connector('login', 'post', param)
     }

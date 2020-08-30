@@ -22,7 +22,7 @@ function RegisterSection(props) {
                         <li>Proses rekrutmen yang mudah dan transparan</li>
                         <li>Menghemat operasional dengan tanpa biaya administrasi</li>
                     </ul>
-                    <RegisterEmployerForm/>
+                    <RegisterEmployerForm userKey={props.userKey}/>
                 </div>
                 <div className={styles.benefits}>
                     <Benefits>
@@ -39,6 +39,10 @@ function RegisterSection(props) {
             </div>
         </Section>
     )
+}
+
+RegisterSection.propTypes = {
+    userKey: PropTypes.string.isRequired
 }
 
 function Benefits(props) {

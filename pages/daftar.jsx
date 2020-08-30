@@ -47,7 +47,6 @@ export default function PageDaftar() {
                 });
             })
     };
-    const buttonLbl = isLoading ? 'Loading...' : 'Daftar Sekarang';
 
     return (
         <Layout docTitle='Daftar' isHideTitle={true} isHideHeader={true} isHideFooter={true}>
@@ -88,7 +87,8 @@ export default function PageDaftar() {
                                 layanan</a></Link> dan <Link href='/kebijakan-privasi'><a>kebijakan privasi</a></Link>.
                             </p>
                         </div>
-                        <FormAction variant={'main'} label={buttonLbl} disabled={isLoading} otherLink={'/'}/>
+                        <FormAction variant={'main'} label={isLoading ? 'Loading...' : 'Daftar Sekarang'}
+                                    disabled={isLoading} otherLink={'/'}/>
                     </form>
                 </div>
             </Section>
