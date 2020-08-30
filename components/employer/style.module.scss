@@ -1,0 +1,139 @@
+@import "styles/mainUtil";
+
+.hero {
+  background-image: url("/reg-bg.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 175px;
+
+  @include breakpoint(768px) {
+    min-height: 350px;
+  }
+}
+
+.reg {
+  .wrappers {
+    display: flex;
+    flex-direction: column;
+
+    .form {
+      margin-bottom: 2rem;
+
+      h1 {
+        color: $main;
+        font-size: 1.5rem;
+      }
+
+      ul {
+        padding-left: 1.25rem;
+        margin-bottom: 2rem;
+      }
+    }
+  }
+
+  .benefits {
+    .items {
+      display: flex;
+      flex-direction: column;
+
+      .item {
+        margin-bottom: 1.5rem;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+
+        .head {
+          display: flex;
+          flex-direction: column;
+
+          .icon {
+            color: $danger;
+            font-size: 3rem;
+            display: flex;
+            justify-content: center;
+            margin-bottom: .5rem;
+          }
+
+          h3 {
+            font-weight: 500;
+            margin-bottom: .5rem;
+          }
+        }
+
+        p {
+          margin: 0;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  @include breakpoint(768px) {
+    .wrappers {
+      flex-direction: row;
+
+      .form {
+        @include boxShadow;
+        padding: 2rem;
+        margin-top: -300px;
+        background-color: $white;
+        width: 420px;
+
+        h1 {
+          font-size: 2rem;
+        }
+      }
+
+      .benefits {
+        width: calc(100% - 420px);
+        padding-left: 2rem;
+
+        .items {
+          .item {
+            text-align: left;
+
+            .head {
+              flex-direction: row;
+              align-items: center;
+
+              .icon {
+                font-size: 2rem;
+                margin-right: 1rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @include breakpoint(992px) {
+    .wrappers {
+      .benefits {
+        .items {
+          .item {
+            .head {
+              .icon {
+                font-size: 4rem;
+                margin-bottom: 0;
+              }
+
+              h3 {
+                font-size: 1.75rem;
+              }
+            }
+
+            p {
+              font-size: 1.3rem;
+              margin-left: 5rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}

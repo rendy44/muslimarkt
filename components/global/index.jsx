@@ -91,9 +91,9 @@ function Header() {
                 <a><IoMdPersonAdd/><span>Daftar</span></a>
             </Link>
         </li>,
-        <li className={headerStyles.employee} key='liPerusahaan'>
-            <Link href={'/perusahaan'}>
-                <a><span>Perusahaan</span></a>
+        <li className={headerStyles.employee} key='liEmployer'>
+            <Link href={'/cari-kandidat'}>
+                <a><span>Cari Kandidat</span></a>
             </Link>
         </li>
     ];

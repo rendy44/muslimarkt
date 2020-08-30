@@ -53,7 +53,7 @@ export default class MyApp extends App {
 
     componentDidMount = async () => {
         // Define freeAccess Page.
-        const freePage = ['/', '/masuk', '/daftar'];
+        const freePage = ['/', '/masuk', '/daftar','/cari-kandidat'];
 
         // Get key from cookie.
         const userKey = this.getLocal('key');
