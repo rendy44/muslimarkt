@@ -88,7 +88,7 @@ export default function PageDaftar() {
                                 layanan</a></Link> dan <Link href='/kebijakan-privasi'><a>kebijakan privasi</a></Link>.
                             </p>
                         </div>
-                        <FormAction variant={'success'} label={buttonLbl} disabled={isLoading} otherLink={'/'}/>
+                        <FormAction variant={'main'} label={buttonLbl} disabled={isLoading} otherLink={'/'}/>
                     </form>
                 </div>
             </Section>
