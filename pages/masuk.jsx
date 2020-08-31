@@ -25,8 +25,16 @@ const PageMasuk = () => {
                     // Save login data.
                     saveLoginData(result.data.data);
 
-                    // Redirect user to dashboard.
-                    Router.push(result.data.is_profile_complete ? '/dashboard' : '/dashboard/pengaturan/akun');
+                    // Get detail of logged in user, whether a employee or employer.
+                    if (result.data.data.recruiter) {
+
+                        // Redirect user to dashboard.
+                        Router.push(result.data.is_profile_complete ? '/perusahaan' : '/perusahaan/lowongan/tambah');
+                    } else {
+
+                        // Redirect user to dashboard.
+                        Router.push(result.data.is_profile_complete ? '/dashboard' : '/dashboard/pengaturan/akun');
+                    }
                 } else {
                     setIsLoading(false);
                     MySwal.fire({
