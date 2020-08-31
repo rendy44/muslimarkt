@@ -14,7 +14,7 @@ export default class User {
     }
 
     static detail(key) {
-        return new Connector('user/' + key, 'get')
+        return new Connector('account/' + key, 'get')
     }
 
     static update(key, param) {

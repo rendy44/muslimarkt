@@ -55,7 +55,7 @@ export default function RegisterEmployerForm(props) {
         return (
             <form onSubmit={handleSubmit(onSubmit)}>
                 <InputText
-                    name={'name'}
+                    name={'company'}
                     label={'Nama Perusahaan'}
                     placeholder={'Seperti pada dokumen pendirian usaha'}
                     handler={register({required: true})}
@@ -63,6 +63,7 @@ export default function RegisterEmployerForm(props) {
                 <InputText
                     name={'email'}
                     label={'Email'}
+                    type={'email'}
                     placeholder={'Email perusahaan'}
                     handler={register({required: true})}
                     errorsRef={errors}/>
@@ -71,6 +72,7 @@ export default function RegisterEmployerForm(props) {
                     label={'Kata Sandi'}
                     placeholder={'Minimal 8 digit'}
                     type={'password'}
+                    validationMessage={'Kata sandi minimal 8 digit'}
                     handler={register({required: true, minLength: 8})}
                     errorsRef={errors}/>
                 <InputText

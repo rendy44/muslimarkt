@@ -50,18 +50,31 @@ export default class MyApp extends App {
         'notes',
         'user_key',
         'is_profile_complete',
-        'recruiter'
+        'recruiter',
+        'company',
     ];
 
     componentDidMount = async () => {
+
+        // Define parent route.
+        let parentRoute = '';
+
         // Define freeAccess Page.
-        const freePage = ['/', '/masuk', '/daftar','/cari-kandidat'];
+        const freePage = ['/', '/masuk', '/daftar', '/cari-kandidat'];
 
         // Get key from cookie.
         const userKey = this.getLocal('key');
 
         // Make sure that user key is exist.
         if (userKey) {
+
+            const routeArr = Router.route.split('/');
+            // Validate route arr.
+            if (routeArr.length > 1) {
+
+                // Reassign parent route.
+                parentRoute = routeArr[1]; // mostly it is a path after parent url.
+            }
 
             // Fetch user details.
             User.detail(userKey)
@@ -70,6 +83,14 @@ export default class MyApp extends App {
                     // Validate result.
                     if (result.data.success) {
 
+                        const isRecruiter = result.data.data.recruiter
+                        if ('dashboard' === parentRoute && isRecruiter) {
+                            Router.push('/')
+                        } else if ('perusahaan' === parentRoute && !isRecruiter) {
+                            Router.push('/')
+                        }
+
+                        // Save login data.
                         this.saveLoginData(result.data.data);
                     } else {
                         this.signOut();
@@ -141,7 +162,8 @@ export default class MyApp extends App {
             notes,
             user_key,
             is_profile_complete,
-            recruiter
+            recruiter,
+            company
         } = this.state;
 
         return (
@@ -166,6 +188,7 @@ export default class MyApp extends App {
                     userNoId: no_id,
                     userNotes: notes,
                     userKey: user_key,
+                    userCompany: company,
                     isProfileComplete: is_profile_complete,
                     isRecruiter: recruiter,
                     saveLoginData: this.saveLoginData,
